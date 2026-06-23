@@ -1,0 +1,78 @@
+---
+title: "Recoding America"
+description: "A great dive into the inner workings of digital technology in the US government"
+date: "2024-01-12"
+categories: ["learning", "policy", "books"]
+code-fold: true
+echo: true
+image: "justice_scales.png"
+---
+
+## A Strong Start
+
+In order to continue [my 2023 challenge](https://matiasandina.netlify.app/posts/2023-06-10-goodreads/), I hoarded several books written by women. [Recoding America](https://amzn.to/3RSow6h), by Jennifer Pahlka, was sitting in my queue waiting for the right moment, and I felt January 2024 was as good as it gets to dive into it. My hopes were high, and the author delivered above and beyond.
+
+[Recoding America](https://amzn.to/3RSow6h) is jammed with examples of the good, the bad, and the ugly when it comes to doing technology work in the Government. The prose is clear and the chosen examples illustrate the point the author is trying to make. For a non-fiction book, it's a page turner and kept me reading wide awake at night. Even when the events narrated imply terrible things happening to terrible people, there is an optimistic tone carrying you forward and giving you hope.
+
+There's just too much to unpack and I feel I wouldn't be able to do a good job at it (i.e., go read the book, it's fantastic!). But I wanted to keep some reflections/notes from my highlights with a few major points.
+
+![Image Generated with GPT](images/justice_scales.png)
+
+## Implementation
+
+If there was one take home message from this book, is that we should **stop arguing about policies, and only argue about implementation**[^1]. Even when specific laws pass, what is the actual effect of these laws? Who ends up being served by them? What conflicts do they generate? It's about real people dealing with real systems, not some abstract agents in a game theoretic scenario. The author states that this is an ever present reality in the policy-making world.
+
+[^1]: Exaggeration is mine. It's more like switch from 99.9% policy/law/legalese 0.01% implementation to something substantially more balanced
+
+It's funny to see the "Thinkers vs Doers" dilemma playing in Government. But maybe I shouldn't be surprised since I have experienced it elsewhere. I find it strange that we want to build these hierarchies everywhere we go. Maybe they arise as a natural result of specialization of labor, with domain experts being really good at one thing and not the other? It's hard to imagine we can do anything anywhere without a fluid dialogue between these two camps. It's sad to see Government entangled in these infantile quests.
+
+Most times that there's a contentious debate at home/work/whatever, I have tried to have discussions about implementation with people. I find that people often don't want to discuss implementation. We are stuck on *whether* we should do an idealized version of something or not. Or *whether* any hot topic should be a right provided by Government or not.
+
+In my mind, we should make the debate more practical: what's *the current state of affairs* and how our *implementation* modifies that state of affairs? I've seen it split into these bullet points before:
+
+-   Where are we now? People have facts and alternative facts.
+
+-   Where are we going? There's as many opinions as people alive.
+
+-   How do we get from here to there? **Nobody wants to talk about this**
+
+I feel we are stuck on what's the true nature of the world and where do we want to take it. We spend far less time talking about the path to get there. In the meantime we implement the policy best known as *no policy* or the famous *old policy that got us here in the first place*. Even when we try to implement *new* policy, we forget to measure and engage with that implementation, or to adjust it when it fails.
+
+[Recoding America](https://amzn.to/3RSow6h) is filled with examples of people working to improve this situation. I see fertile ground here. I feel optimistic for change.
+
+### Other Core Concepts
+
+The author makes a very nice bite-sized presentation of the core principles of this book. You can read them in the original format [here](https://www.recodingamerica.us/concepts). But I cannot stop mentioning two that I find true for any organization.
+
+-   Culture eats policy: whatever policy you try to implement,
+-   It has to make sense to a person: stop it with the legalese, talk to humans.
+
+## Destroying the myth
+
+One myth about the people working in Government is that they are useless sloths who don't know better. These creatures have only one pastime: to make everyone's lives more difficult. Jennifer Pahlka's book serves as proof that, *if anything,* people working in the Government are actually super qualified and doing their jobs diligently. In fact, they are held to such a degree of accountability, that this eagerness to comply is what gets them into trouble.
+
+![The Simpsons S10 E7 "Lisa Gets an 'A'"](images/clipboard-2494159710.png)
+
+When coupled with "Big Government" fears, the sloth myth supercharges the demands to make Government small. Note that I said small, and not efficient. It seems to me that campaigns are always looking to get Government out of places, instead of improving how it works and how we relate to it. [Recoding America](https://amzn.to/3RSow6h) brings a compelling case against these myths. Here's the gist of it:
+
+1.  When implementing policy, any divergence from the law will be met with endless lawsuits.
+2.  Therefore, government employees want to comply with the law and all the requirements for each project. It's not about exercising judgement, it's about extreme compliance with all possible scenarios. It's about being evaluated, promoted, and fired for how well you do what you are told to do. Even if it is stupid or doesn't help anybody.
+3.  Solving for all possible cases implies a level of complexity that doesn't serve anyone and creates maintenance challenges. Moreover, it increases the costs for both the citizens, who need to pay to interact with Government in a sane way[^2], and the Government itself, who has to request contractors fulfill huge systems for very simple things. Most importantly, it alienates those citizens in need, who cannot afford to pay for others to deal with the Government in their place.
+
+[^2]: For example, when filing taxes
+
+That is the essence of "Big Useless Government" right there. Because all projects must be massive, and "Small Government" demands keep pressuring Government to outsource, the Government doesn't have the in-house talent to deal with any projects. As a result, Government ends up *spending way more* than it should.
+
+> Small Government demands beget Big Government Spending
+
+## Write Less do More
+
+We humans have this tendency to always be on the look out to adding things. We are much more accustomed to trying to solve problems by *adding* than *subtracting*. In politics, that translates to legislating the hell out of things, which leads to a law base with many regulatory requirements.
+
+Because we have been writing laws for a while, but it's not trivial to keep count of which regulations conflict with each other. It's also not the case that people in Government remove outdated stuff (i.e., the task is far from trivial and not mandated). I find the argument regarding vast simplification of laws by *reducing* quite compelling.
+
+## Wrap-up
+
+Although I had previously read [Hack Your Bureaucracy](https://amzn.to/499H0Gv), by Marina Nitze and Nick Sinai, I consider myself quite ignorant in all things government. Both books are filled with concrete examples, practical solutions, and real experiences with people. Both books highlight the importance of culture over tech, which is quite refreshing coming from technologists. Something that [Recoding America](https://amzn.to/3RSow6h) leaves you with is the feeling that we cannot bail out. Regardless of the current situation, we have to play our part. If we belong to those who know technology, we should consider serving directly in Goverment. As citizens, we are the ones who can serve as agents of change. It is our collective responsibility.
+
+I see fertile ground here. I feel optimistic for change.

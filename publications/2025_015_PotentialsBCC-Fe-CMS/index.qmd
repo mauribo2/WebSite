@@ -1,0 +1,16 @@
+---
+title: "Strengths and Pitfalls of classical interatomic potentials for the modelling of hydrogen embrittlement in BCC-Fe: A benchmarking analysis?"
+author: ["Ram M.T. Vallinayagam", "Iban Quintana", "Elena Akhmatskaya","Mauricio R. Bonilla"]
+date: 2025-08-01
+publication: "Computational Materials Science, **258**, 114042 (2025)."
+categories: ["Hembrittlement"]
+url_source: https://doi.org/10.1016/j.commatsci.2025.114042
+url_preprint:
+journ: "Computational Materials Science"
+issue: 258
+page: 114042
+year: 2025
+image: featured.png
+pub_number: 15
+
+---

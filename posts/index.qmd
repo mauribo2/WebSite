@@ -1,0 +1,16 @@
+---
+listing:
+  contents: /**/index.qmd
+  sort: "date desc"
+  type: default
+  categories: true
+  sort-ui: true
+  filter-ui: true
+  fields: [date, title, reading-time, description, categories]
+  feed:
+    categories: [R, posts]
+page-layout: full
+title-block-banner: false
+---
+
+Below is a list of all posts in this site.

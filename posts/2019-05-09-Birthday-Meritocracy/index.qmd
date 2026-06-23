@@ -1,0 +1,350 @@
+---
+title: Birthday Meritocracy
+date: 2019-05-09
+categories: ["ideas", "Randomness"]
+---
+
+We believe in meritocracy as one of the cornerstones of Western civilization. This idea is so embedded in our culture that we seldom question it. We praise those driven individuals who combine effort and talent to make it to the top. They smile in the cover of the magazines, the dreams of children and the nightmares of adults. Sports might be the activity where the *blood, sweat and tears* feel the most real and therefore are most notoriously broadcasted to the world. 
+
+The *beautiful game* is no exception. But what if we were wrong about the meritocracy assumption? What if there were random events that sneak in the player selection process? What if such events were not negligible, but heavily influenced what players that make it to the top?
+
+## One trimester
+
+Three or four months of difference at 25 year old is nothing[^actually]. Moreover, for most purposes in adult life, such a small difference in age is considered zero. But elite athletes are not ordinary adults and we don't care about most of their purposes in life. We want them to do one thing extraordinarily well. 
+
+What could a trimester difference do to a 25 year old, prime time, football player? You might still find yourself asking this question and this question might sound reasonable. But the data looks quite different. Let's take a look.
+
+## The database
+
+I compiled a small database of football players from www.soccerwiki.com. This database is not perfectly complete, but contains enough players to provide support to the general idea. Here's a table of the number of players by country:  
+
+```{r}
+#| echo: false
+#| warning: false
+#| fig.cap: Total number of players per country.
+suppressPackageStartupMessages(library(dplyr))
+
+df <- read.csv("football_database.csv", 
+               stringsAsFactors = FALSE)
+
+# some modifications for the flag thing
+df <- mutate(
+  df,
+  country = case_when(
+    country == "URU" ~ "URY",
+    country == "GER" ~  "DEU",
+    country == "ENG" ~ "GBR",
+    TRUE ~ country)
+)
+
+# Clean the position column
+df <- df %>% 
+  # will throw warnings but it's fine
+  tidyr::separate(position, into=c("pos", "a"), remove = FALSE, sep = ",") %>%
+  mutate(
+    new_pos = case_when(stringr::str_detect(pattern="GK", 
+                                             string = pos) ~ "Goal-Keeper", 
+                        stringr::str_detect(pattern = "^DM|^DM\\(", 
+                                            string = pos) ~ "Defensive-Midfielder",
+                        stringr::str_detect(pattern = "^AM|^AM.+", 
+                                             string = pos) ~ "Attacking-Midfielder",
+                        stringr::str_detect(pattern = "^D|^D\\(", 
+                                             pos) ~ "Defender",
+                        stringr::str_detect(pattern = "^M|^M\\(", 
+                                             pos) ~ "Midfielder",
+                        stringr::str_detect(pattern = "F.+", 
+                                             string = pos) ~ "Forward"
+                         )) %>% 
+  mutate(new_pos = factor(new_pos, 
+                          levels=c("Goal-Keeper",
+                                   "Defender",
+                                   "Defensive-Midfielder",
+                                   "Midfielder",
+                                   "Attacking-Midfielder",
+                                   "Forward")))
+
+
+countries <- countrycode::codelist %>%
+  dplyr::select(country=iso3c, 
+                iso2c, 
+                name = iso.name.en)
+
+# Create a formatted footnote
+footnote <- "**GBR:** Data only includes players from England."
+
+
+df %>%
+  left_join(countries, by = "country") %>% 
+  group_by(country, name, iso2c) %>%
+  count() %>% 
+  arrange(desc(n)) %>% 
+  ungroup() %>% 
+  dplyr::select(-country) %>% 
+  gt::gt() %>% 
+  gt::cols_move_to_start(columns = iso2c) %>% 
+  gt::fmt_flag(columns = iso2c) %>% 
+  gt::cols_label(
+    iso2c = "",
+    name = "Country",
+    n = "Football Players (n)"
+  ) %>% 
+  gt::tab_footnote(
+    footnote = "The data for the United Kingdom only comes from England.",
+    locations = gt::cells_body(
+      columns = c(name),
+      rows = c(name) == "United Kingdom"
+    )
+  )
+  
+```
+
+
+Here's a month by month representation of the number of players born in each country.  
+
+```{r}
+library(ggplot2)
+df %>%
+  left_join(countries, by = "country") %>% 
+  group_by(country, name, iso2c, month) %>% 
+  count() %>% 
+  mutate(flag = countrycode::countrycode(iso2c, 'iso2c', 'unicode.symbol')) %>% 
+  ggplot(aes(month, n)) +
+  geom_segment(aes(xend=month, y=0, yend=n)) +
+  geom_point(size = 2, alpha = 0.9) +
+  scale_x_continuous(
+    breaks = c(1, 5, 9, 12),#seq_along(month.name), 
+    labels = c("Jan", "May", "Sep","Dec"),#month.abb,
+  ) +
+  facet_wrap(~paste(country, flag), scales="free_y") +
+  labs(x = element_blank(),
+       y = "Number of Players Born Each Month",
+       title = "⚽ Football Players Aren't Born All Year Round") +
+  theme(text = element_text(size = 16, family = "roboto"),
+        panel.grid.major.x = element_blank(),
+        panel.grid.minor.x = element_blank(),
+        panel.grid.minor.y = element_blank(),
+        panel.grid = element_line(color = "gray20", linetype = 4),
+        panel.background = element_rect(fill="gray95"))
+
+```
+
+
+This looks quite strange, there's a clear trend, with most players being born in the first months of the year. Maybe it's a seasonal thing? 
+
+Well...It's quite difficult to support the idea that players born on any season are better. For example, January in Brazil means blazing hot summer while it's freezing cold winter in Germany. Still, both countries seem to produce the most number of players in the first month of the year. In fact, the data show that being born on the first trimester after the cutoff date (e.g, January to March if cutoff is January 1st) increases the chances of being a top player by a huge margin.  
+
+## Analysis by position
+
+There might be some logic behind this phenomenon. Maybe the birth effect is big for positions most strongly associated with bare physical strength. Thus, we could expect to find a stronger effect for those in defensive positions (i.e, Goalkeeper up to Defensive Midfielders) and find a broader distribution of birth dates for those positions that are reserved for the creatives and magicians of the ball, the offensive players.  
+
+
+```{r}
+#| warning: false
+
+df %>%
+  group_by(new_pos, month) %>% 
+  count() %>% 
+  ggplot(aes(month, n)) +
+  geom_segment(aes(xend=month, y=0, yend=n)) +
+  geom_point(size = 2, alpha = 0.9) +
+  scale_x_continuous(
+    breaks = c(1, 5, 9, 12),#seq_along(month.name), 
+    labels = c("Jan", "May", "Sep","Dec"),#month.abb,
+  ) +
+  facet_wrap(~new_pos, scales="free_y") +
+  labs(x = element_blank(),
+       y = "Number of Players Born Each Month",
+       title = "⚽ Football Players Aren't Born All Year Round") +
+  theme(text = element_text(size = 16, family = "Ubuntu"),
+        panel.grid.major.x = element_blank(),
+        panel.grid.minor.x = element_blank(),
+        panel.grid.minor.y = element_blank(),
+        panel.grid = element_line(color = "gray20", linetype = 4),
+        panel.background = element_rect(fill="gray95"))
+```
+
+Again, the evidence for a strong bias favoring players born on the first trimester is compelling. What's going on here?
+
+## The one percent difference
+
+This is not a post about how the top athletes distinguish themselves from the rest because of their talent and effort. This post is about something completely out of their control: their birth dates. Yes, it sounds crazy, but the month of birth plays a huge role in the success of a football player.
+
+Football schools around the world are normally organized around the calendar year. It makes sense, if you are going to make a tournament for kids, instead of having kids of different ages competing together, you grab all the kids born on a same year and make them play against each other (5 year-old kids vs other 5 year-old kids). For example, when I was playing these tournaments, I played in the 1991 category.
+
+Scouts and coaches might decide to *promote* a strong/talented kid. In my case, I *could* play for the 1990 or 1989 categories. But we all agree that it would be unfair to *downgrade* me to play for the 1995 category. I would have a huge developmental advantage. So far so good, but there's something that escapes from everyone: **one year is a lot of time**. The developmental difference between a 5 year old kid born at the beginning of the year (e.g, January 1st) vs one at the very end (e.g, December 31st) is huge. 
+
+Let's take a less extreme case, kids born with a 180 days difference. That amount of days corresponds to an extra fraction of life lived (aka experience, aka time kicking the ball) of 0.1. It might sound like very little but that 10% advantage will definitely compound over the competitive career.  
+
+
+```{r}
+#| warning: false
+# We asume 365 days per year
+
+percentage_days <- tibble(years = rep(c(1:100),4), 
+                          year_days = years * 365,
+                          days_difference = sort(rep(c(90,270,180, 360), 100))
+                          ) 
+
+
+main.plot <- ggplot(percentage_days,
+         aes(years, days_difference/year_days,
+             color=factor(days_difference)))+
+  geom_line(lwd=1)+
+  theme_bw()+
+  theme(legend.position = "bottom")+
+  scale_color_grey()+
+  theme(text = element_text(size=16,family = "Ubuntu"),
+        panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
+  labs(
+    x = "Years Lived",
+    y= "Fraction of life", 
+    color='Birthdate difference (days)', 
+    title = "Competitive advantage",
+    subtitle = "Kids age 5 born in January have lived\nup to 20% more life than other teammates") 
+
+  
+inset.plot <- ggplot(filter(percentage_days, between(years, 5, 10)),
+                     aes(years, days_difference/year_days,
+             color=factor(days_difference)))+
+  geom_line(lwd=1)+
+  theme_bw(base_size = 16, base_family = "Ubuntu")+ 
+  labs(x="Years Lived", y=element_blank())+
+  theme(legend.position = "none")+
+  scale_color_grey()
+
+plot.with.inset <-
+  cowplot::ggdraw() +
+  cowplot::draw_plot(main.plot) +
+  cowplot::draw_plot(inset.plot, x = 0.3, y=0.3,
+                     width = 0.6, height = 0.5)
+
+plot.with.inset
+```
+
+## The Logic Behind It
+
+It turns out to be that scouts and coaches *think* they are selecting the best, but they are selecting the *oldest*. The January 1st cutoff is arbitrary and favors those born close to the date, who will be slightly stronger/faster/better only because they have had more time to play around in the world and, basically, *grow*. If you look closely, the only country that does not follow the pattern is the UK. But, yes, you guessed it, the cutoff date for the UK is [August 31st](https://www.bbc.com/news/business-32064842).
+
+Players that are selected as the best normally play in the starting team and stay in the field more minutes each game [Experience based, Citation needed]. They get better training and more opportunities to play, either because they play more or because coaches pay more attention to them. Each extra minute reinforces the small initial difference, creating a real one. Of course, talent and effort play a role. But it consistently turns out to be that players born earlier on the calendar year end up being better than the other players. This phenomenon is known as relative age effect [^Wiki].
+
+Whenever we see skewed age distributions we should suspect it is likely due to arbitrary cuts. The magic ingredients go like this:
+
+1) Make an arbitrary cut.
+1) Select those that are a tad ahead, those closest to the cut (older people relative to cut).
+1) Differentiate training experience by giving more opportunities to those already ahead.
+1) Harvest the best players (older people relative to cut). 
+
+This is difficult to detect because it's a self-fulfilled profecy for scouts (after all, they want their picks to end up being good). Basketball doesn't have this kind of problem, mostly because availability of opportunities to train and the absence of strict cutoff dates. But in other sports, this effect is even more marked. In ice hockey, you are mostly constrained to the winter season to play and you need a rink, which puts more barriers on training[^science]. 
+
+## Market Value
+
+I couldn't scrape enough to make a case about market value. But a quick Google search lead me to a paper suggesting that, although month of birth has a big effect in the frequency of players, once the pros made it, their salaries are not related to such factor [^MoneyPaper].
+
+## The bad news
+
+This effect transcends beyond sports. Turns out that arbitrary cutoffs during development affect academic performance. Kids born near the cutoff perform better at school and go to better universities. I cannot stop thinking that I was somewhat fortunate in this account. Overall, school never felt like too difficult. But maybe it's because I had had enough days on earth and was mature enough to grasp concepts. Maybe it's not only that "Math and Science came easy to me and I liked them". Maybe I was born at the correct moment and I wouldn't be pursuing academic endeavors if I hadn't been born around the cutoff date in my country (July 1st).
+
+Dividing school kids by age is retrograde. I would like to see a continuous progress with no boundaries on dates. I would like to see no kid be made to wait because he isn't old enough yet and, more importantly, I would like to see no hurrying kids through content because their age says so. I would like to see people moving through school at their own pace[^Salman]. Maybe we should start looking at performance adjusted by age, it might be the antidote we are looking for. 
+
+## The silverlining
+
+We can account for this effect and attempt to correct it! Some countries have started to make adjustments to the birth effect in football. An easy way of doing it is using two cutoff dates and training coaches (and scouts) against their bias.
+
+Solving this issue might require clubs to have two teams per year. This measure doesn't have to go all the way until they are pro, but at least until kids are old enough, so that we keep below the 6-8 month difference. This will possibly increase the costs for everyone and makes logistics more difficult. However, we would see a huge increase in the production of players (and/or their quality) if we just change this arbitrary dates. 
+
+## Wait a second
+
+There's a possible hypothesis I've been evading. The reasoning will be like this:
+
+1) The frequency of Football players is a proportion of the people born in a country.
+1) The frequency of births in the whole country is higher in the months that the Football Associations of each country use as cutoffs.
+
+If both things were true, then that explains why we see a peak of players in January (or whatever the specific month of cutoff date is). I will use data from my country to show that births do not follow Football.
+
+## Argentina
+
+My country is well known for the production and exportation of football players. I had access to data on births in Buenos Aires. I later gained access to the data for the whole country, which showed mostly the same trend (you can see it at the very bottom of the article). The number of births in Argentina are somewhat constant. If anything, March seems to be the month with most consistent high amount of births.
+
+
+```{r}
+#| label: nacimientos
+#| eval: false
+
+nacimientos <- read.csv("datos_nacimientos.csv",
+                        stringsAsFactors = FALSE)
+
+# We need this to translate months to english
+meses <- c("Enero", "Febrero", "Marzo", "Abril", 
+           "Mayo", "Junio", "Julio", "Agosto",
+           "Septiembre", "Octubre", "Noviembre", "Diciembre")
+
+english_month <- month.abb[1:12]
+
+translate_df <- data.frame(mes = meses,
+                           english_month = english_month)
+
+nacimientos <- nacimientos %>%
+  left_join(translate_df, by="mes") %>%
+  mutate(english_month = factor(english_month, levels = month.abb)) %>%
+  arrange(year)
+
+# Boxplot 
+caba_boxplot <- ggplot(nacimientos,
+       aes(english_month, nacimientos)) +
+  geom_boxplot(fatten=2.5, fill="orange", alpha=0.8)+
+  theme_bw()+
+  theme(text = element_text(family = "Ubuntu", size = 14)) +
+  geom_point(alpha=0.8)+
+  labs(caption="Source: Gobierno de la Ciudad de Buenos Aires",
+       title ="Births by month", 
+          subtitle = "Years 2005 to 2018",
+          x = element_blank(),
+          y = "Number of births")
+
+date <- seq(as.Date("2005-01-01"), by="1 month", length.out= nrow(nacimientos))
+
+```
+
+
+Births in Argentina
+
+```{r}
+#| label: argentina-births
+#| warning: false
+#| message: false
+
+df <- readxl::read_excel("nacidos_vivos.xlsx")
+
+df <- mutate(df, MES = janitor::excel_numeric_to_date(as.numeric(MES)),
+             year = lubridate::year(MES),
+             month = lubridate::month(MES)) %>%
+  filter( year > 2005) %>%
+  group_by(MES) %>%
+  mutate(births = sum(CANTIDAD)) %>%
+  arrange(MES)
+  
+# TilePlot
+ggplot(filter(df, !(year==2017 & month == 12)),
+              aes(x=month, y = year, fill=log10(births)))+
+  geom_tile(color="white")+
+  scale_fill_viridis_c()+
+  scale_x_continuous(breaks=1:12, 
+                     labels=month.abb,
+                     expand=c(0.01,0.01))+
+  scale_y_continuous(breaks=2006:2017, expand=c(0.01, 0.01))+
+  theme(
+    text = element_text(family = "Ubuntu", size = 14),
+    panel.background = element_rect(fill=NA),
+        legend.position = "bottom")+
+  labs(caption="Source: Ministerio de Salud",
+       title = "Argentineans Are Born All Year Round",
+       x = element_blank(), y = element_blank())
+
+
+```
+
+[^science]: I cannot help but relate this with Science. Limited resources, too many hands trying to pull a piece to themselves... add on some age effect, differential training/opportunities (quite often bought with money and good connections). We are probably loosing so many great minds. 
+[^Salman]: Salman Kahn expresses it way better than I could ever do in his [TED talk](https://www.ted.com/talks/sal_khan_let_s_teach_for_mastery_not_test_scores).
+[^actually]: It's actually `r round(120/(25*365) * 100, 2)` % of life. 
+[^MoneyPaper]: You can find the paper [here](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5805271/)
+[^Wiki]: Great general info here https://en.wikipedia.org/wiki/Relative_age_effect

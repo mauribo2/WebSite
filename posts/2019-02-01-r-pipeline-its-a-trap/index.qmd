@@ -1,0 +1,152 @@
+---
+title: "R pipeline -- It's a trap!"
+date: 2019-01-02
+categories: ["R","learning"]
+---
+
+Here's how the story usually goes: It starts with you, sitting in front of the computer screen, thinking: *What a lovely day for some data analysis!*.
+
+This day is great because you have collected some data or maybe because you happened to find some data somewhere, begging to be part of a smoking good plot.  
+
+## Raw data inside Tin Software
+
+Having data feels so good, that itching feeling in your fingers, the rush to know. How does it look like? You *need* to know. But let's be honest, no dataset comes clean. You have to fight your way to finally get the squeaky clean readable `data.frame`.
+
+Why is data *dirty*? Well, there are many reasons. Today I want to focus on the manufacturers.
+
+Manufacturers don't care for tidiness or openness, they use the format that works for them. They care for proprietary software solutions that help them help you, for a little contribution [^befair].
+
+[^befair]: To be fair, companies are not entirely to blame here. The scientific community (aka, the consumers) demands a visually friendly display, with Excel `Copy+Paste` capabilities. No wonder why universal text formats are many many clicks away in most software and you need several data wrangling steps before having the thing you want: *a tidy table*. Data coming from organizations (e.g, UN) is not always super clean either (countries keep changing their names, how dare they!?).
+
+## Reclaiming your data
+
+Of course, your data is your *own* and there has to be a way of getting it out of the tin software. So, you pull up your sleeves and go for it: *there must be a way to get a text file out of this*. Fortunately, but not after a lot of clicking, you find a way to get your `raw_data.csv` file exported. 
+
+
+## Untitled1
+
+You are now more than ready to `read.csv(...)` your file. You open a new empty script and rush through commands. Read it. Do some quick wrangling. Maybe even a manual edit? The goal at this stage is to swift through it. You accept hard-coding some values, why not? 
+
+`df <- df[3:3245, 18:22]` doesn't sound that bad at this stage. 
+
+Before you can tell, you end up with less than 50 lines of code that accomplish the task, a sort of `x + y + z -> result`. This feels good!
+
+
+## Plot
+
+You plot the data. Yes, you might even use *base graphics* at this stage. It looks horrible, but the relationship is there, and you smile. It's encouraging, in your next meeting, you will discuss the great advances in your research line (added n=3 to a group).   
+
+## Periodic
+
+But something holds you when you try to escape back to the real world. You know that this process is gonna happen more than once. Hopefully, every week or so, you're going to get your `sample of interest` read in that `machine of hell` and, if you want a quick taste of that sweet data, you'd better clean your script and make it a nice *pipeline*. Here's where your Advanced R (http://adv-r.had.co.nz/) voice whispers to you: *Everything to parameters, parameters to functions.*
+
+## Functions
+
+Let's think in more general terms now...Where is the regular expressions God when I need it?
+
+You don't really remember, but there's Google and there's `stringr`. You're quite sure you'll find a way to extract all relevant info and recycle it through the pipeline. You create universal values that are shared, `ID_this`, `ID_that`. Naming names wasn't that difficult after all! 
+
+Your vision is still clear, maybe it's because of the coffee, so you quickly wrap your sequential steps into functions that directly resemble them. You proudly name the files after the steps they perform (as if you would remember what `clean_and_tidy_df.R` does three months from now). 
+
+You still have a sequence: it now looks like `x = f(...) + y = g(...) + z = h(...) -> result`. Not bad for a couple hours of work!
+
+## Climax
+
+You find yourself at the climax of your endeavor. You can easily do a sequence of calls to functions. Moreover, everything is fresh in your memory and you have not tested your functions extensively. Things appear to work because you haven't invested enough effort to break them. 
+
+* What will happen when dates change? 
+* Is your description of the problem(s) correct?
+* Are your solutions working despite not being authoritative (aka, how many unknown unknowns waiting to bite you?)?
+* You are the only one running this code now, is that going to be the case *forever*? 
+* Packages will update tomorrow. Are you ready for that?
+
+All this ignorance feels a lot like happiness. Again, you are strongly tempted to get up from your desk and go live your life.
+
+## Wake up
+
+It doesn't really matter how long it takes, your code will break. You realize your functions depend on global parameters, the date, the folder structure, the file names, and a stupid pattern on row 7 that is manually typed on `machine of hell` and therefore might contain human errors.
+
+You cry, at least for a microsecond. Then you decide it's time to bring the big guns to the fight. Everything will be standardized. It's time for `list.files()` and `lapply()` to save the day.
+
+## Everything is a list
+
+You create `wrapper_of_clean_and_tidy_df.R` and all sorts of other wrapper functions that can handle lists. Why? Because *everything is a list now*. You will load all the data, make a huge list, loop over, and apply all-purpose functions. Remember `x`? Neither do I, but it's somewhere there, running at the bottom. 
+
+But this `list -> list -> list -> list of results` is a bit confusing, where is the stuff I care about?. Don't even get me started with the lists of lists.
+
+## Checkpoints
+
+By this point, even if you will be the only one running this code, you are in deep need of some hints that point you towards what is going on. 
+
+You also have big objects that were only meaningful on the very first time, things that you never want to calculate again. But *What if some day...?* Yes, you know how this one goes. So, go ahead, you are allowed to add this line:
+
+`readline(prompt = "This was only computed once in the life of the Universe, compute again [Y/N]? > ")`
+
+Checkpoints are also useful tools to handle errors that might come in the data, find typos, sort out dates, prevent the wrong data type from entering a function, among others.
+
+For example, you might be expecting something that looks like `yyyy-mm-dd_filename.csv`, but for some reason you end up trying to read `other_filename.csv`. Well, good luck converting `other` to date format. Moreover, are you really trying to use `"[0-9]{4}-[0-9]{2}-[0-9]{2}"` as the pattern to match to `yyyy-mm-dd`? Come on...you can do better than this! 
+
+Wondering where are those `NAs` coming from? Wondering what's the length of a `NULL` character? Been there, done that. Don't worry, enough checkpoints can solve the problem.
+
+At this point, after another couple hours, your code is working under several layers of `if(condition) {...} else {...}` statements. Good job, feeling like a programmer yet? 
+
+
+## What does the code do again?
+
+Because your code is now looking like:  
+
+`wrapper of wrapper of x + wrapper of wrapper of y + wrapper of wrapper of z -> ???`
+
+You have no idea what's going on unless you run the whole chain. But you did your work and it pays off. The code works like a charm! You can see lines of code dropping, messages being printed, prompts being asked and answered, graphs popping every now and then. You even check some errors by trying to run corrupted data, errors are being thrown! Heaven.
+
+You are ready now, the code is working, time to collect a *shit ton* of data.
+
+## Why are you doing this to yourself?
+
+You didn't optimize for *that* much data. Your code is now running at a brand new speed: *turtle*. You can go get coffee, stop to chat a for a while with the students in another lab and come back to the computer, only to see it improve a few % points.  
+
+You did this to yourself. You don't need those 17 extra plots in between calculations every single time. You have no time to look at them if you are running hundreds of tiny files as inputs. Besides, you already know that your method works, the calibration curve is calibrated and the machine parameters lie within the expected distribution.
+
+## Save before continue
+
+Gaming rules apply: before fighting the boss, save the game, just in case you know...you die in the fight. You don't want to start all over, do you?
+
+But we seldom do this unless we absolutely have to. We don't like to leave a trail of intermediate computations. In a sense, this might be dangerous, what if something broke in between, but because we have an old copy we are able to go through the pipeline without noticing? It makes me cringe.
+
+But you don't want to calculate years of data just to look how much the new addition changes the output, right? Start saving intermediate steps!
+
+## Package
+
+You said you were going to have the data analysed by tomorrow, but you spent the whole day waiting for it to run, debugging and trying to make the pipeline even more tight. That thing you did, the saving intermediate files, turned out to be far more complicated than what you expected. You realized exactly how many environment variables were being created and used during the pipeline. You re-learn the term `scoping` and you learn to worship it. Nah, 10 arguments it's not too much, you will *surely* remember them all when you call the function! No data so far, no data that you can *show* to another human being.
+
+It's well past midnight, your eyes hurt, there's no more ice cream to keep you excited. But a question creeps into your mind, a revelation:
+
+*Should I start from scratch and make this my own package? Yes..that's what I'm gonna do...!*
+
+
+***
+
+Stop! It's a trap!
+
+
+## Steps of the race to the bottom
+
+Just as recap...be my guest.
+
+1) You have a `raw_data.csv`.
+2) You open an empty script (*Untitled1*) and write a few lines that do sequentially something like x + y +  z -> result.
+3) You make a *very* raw representation (even using base graphics).
+4) You *know* this is going to be periodically done, so you shift to functions, you parametrize some things.
+5) Now you have x = f(...), y = g(...), and z(...).
+6) You are happy because you still can do something like f(...) + g(...) + z(....).
+7) You realize your functions depend on global parameters like the date in which you do each of your experiments.
+8) You decide you are going to take this a step forward, here comes `list.files` and `lapply()` to save the day.
+9) You wrap your main functions inside other functions that are compatible with lists (because now EVERYTHING is a list).
+10) You realize that you lost.
+11) You add checkpoints, questions, exceptions (for all those moments where data behave as well...normal messy data).
+12) Your code has grown so much you have no clue what it does unless you run the full script, so now it looks like wrapper of wrapper x + wrapper of wrapper y + wrapper of wrapper z -> entangled results.
+13) You are so happy that you can run all those files like a charm (and it works!) so you acquire a shit ton of data.
+14) You didn't optimize for "a shit ton of data", your code is slow now. Also...what were you thinking? You don't need those 17 extra plots in between calculations. You have no time to look at them now that you are running hundreds of tiny files as inputs.
+15) Calculations take forever now. You realize that you had to save intermediate steps. 
+16) Even if you tried saving them, most of your functions are dependent on other tiny values (dates, number of trials, number of rows of matrix named "WHATEVER").
+17) Make your own R package.

@@ -1,0 +1,15 @@
+---
+title: "Anion Trapping and Ionic Conductivity Enhancement in PEO-Based Composite Polymer–Li₇La₃Zr₂O₁₂ Electrolytes: The Role of the Garnet Li Molar Content"
+author: ["Henry A. Cortés", "Mauricio R. Bonilla", "Ernesto E. Marinero", "Javier Carrasco", "Elena Akhmatskaya"]
+date: 2023-05-22
+publication: "Macromolecules, **56**(11), 4256-4266 (2023)."
+categories: ["SSBs"]
+url_source: https://pubs.acs.org/doi/full/10.1021/acs.macromol.3c00568
+url_preprint:
+journ: "Macromolecules"
+issue: 56
+page: 4256-4266
+year: 2023
+image: featured.png
+pub_number: 10
+---

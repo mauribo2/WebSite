@@ -1,0 +1,15 @@
+---
+title: "A data-mining approach to understanding the impact of multi-doping on the ionic transport mechanism of solid electrolytes materials: the case of dual-doped Ga0.15/Scy Li7La3Zr2O12"
+author: ["Henry A. Cortés", "Mauricio R. Bonilla", "Herbert Früchtl", "Tanja van Mourik", "Javier Carrasco", "Elena Akhmatskaya"]
+date: 2024-01-19
+publication: "Journal of Materials Chemistry A, **12**, 5181-5193 (2024)."
+categories: ["SSBs"]
+url_source: https://doi.org/10.1039/d3ta07036k 
+url_preprint:
+journ: "Journal of Materials Chemistry A"
+issue: 12
+page: 5181-5193
+year: 2024
+image: featured.png
+pub_number: 11
+---

@@ -1,0 +1,35 @@
+---
+title: Solid-state Batteries
+alias: &ALIAS SSBs
+image: featured.png
+listing:
+  id: pubs
+  template: ../../_ejs/publications-people.ejs 
+  contents: ../../publications/**/*.qmd
+  sort: "date desc"
+  # sort-ui: true
+  filter-ui: true
+  include:
+    categories: *ALIAS
+  fields: [publication, title, categories, image, date, author]
+
+---
+
+Solid-state batteries are pivotal for the next generation of energy storage, offering a transformative leap in both safety and energy density over conventional lithium-ion systems.
+
+Driven by this potential, my research focuses on:
+
+- Unlocking the atomistic mechanisms behind fast ion conduction in inorganic solid-state electrolyte materials; \
+- developing and characterizing novel composite electrolytes that combine the fast ionic transport of inorganic conductors with the flexibility of ionically active polymers; and \
+- unraveling lithium exchange dynamics at solid-solid interfaces.
+
+<figure style="text-align: center;">
+    <img src="featured.png" alt="Featured Image" style="display: block; margin-left: auto; margin-right: auto; width: 800px; height: auto;">
+</figure>
+
+
+## Related Publications
+
+
+:::{#pubs}
+:::

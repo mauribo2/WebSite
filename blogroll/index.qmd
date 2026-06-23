@@ -1,0 +1,7 @@
+---
+title: "Blogroll"
+---
+
+I use RSS feeds to share my content in different pages. Here's a list of the sites I use:
+
+-   <https://www.r-bloggers.com/>

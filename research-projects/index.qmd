@@ -1,0 +1,29 @@
+---
+title: "Research Projects"
+---
+
+### Individual Fellowships
+
+1.  **Ramon y Cajal fellowship.** Dates: Jan. 1, 2024 – Dec. 31, 2028. Funding Entity: Agencia Estatal de Investigación (MICIU).
+2.  **Juan de la Cierva Fellowship – incorporación.** Dates: Feb. 1, 2020 – Jun. 30, 2023. Funding Entity: Agencia Estatal de Investigación (MICIU).
+3.  **Key Foreign Experts Travel Grant.** Oct. 11 – 27, 2024. Funding Entity: State Administration of Foreign Expert Affairs - Chinese Government.
+4.  **H2020 - HPC Europa3 translation grant.** Dates: Apr. 7 – May 26, 2019. Funding Entity: European Commission.
+
+### Funded Research Projects (as PI, co-PI or co-supervisor)
+
+1.  **eChemin – MSCA Doctoral Networks:** Dates: Sep. 1, 2027 – Dec. 30, 2030. Role: PhD co-supervisor. BCAM Funding: 261K €. Partners: Eleven partners from eight European countries. Funding Entity: European Commission.
+2.  **MODEL2RESIST:** “Marco de Modelización Multiscala para el Desarrollo de Aleaciones de Acero Resistentes al Hidrógeno”. Dates: Jan. 1, 2025 – Jun. 30, 2026. Role: PI. Funding: 113K €. Funding Entity: Diputación Foral de Bizkaia.
+3.  **CODEPLIS:** “COmputationally guided DEsign and optimization of Polymer electrolytes and pre-LIthiation Solutions for next-generation batteries”. Dates: Jan. 1, 2025 – Dec. 31, 2026. Role: BCAM co-PI. Partners: CIC Energigune, Polymat. Funding: 25.2K €. Funding Entity: Basque Government, IKUR-HPC&IA program.
+4.  **ELKARTEK CICE2024:** “Investigación en Materiales, Componentes y Modelos Avanzados para la Futura Generación de Baterías para Movilidad”. Dates: Apr. 2024 – Dec. 2025. Role: BCAM co-PI. Partners: CIC Energigune, Tecnalia, IKERLAN, Mondragon University, EHU. Funding: 87.1K €. Funding Entity: Basque Government.
+5.  **ELKARTEK ICME-23:** “Metodología de Modelización Multiescala Proceso - Microestructura - Propiedades - Desempeño para la Agilización del Diseño de Materiales, Procesos y Componentes Metálicos en la Industria Vasca”. Dates: Apr. 1, 2023 – Dec. 31, 2024. Role: BCAM co-PI. Partners: Tecnalia, CEIT, EHU, Mondragon, IMH, LORTEK. Funding: 81.5K €. Funding Entity: Basque Government.
+6.  **ELKARTEK CICE2021:** “Investigación en Materiales, Componentes y Modelos Avanzados para la Futura Generación de Baterías para Movilidad”. Dates: Apr. 2021 – Dec. 2022. Role: BCAM co-PI. Partners: CIC Energigune, Tecnalia, POLYMAT, CEIC, CIDETEC, IKERLAN, Mondragon University. Funding: 53.6K €. Funding Entity: Basque Government.
+7.  **Supercomputing infrastructure grants:** (1) QHS-2025-2-0045, (2) QHS-2025-1-0027, (3) QHS-2024-2-0032, (4) QHS-2023-3-0034, (5) QHS-2023-2-0034, (6) QHS-2022-3-0027. Red Española de Computación.
+
+### Funded Research Projects (as Research Team Member)
+
+1.  **PID2022-136585NB-C22:** “New Applications of Geometric Numerical Integrators to Evolution Problems, Stochastic Differential Equations and Hamiltonian Monte Carlo Simulations”. Dates: Jun. 2023 – May 2027 (PI: E. Akhmatskaya). Partners: EHU, U. Jaume I, U. Valladolid, U. Valencia. Funding: 155K €. Funding Entity: Agencia Estatal de Investigación (MICIU).
+2.  **“Multiscale Modelling and in-Silico Screening of Composite Electrolytes for Next-Generation Lithium Batteries”.** Dates: Jul. 2023 – Dec. 2024 (PI: E. Akhmatskaya). Partners: POLYMAT, CIC energiGUNE, BCMaterials. Funding: 212.9K €. Funding Entity: Basque Government - IKUR-HPC&IA – Plan Nacional de Materiales Avanzados (MICIU).
+3.  **PID2019-104927GB-C22:** “Geometric Numerical Integrators for Quantum Problems Celestial Mechanics and Monte Carlo”. Dates: Jun. 2020 – Nov. 2023 (PIs: F. Casas, E. Akhmatskaya, A. Murua). Partners: EHU, U. Jaume I, U. Valladolid, U. Valencia. Funding: 153.7K €. Funding Entity: Agencia Estatal de Investigación (MICIU).
+4.  **ELKARTEK M-KONTAK:** “Investigación de los Fenómenos Asociados al Contacto Metal-Metal en Tecnologías de H2 a Alta Presión”. Dates: Mar. 2022 – Dec. 2023 (BCAM PI: E. Akhmatskaya). Funding: 67.3K €. Funding Entity: Basque Government.
+5.  **ELKARTEK ICME-22:** “Metodología de Modelización Multiescala Proceso - Microestructura - Propiedades - Desempeño para la Agilización del Diseño de Materiales, Procesos y Componentes Metálicos en la Industria Vasca”. Dates: Mar. 2021 - Dec. 2023 (BCAM PI: E. Akhmatskaya). Partners: Tecnalia, CEIT, UPV/EHU, Mondragon, IMH, LORTEK. Funding: 77.5K €. Funding Entity: Basque Government and Agencia Estatal de Investigación (MICIU).
+6.  **FORMAS (2018-01346):** “Development of Carbohydrate-based Materials with Adaptable Rheological and Mechanical Properties”. Dates: Jan 2019 – Dec 2021 (PI: P. Lopez-Sanchez). Partners: RISE (Sweden), Chalmers (Sweden). Funding: 5K €. Funding Entity: Swedish Research Council.

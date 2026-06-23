@@ -1,0 +1,16 @@
+---
+title: "Micromechanical modelling of cellulose hydrogel composites based on coarse-grained
+molecular dynamics"
+author: ["Mauricio R. Bonilla", "Sridhar K. Kannam", "Matthew T. Downton", "Monika S. Doblin", "Antony Bacic", "Michael J. Gidley", "Jason R. Stokes"]
+date: 2025-12-04
+publication: "Soft Matter, **21**, 5480-5493 (2025)."
+categories: ["Rheology"]
+url_source: https://doi.org/10.1039/d4sm01488j
+url_preprint:
+journ: "Soft Matter"
+issue: 21
+page: 5480-5493
+year: 2025
+image: featured.png
+pub_number: 18
+---

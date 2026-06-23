@@ -1,0 +1,15 @@
+---
+title: "Nanostructure and poroviscoelasticity in cell wall materials from onion, carrot and apple: Roles of pectin"
+author: ["P. Lopez-Sanchez", "M. Martinez-Sanz", "M.R. Bonilla", "F. Sonni", "E.P. Gilbert", "M.J. Gidley"]
+date: 2020-01-01
+publication: "Food Hydrocolloids, **98**, 105253 (2020)."
+categories: ["Rheology"]
+url_source: https://doi.org/10.1016/j.foodhyd.2019.105253
+url_preprint:
+journ: "Food Hydrocolloids"
+issue: 98
+page: 105253
+year: 2020
+image: featured.png
+pub_number: 6
+---

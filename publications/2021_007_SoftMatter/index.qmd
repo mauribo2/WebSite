@@ -1,0 +1,15 @@
+---
+title: "Viscoelasticity of non-colloidal hydrogel particle suspensions at the liquid–solid transition"
+author: ["Heather M. Shewan", "Gleb E. Yakubov", "Mauricio R. Bonilla", "Jason R. Stokes"]
+date: 2021-04-27
+publication: "Soft Matter, **17**, 5073-5083 (2021)."
+categories: ["Rheology"]
+url_source: https://doi.org/10.1039/D0SM01624A
+url_preprint:
+journ: "Soft Matter"
+issue: 17
+page: 5073-5083
+year: 2021
+image: featured.png
+pub_number: 7
+---

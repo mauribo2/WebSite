@@ -1,0 +1,198 @@
+---
+title: "The Power to Normalize"
+description: "A tidytuesday inspired foray into the YeoJohnson transformation"
+date: "2023-08-19"
+categories: ["R", 'dataviz']
+code-fold: true
+echo: true
+---
+
+I started participating in the [Tidytuesday project](https://github.com/rfordatascience/tidytuesday) to practice my visualization skills, while using datasets that come from sources that I'm not used to. In addition, I enjoy checking what *other* people do with the same dataset. I find that others are way more creative than I am, and I borrow heavily!
+
+The challenge for Week 33 of 2023 was to perform viz on the `spam` dataset.
+
+## When PCA fails
+
+The `spam` dataset presents heavily skewed distributions for variables that serve as predictors of spam email. Because it was a dataset with 6 numeric variables and a single binary predictor, my initial idea was to perform a quick and dirty PCA.
+
+```{r setup}
+#| message: false
+#| warning: false
+library(tidyverse, warn.conflicts = FALSE)
+library(tidytuesdayR)
+library(paletteer)
+library(FactoMineR)
+library(factoextra)
+library(scales, warn.conflicts = FALSE)
+
+# load the data
+spam <- tt_load(2023, week=33)$spam
+spam$yesno <- dplyr::if_else(spam$yesno == "y", "spam", "email")
+pc <- prcomp(spam[, 1:6], center = TRUE, scale. = TRUE)
+# make it a tibble for ggplot plotting
+pc_data <- pc$x[, 1:2] %>% as_tibble()
+pc_data$yesno <- spam$yesno
+
+pc_ori_plot <- ggplot(pc_data, 
+       aes(PC1, PC2, color = yesno)) +
+  geom_point() +
+  coord_equal() +
+  scale_color_paletteer_d("awtools::a_palette") +
+  ggthemes::theme_base()+
+  theme(legend.position = "bottom",
+        plot.background =  element_rect(color = NA),
+        legend.background = element_rect(fill = "gray90"),
+        legend.key = element_rect(fill = "gray90"),
+        panel.background = element_rect(fill="#81AE5C")) +
+  labs(color = element_blank())
+pc_ori_plot
+```
+
+If you are inclined to do so, you can check that `fviz_screeplot(pc)` gives you a horrible scree plot with very little variance explained and use `fviz_pca_contrib(pc, choice = 'var')` to check that the contributions of the different variables are also close to random.
+
+## Skewed Data Distributions
+
+The vanilla PCA does nothing to help us visualize a separation between the. Why is that the case?
+
+Upon a closer inspection of the regular variables, which I should have done before diving into the PCA, we see that we are dealing with heavily skewed distributions
+
+```{r skewed}
+spam %>% 
+  pivot_longer(-yesno) %>% 
+  ggplot(aes(yesno, value, fill = yesno)) +
+  geom_violin() +
+  facet_wrap(~name, scales = "free", nrow=3) +
+  scale_y_continuous(labels = label_number(scale_cut = cut_short_scale()))+
+  scale_fill_paletteer_d("awtools::a_palette") +
+  ggthemes::theme_base() +
+  theme(legend.position = "bottom",
+        plot.background =  element_rect(color = NA),
+        legend.background = element_rect(fill = "gray90"),
+        legend.key = element_rect(fill = "gray90"),
+        panel.background = element_rect(fill="#81AE5C")) +
+  labs(fill = element_blank(), x = element_blank(), y = element_blank())
+```
+
+The distributions are so skewed we can barely see them.
+
+## Transform
+
+Enter the [Yeo--Johnson transformation](https://en.wikipedia.org/wiki/Power_transform#Yeo%E2%80%93Johnson_transformation), a type of Power Transform[^1] that will come handy to normalize the data.
+
+[^1]: Yes, the title of this post is 100% pun intended.
+
+[As a side note, I had a bit of trouble running this using the more conventional `caret` or `recipes` packages, you can read my StackOverflow question [here](https://stackoverflow.com/questions/76925607/understanding-yeojohnson-transformation-in-r/76933102#76933102) and the nice answer about estimating parameters properly. For this post, I will be using `bestNormalize::yeojohnson` to normalize all columns in the dataset.]{.aside}
+
+```{r violin-transformed}
+# quickly apply transformation to the data itself
+df_transformed <- select(spam, where(is.numeric)) %>% 
+  mutate_all(.funs = function(x) predict(bestNormalize::yeojohnson(x), newdata = x))
+# check the new distributions
+df_transformed$yesno <- spam$yesno
+df_transformed %>% 
+  pivot_longer(-yesno) %>% 
+  ggplot(aes(yesno, value, fill = yesno)) +
+  geom_violin() +
+  facet_wrap(~name, scales = "free", nrow=3) +
+  scale_y_continuous(labels = label_number(scale_cut = cut_short_scale()))+
+  scale_fill_paletteer_d("awtools::a_palette") +
+  ggthemes::theme_base() +
+  theme(legend.position = "bottom",
+        plot.background =  element_rect(color = NA),
+        legend.background = element_rect(fill = "gray90"),
+        legend.key = element_rect(fill = "gray90"),
+        panel.background = element_rect(fill="#81AE5C")) +
+  labs(fill = element_blank(), x = element_blank(), y = element_blank())
+```
+
+I am not a huge fan of data transformations, but that is a very nice transformation. We often deal with skewed data, which produces difficulties when visualizing and performing data analysis. Having a tool like this power transform comes really handy[^2].
+
+[^2]: The devil is on the details. Always check the parameters and be careful on data interpretation when transforming your data!
+
+### What about logs
+
+There's another typical transformation that we can do to the data: `log10(x+1)`. Let's see how it looks like!
+
+```{r}
+df_log10 <- select(spam, where(is.numeric)) %>% 
+  mutate_all(.funs = function(x) log10(x + 1))
+# check the new distributions
+df_log10$yesno <- spam$yesno
+df_log10 %>% 
+  pivot_longer(-yesno) %>% 
+  ggplot(aes(yesno, value, fill = yesno)) +
+  geom_violin() +
+  facet_wrap(~name, scales = "free", nrow=3) +
+  scale_y_continuous(labels = label_number(scale_cut = cut_short_scale()))+
+  scale_fill_paletteer_d("awtools::a_palette") +
+  ggthemes::theme_base() +
+  theme(legend.position = "bottom",
+        plot.background =  element_rect(color = NA),
+        legend.background = element_rect(fill = "gray90"),
+        legend.key = element_rect(fill = "gray90"),
+        panel.background = element_rect(fill="#81AE5C")) +
+  labs(fill = element_blank(), x = element_blank(), y = element_blank())
+```
+
+In this case, it's not a very helpful transform. In my opinion, the Yeo--Johnson transform does a better job. We could potentially eliminate all the zeros from the data, in which case the log10 transform would do a better job but that's not the approach we are after here.
+
+## Second PCA
+
+We can now check how the second PCA looks like. It's not a panacea, but we have made large improvements. Check the side by side comparisons:
+
+```{r second-pca}
+pc <- prcomp(df_transformed[, 1:6])
+pc_data <- pc$x[, 1:2] %>% as_tibble()
+pc_data$yesno <- spam$yesno
+
+pc_second_plot <- ggplot(pc_data, 
+       aes(PC1, PC2, color = yesno)) +
+  geom_point() +
+  coord_equal() +
+  scale_color_paletteer_d("awtools::a_palette") +
+  ggthemes::theme_base()+
+  theme(legend.position = "bottom",
+        plot.background =  element_rect(color = NA),
+        legend.background = element_rect(fill = "gray90"),
+        legend.key = element_rect(fill = "gray90"),
+        panel.background = element_rect(fill="#81AE5C")) +
+  labs(color = element_blank())
+library(patchwork)
+pc_ori_plot + pc_second_plot
+```
+
+In terms of separating data, the second PCA is not the best PCA in the world. We can still see that there is a bunch of points all clustered together:
+
+```{r}
+p1 <- ggplot(pc_data, 
+       aes(PC1, PC2, color = yesno)) +
+  geom_point(color = 'gray50', alpha = 0.5)  + 
+  labs(title = "All Data") + 
+  coord_equal()+
+  ggthemes::theme_few(base_family = "Ubuntu")
+spam_color <- paletteer::paletteer_d("awtools::a_palette")[2]
+email_color <- paletteer::paletteer_d("awtools::a_palette")[1]
+p2 <- ggplot(pc_data, 
+       aes(PC1, PC2, color = yesno)) +
+  geom_point(color = 'gray50', alpha = 0.5)  + 
+  geom_point(data=filter(pc_data, yesno=="spam"),
+             color = spam_color, alpha = 0.5)  + 
+  labs(title = "Spam") + 
+  coord_equal()+
+  ggthemes::theme_few(base_family = "Ubuntu")
+p3 <- ggplot(pc_data, 
+       aes(PC1, PC2, color = yesno)) +
+  geom_point(color = 'gray50', alpha = 0.5)  + 
+  geom_point(data=filter(pc_data, yesno=="email"),
+             color = email_color, alpha = 0.5)  + 
+  labs(title = "Emails") + 
+  coord_equal() +
+  ggthemes::theme_few(base_family = "Ubuntu")
+p1 + p2 + p3
+```
+
+However, I encourage you to check `fviz_screeplot(pc)` to see how dramatically better this second PCA is.
+
+## Ending remarks
+
+Regardless of the final separation that we could achieve in this particular dataset, the normalization performed using Yeo--Johnson transform was quite powerful. You have been given the Power to Normalize, I hope you try it on your own skewed datasets!

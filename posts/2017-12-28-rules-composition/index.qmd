@@ -1,0 +1,25 @@
+---
+title: "Rules of Composition"
+date: 2017-12-28
+categories: ["teaching","learning", "DocumentingLearning", "writing"]
+
+---
+
+
+There is a table in the hallway of the Psychology builiding at UMass Amherst. It's the "Free Stuff" Table. As I was passing by, I came across [The Writing Teacher's Sourcebook](https://books.google.com/books/about/The_Writing_teacher_s_sourcebook.html?id=uNR4AAAAIAAJ) edited by Gary Tate and Edward P.J. Corbett. I glanced over it today and found these fantastic rules. The authors called them *rules of composition*. I thought I should share. This list has no numeric order, author's touch there[^ActualAuthor].
+
+
+*Eleventh law of composition*: Some things precede other things. Invention precedes structure. Thinking and feeling and being precede writing. Structure made without invention are false or superficial. There probably is a fit sequencing of things, even if we don't always see it.
+
+*Eighteenth law of composition*: You are always standing somewhere when you say something. You are in a world, you have thoughts, you've made choices (whether or not consciously) any time you say anything. If you are in a position whenever you say anything, it's probably best to know what the position is.
+
+*Twenty-fifth law of composition*: Invention is an invitation to openness. It asks of you that you open yourself to the ways other people think, to the knowledge that already exists, to the intricacies and whims of your own beings. It asks of you that you therefore be tentative a while, consider alternatives a while, be in process a while.
+
+*Twenty-sixth law of composition*: But structure is a closure. You can't organize an essay or a sonata unless you have ruled out other organizations. When structure begins to be made, you  are no longer open: you have made choices.
+
+*Twenty-seventh law of composition*: Invention and structure, then, represent a way of being in the world. They exert certain demands upon you, and they afford you certain pleasures. Invention invites you to be open to a creation filled with copious wonders, trivialities, sorrows, and amazements. Structure requires that you close. You are asked to be open and always closing. 
+
+*Thirty second law of composition*: What follows feeds, enlarges, and enriches what precedes. Invention precedes and is open. Structure follows and closes. That may seem a narrowing disappointment, a ruling out of possibilities. It needn't be. Every choice, every decision, every structure has the potential of being another entry in the inventive world you live in, modifying it, punching it in here, punching it out there, giving color to it yonder. Invention precedes, structure follows, but invention does not cease thereby.  The structure we make today may give grace to tomorrow's invention. That means that if today we fail to be wise and generous and good, tomorrow we may succeed, and if not, we may fail at a higher level. 
+
+
+[^ActualAuthor]: These were extracted from the "What I learned at school" chapter written by Jim W. Corder.

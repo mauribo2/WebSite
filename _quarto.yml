@@ -1,0 +1,82 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  page-navigation: true
+  reader-mode: false
+  title: "Mauricio Rincón Bonilla"
+  favicon: webpage_logo.png
+  site-url: "https://mauribo2.github.io/WebSite/"
+  repo-url: "https://github.com/mauribo2/WebSite"
+  repo-actions: [edit, issue]
+  open-graph: true
+  twitter-card:
+    creator: "Mauricio Rincón Bonilla"
+    card-style: summary_large_image
+  
+  search:
+    location: navbar
+    type: overlay
+    copy-button: true
+    
+  comments:
+    utterances:
+      repo: mauribo2/WebSite
+      label: "Comment"
+      theme: github-dark
+
+  #page-footer:
+    # using footer in _metadata
+    #right: "This page is built with ❤️ and [Quarto](https://quarto.org/)."
+    #left: "&copy; CC-By Matias Andina, 2023"
+  
+  navbar: 
+    background: secondary
+    search: true
+    left:
+      - text: "Research Areas"
+        menu:
+          - text: "Li-ion and Na-ion Batteries"
+            href: research/Li-ionBatteries/index.html
+          - text: "Solid-state Batteries"
+            href: research/Solid-stateBatteries/index.html
+          - text: "Hydrogen - metal alloys interactions"
+            href: research/Hydrogen/index.html
+          - text: "Soft Matter systems"
+            href: research/SoftMatter/index.html
+      - href: publications/index.qmd
+      - href: research-projects/index.qmd
+        text: Research Projects
+      - href: codes/index.qmd
+        text: Software
+      - text: "CV"
+        href: CV/index.qmd
+      #- text: "Past lives"
+      #  file: past_lives/index.qmd
+    right: 
+      - icon: github
+        href: https://github.com/mauribo2
+      - icon: envelope
+        href: mailto:mrincon@bamath.org
+      - text: "{{< ai orcid >}}" 
+        href: https://orcid.org/0000-0002-1379-7413
+      - text: "{{< ai google-scholar >}}"
+        href: https://scholar.google.com.au/citations?user=08gIy6kAAAAJ&hl=en
+
+
+format:
+  html:  
+    theme:
+      light: [flatly, theme.scss] 
+      dark: [darkly, dark.scss]
+    code-copy: true
+    code-overflow: wrap
+    toc: true
+    # page formatting
+    grid:
+      #sidebar-width: 300px
+      body-width: 900px
+      margin-width: 300px
+      gutter-width: 1.5rem
+editor: visual

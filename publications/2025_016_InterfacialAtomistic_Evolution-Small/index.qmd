@@ -1,0 +1,24 @@
+---
+title: "Interfacial Atomistic Evolution in Sodium-Ion Battery using a Graph-Theoretic Approach"
+author: [
+  "Yongqing Gong",
+  "Yuxin Fan",
+  "Yilin Chen",
+  "Mauricio R. Bonilla",
+  "Henry Andres Cortes",
+  "Chenlong Gao",
+  "Yunhui Huang",
+  "Menghao Yang"
+]
+date: 2025-12-26
+publication: "Small, **22**, e11841, (2026)"
+categories: ["Li-ion"]
+url_source: https://doi.org/10.1002/smll.202511841
+url_preprint:
+journ: "Small"
+issue: 22
+page: e11841
+year: 2026
+image: featured.png
+pub_number: 16
+---

@@ -1,0 +1,50 @@
+---
+title: Birthday Problem 
+date: 2020-06-13
+categories: ["fun", "python", "R"]
+mathjax: true
+---
+
+We have all been there, classic math riddle:
+
+> How many people need to be in one room so that the probability of two of them having the same birthday is more than 0.5?
+
+In a recent bootcamp exercise we tackled this in python and I wanted to share, just because it's fun. I did it for a range of probabilities. My solution is probably not the fastest/shortest/most pythonic, but it's a little thing I put out there so, if you want to use/improve it, please do!
+
+
+```{python}
+#| eval: false
+#| echo: true
+import numpy as np
+import matplotlib.pyplot as plt
+
+
+def prob(n):
+	numerator = np.math.factorial(365) / np.math.factorial(365-n)
+	denominator = 365 ** n
+	return(1 - numerator/denominator)
+
+probs = list(map(prob, range(100)))
+
+plt.plot(range(len(probs)), probs)
+plt.show()
+```
+
+
+A bad translation into R, it would be something like:
+
+```{r}
+#| echo: true
+prob <- function(n){
+  numerator = exp(lfactorial(365) - lfactorial(365-n))
+	denominator = 365 ** n
+	return(1 - numerator/denominator)
+}
+
+probs = sapply(0:99, function(n) prob(n))
+
+plot(0:99, probs, type="l",
+     main="Probability of 2 people having same birthday",
+     xlab = "People in a room", ylab="probability")
+```
+

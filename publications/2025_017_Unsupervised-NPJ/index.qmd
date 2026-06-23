@@ -1,0 +1,15 @@
+---
+title: "Unsupervised density-based method for analyzing ion mobility in crystalline solid-state electrolytes"
+author: ["Henry A. Cortés", "Mauricio Rincón Bonilla", "Elena Akhmatskaya"]
+date: 2025-06-16
+publication: "npj Computational Materials, **11**, 368 (2025)."
+categories: ["SSBs"]
+url_source: https://doi.org/10.1038/s41524-025-01861-6
+url_preprint:
+journ: "npj Computational Materials"
+issue: 11
+page: 368
+year: 2025
+image: featured.png
+pub_number: 17
+---

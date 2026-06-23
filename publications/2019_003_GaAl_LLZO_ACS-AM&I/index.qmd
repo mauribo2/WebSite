@@ -1,0 +1,16 @@
+---
+title: "Atomistic Insight into Ion Transport and Conductivity in Ga/Al-Substituted Li7La3Zr2O12 Solid Electrolytes"
+author: ["Fabián A. García Daza", "Mauricio R. Bonilla", "Anna Llordés", "Javier Carrasco", "Elena Akhmatskaya"]
+date: 2019-12-02
+publication: "ACS applied materials & interfaces, **11**, 753-765 (2019)."
+categories: ["SSBs"]
+url_source: https://doi.org/10.1021/acsami.8b17217
+url_preprint:
+journ: "ACS applied materials & interfaces"
+issue: 11
+page: 753-765
+year: 2019
+image: featured.png
+pub_number: 3
+
+---

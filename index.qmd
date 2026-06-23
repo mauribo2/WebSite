@@ -1,0 +1,22 @@
+---
+title: "Mauricio Rincón Bonilla"
+comments: False
+about:
+  template: jolla
+  image: Profile.jpg
+  links:
+    - icon: envelope
+      text: Mail
+      href: mailto:mrincon@bcamath.org
+    - icon: linkedin
+      text: LinkedIn
+      href: https://www.linkedin.com/in/mauricio-rincon-bonilla-a47a6733a/
+    - text: "{{< ai orcid >}} ORCID"
+      href: https://orcid.org/0000-0002-1379-7413
+    - text: "{{< ai google-scholar >}} Scholar"
+      href: https://scholar.google.com.au/citations?user=08gIy6kAAAAJ&hl=en
+---
+
+Computational Materials Scientist – Chemical Engineer
+
+Mauricio is a Senior Researcher and Ramón y Cajal Fellow at the Basque Center for Applied Mathematics (BCAM), co-leading the Energy Materials research line within the Modelling and Simulation in Life and Materials Science (MSLMS) area. His work bridges multiscale modelling and data-driven approaches to optimize nano- and mesostructured materials. With a focus on energy transport, storage, and catalysis, his specific research interests include next-generation batteries, high-entropy materials, hydrogen-alloy interactions, and diffusion under extreme confinement. Mauricio’s contributions have been recognized with several prestigious awards, including the Ramón y Cajal Fellowship (2024), Juan de la Cierva Fellowship (2019), the HPC Europa3 access grant (2018), and the Key Foreign Experts grant from Tongji University in China (2024).

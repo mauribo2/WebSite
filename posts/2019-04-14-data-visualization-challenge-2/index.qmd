@@ -1,0 +1,264 @@
+---
+title: "Data Visualization Challenge 2"
+date: 2019-04-14
+categories: ["R","learning"]
+execute: 
+  echo: true
+code-fold: true
+code-summary: "Show the code"
+---
+
+This post is made as a backup for the data visualization challenge number 2. Data comes from the daily posts of the members of the Data Visualization Society (DVS) on the DVS Slack channels. You can see everybody's submissions for the challenge [here](https://www.datavisualizationsociety.com/challenge2).
+
+I am also very motivated to explore the dark versions of the ggplot themes. The package I'm going to be using is called `ggdark`.
+
+## Dive in
+
+These are the libraries we'll need:
+
+```{r}
+#| results: hide
+#| message: false
+#| warning: false
+library(tidyverse)
+library(ggdark)
+library(lubridate)
+```
+
+We read the data from the repository.  
+
+```{r}
+#| results: hide
+#| warning: false
+#| message: false
+df <- read_csv("https://raw.githubusercontent.com/data-visualization-society/datavizsociety/master/challenge_data/dvs_challenge_2_channel_topics_over_time/flattened_channel_data.csv")
+
+```
+
+Let's perform some summary stats. There's `r length(unique(df$channel))` channels, but I will focus on the top 15 channels as ranked by their total volume of characters. I'm using this metric because the correlation between characters and the number of posts is, naturally, good.  
+
+
+```{r}
+#| message: false
+ggplot(df, aes(posts+responses, characters))+
+  geom_smooth(method = "lm", se=FALSE, lty=2)+
+  geom_point(alpha=0.4)+
+  dark_theme_bw()+
+  scale_y_continuous(labels = scales::label_number_si())
+```
+
+Summary.  
+
+```{r}
+sum_df <- df %>% group_by(channel) %>%
+  summarise(total_channel = sum(characters),
+         median_channel = median(characters)) %>%
+  top_n(15, wt =  total_channel) %>%
+  arrange(desc(total_channel))
+```
+
+Modify the original data and do some stats.  
+
+```{r}
+df <- df %>% group_by(channel) %>%
+  mutate(total_channel = sum(characters),
+         median_channel = median(characters),
+         char_per_ping = characters/(posts+responses))   %>%
+  ungroup() %>%
+  group_by(date) %>%
+  mutate(daily_flow = sum(characters),
+         daily_posts = sum(posts+responses))%>%
+  ungroup()
+
+```
+  
+
+## First pair
+
+The idea behind the first pair of plots is to see the sheer amount of volume on certain channels. 
+
+A good way of seeing how the top channels are ordered according to output is to do an ordered boxplot.
+
+```{r}
+top_box <-  df %>%
+  filter(channel %in% unique(sum_df$channel)) %>%
+  mutate(channel=fct_reorder(factor(channel), median_channel)) %>%
+ggplot(aes(channel, log10(characters)))+
+  geom_boxplot()+
+  coord_flip()+
+  dark_theme_bw()+
+  labs(x="")+
+  ggtitle(sprintf("Top %s Channels",
+                  length(unique(sum_df$channel))),
+          "Metric: median characters")
+
+```
+
+
+I'm also curious about how persistent in time the flow is. 
+
+```{r}
+wave <- df %>%
+  filter(channel %in% unique(sum_df$channel)) %>%
+  mutate(channel=fct_reorder(factor(channel), total_channel)) %>% 
+  ggplot(aes(date, channel, color=log10(characters))) +
+  geom_line(aes(lwd=characters))+
+  dark_theme_bw()+
+  labs(y = "", x="Date")+
+  guides(color = FALSE)+
+  scale_color_gradient(low = "#613A00", high="#FA9800")+
+  ggtitle("Top 15 channels", 
+          "Metric: total characters")+
+  scale_y_discrete(position = "right")+
+  theme(legend.position = "none")
+
+```
+
+
+We put everything together with the `cowplot` package.  
+
+```{r}
+#| eval: false
+cowplot::plot_grid(top_box, wave)
+# Save the plot
+#ggsave("box_wave.svg", width = 8, height = 4, units = "in", dpi="retina")
+```
+
+I later modified this output a bit using Inkscape.
+
+![](box_wave.svg)
+
+## Lengthy channels
+
+While most of the channels have a low median, even below a full tweet, it looks like some channels tend to have very lengthy posts.   
+
+```{r}
+# Calculate median
+median_post <- median(
+  df$characters/(df$posts +df$responses))
+
+# Do the plot  
+lengthy <- ggplot(df, aes(log10(total_channel),
+               char_per_ping))+
+  dark_theme_bw()+
+  geom_hline(yintercept = 280, lty=2)+
+  geom_hline(yintercept = median(
+    df$characters/(df$posts +df$responses)), lty=2)+
+  annotate("text", x = 3, y= c(200, 340), label=c("Median post",
+                                            "One tweet"))+
+         geom_point(aes(color=channel), alpha=0.9)+
+         scale_color_viridis_d(direction = -1)+
+         theme(legend.position = "none")+
+  ggrepel::geom_text_repel(data=filter(df,
+                                       char_per_ping > 850),
+            aes(label = channel, color=channel))+
+  labs(x=bquote(
+    log10 ~"(total characters)"),
+    y="characeters per post")+
+  ggtitle("Channels with lengthy posts")
+
+
+# Save
+# ggsave("lengthy.svg", width = 8, height = 4, units = "in",dpi="retina")
+
+```
+
+
+![](lengthy.svg)
+
+## Share of flow
+
+What is the share of each channel on the total flow within the DataViz Slack?  
+
+```{r}
+top_top_channels <- sum_df %>%
+  arrange(desc(total_channel)) %>%
+  slice(1:5)
+
+share <- df %>% group_by(date) %>%
+  mutate(big_channel = ifelse(channel %in% top_top_channels$channel,
+                              channel, "other"),
+    total=sum(characters),
+    rel_char = characters/total) %>%
+  ggplot(aes(date, rel_char, fill=big_channel))+
+  geom_col(width = 1)+
+  scale_fill_viridis_d(direction = -1)+
+  dark_theme_bw()+
+  theme(legend.position=c(.85,.5))+
+  labs(x="", y="Relative share", fill="Channel")+
+  ggtitle("Share of the conversation",
+          "Relative share of the total characters per day")+
+  scale_x_date(limits = c(as.Date("2019-02-18"),
+                          as.Date("2019-04-23")),
+               date_breaks = "1 week", 
+               date_labels = "%b-%d")
+
+```
+
+
+It seems the initial bump was driven by many (lengthy) introductions, and nowadays the discussion has moved towards other channels.
+
+```{r}
+intro_decay <-  ggplot(df, aes(date, daily_flow))+
+  geom_line()+
+  geom_line(data=filter(df, channel %in% c(
+    "-introductions")),
+            aes(date, characters), color="yellow")+
+  dark_theme_bw()+
+  xlab("") + 
+  ylab("Daily characters")+
+  annotate("text", x=as.Date(c("2019-04-10",
+                               "2019-04-08")),
+           y = c(1000, 50000),
+           label=c("-introductions", "all channels"),
+           color=c("yellow", "white"))+
+    scale_x_date(limits = c(as.Date("2019-02-18"),
+                              as.Date("2019-04-23")),
+                 date_breaks = "1 week", 
+                 date_labels = "%b-%d") +
+  scale_y_continuous(labels = scales::label_number_si())
+
+```
+
+
+Let's see how it looks like.  
+
+```{r}
+#| eval: false
+# We put everything together with cowplot
+cowplot::plot_grid(share,intro_decay,
+                   nrow = 2, rel_heights = c(2,1))
+# save
+ggsave(filename = "share_plot.svg", 
+       width = 12, 
+       height = 6, 
+       dpi="retina")
+
+```
+
+The final version is this one.  
+
+![](share_plot.svg)
+
+## Weekday news 
+
+Because everything is seasonal, let's analyze by days of the week. Seems like Tuesday to Thursday are the days with most movement, waning down on Friday and into the weekend.
+
+```{r}
+#| eval: false
+
+ggplot(df, aes(wday(date, label=TRUE, abbr = TRUE, week_start = 1),
+               daily_posts))+
+  geom_line(color="gray80")+
+  stat_summary(geom = "point",
+               fun = median, size=2.5)+
+  dark_theme_bw()+
+  labs(x="", y="Number of daily posts",
+       title = "Weekly post variations",
+       subtitle = "Points represent median daily post.\nLines show full data range.")
+
+# ggsave(filename= "weekly_vars.svg", width = 8, height = 6 , dpi="retina")
+
+```
+
+

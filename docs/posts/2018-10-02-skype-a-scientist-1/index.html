@@ -1,0 +1,1036 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Matias Andina">
+<meta name="dcterms.date" content="2018-10-02">
+
+<title>Skype a Scientist part 1 – Mauricio Rincón Bonilla</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../webpage_logo.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-0a6b7249c26820e032cb0bd839ff02b1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-0fd85f4e20cc56abb175a5e011b770f8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-9e570fe4ae89755892ceabe6bacee88e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-0fd85f4e20cc56abb175a5e011b770f8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/quarto-contrib/social-share-0.1.0/social-share.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/social-share-0.1.0/all.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/academicons-1.9.4/all.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/academicons-1.9.4/size.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": true,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<meta property="og:title" content="Skype a Scientist part 1 – Mauricio Rincón Bonilla">
+<meta property="og:description" content="">
+<meta property="og:image" content="https://mauribo2.github.io/WebSite/posts/2018-10-02-skype-a-scientist-1/data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg==">
+<meta property="og:site_name" content="Mauricio Rincón Bonilla">
+<meta name="twitter:title" content="Skype a Scientist part 1 – Mauricio Rincón Bonilla">
+<meta name="twitter:description" content="">
+<meta name="twitter:image" content="https://mauribo2.github.io/WebSite/posts/2018-10-02-skype-a-scientist-1/data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg==">
+<meta name="twitter:creator" content="Mauricio Rincón Bonilla">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Mauricio Rincón Bonilla</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-research-areas" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Research Areas</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-research-areas">    
+        <li>
+    <a class="dropdown-item" href="../../research/Li-ionBatteries/index.html">
+ <span class="dropdown-text">Li-ion and Na-ion Batteries</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../research/Solid-stateBatteries/index.html">
+ <span class="dropdown-text">Solid-state Batteries</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../research/Hydrogen/index.html">
+ <span class="dropdown-text">Hydrogen - metal alloys interactions</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../research/SoftMatter/index.html">
+ <span class="dropdown-text">Soft Matter systems</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../../publications/index.html"> 
+<span class="menu-text">Publications</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../research-projects/index.html"> 
+<span class="menu-text">Research Projects</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../codes/index.html"> 
+<span class="menu-text">Software</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../CV/index.html"> 
+<span class="menu-text">CV</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/mauribo2"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="mailto:mrincon@bamath.org"> <i class="bi bi-envelope" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://orcid.org/0000-0002-1379-7413"> 
+<span class="menu-text"><i class="ai  ai-orcid" aria-label="orcid"></i></span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://scholar.google.com.au/citations?user=08gIy6kAAAAJ&amp;hl=en"> 
+<span class="menu-text"><i class="ai  ai-google-scholar" aria-label="google-scholar"></i></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Skype a Scientist part 1</h1>
+                                <div class="quarto-categories">
+                <div class="quarto-category">research</div>
+                <div class="quarto-category">outreach</div>
+              </div>
+                  </div>
+  </div>
+    
+  <div class="quarto-title-meta-author">
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-heading">Affiliation</div>
+    
+      <div class="quarto-title-meta-contents">
+      <p class="author"><a href="https://matiasandina.netlify.app">Matias Andina</a> <a href="https://orcid.org/0000-0002-1996-2539" class="quarto-title-author-orcid"> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg=="></a></p>
+    </div>
+    <div class="quarto-title-meta-contents">
+          <p class="affiliation">
+              Massachusetts Institute of Technology
+            </p>
+        </div>
+    </div>
+
+  <div class="quarto-title-meta">
+
+        
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">October 2, 2018</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#rd-grade" id="toc-rd-grade" class="nav-link active" data-scroll-target="#rd-grade">3rd Grade</a></li>
+  <li><a href="#th-grade" id="toc-th-grade" class="nav-link" data-scroll-target="#th-grade">7th Grade</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/mauribo2/WebSite/edit/main/posts/2018-10-02-skype-a-scientist-1/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/mauribo2/WebSite/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+
+
+<p>I have been lucky to participate in the project lead by Sarah McAnulty called <a href="https://www.skypeascientist.com">Skype a scientist</a>. So far, I have done calls with two grades:</p>
+<ul>
+<li>3rd Grade Johnston Elementary School, Irving, TX.</li>
+<li>7th Grade Isbell Middle School, Santa Paula, CA.</li>
+</ul>
+<p>I should say it was great to be able to talk with students, tell them about science in general and my research. It was really fun to answer their questions. I felt they were surprised about talking with a <em>normal human being</em> that also happens to do science. I feel really grateful to Sonia and Cindy, they are wonderful teachers, making efforts to connect their students with science and those who make it possible. We also did a Q&amp;A session, which I compiled below.</p>
+<section id="rd-grade" class="level2">
+<h2 class="anchored" data-anchor-id="rd-grade">3rd Grade</h2>
+<p><strong>How old are you?</strong></p>
+<p>I am 26 years old.</p>
+<p><strong>Do you dissect rats?</strong></p>
+<p>Yes, I dissect rats.</p>
+<p><strong>What’s your favorite animal?</strong></p>
+<p>My favorite animal is the Lion.</p>
+<p><strong>What’s your favorite color?</strong></p>
+<p>My favorite color is green!</p>
+<p><strong>Why do you like to learn about rats?</strong></p>
+<p>Rats are fantastic animals. They are super smart and very similar to humans.</p>
+<p><strong>How and why did you become a scientist?</strong></p>
+<p>I have always been into questions, I am super curious! Scientists work to ask interesting questions and that’s the best job ever for curious people. Scientists also like to fix stuff. If we find ways to do it, we can help people in need.</p>
+<p><strong>Is being a scientist fun?</strong></p>
+<p>It’s super fun! You get to see crazy stuff nobody else has ever seen. You are always learning and discovering new things.</p>
+<p><strong>Do you like being a scientist?</strong></p>
+<p>Yes, I love it!</p>
+<p><strong>Do you want to be a scientist forever?</strong></p>
+<p>I am 26 years old…I think I have plenty time, but <em>forever</em> is too long</p>
+<p><strong>Is your mom or dad a scientist?</strong></p>
+<p>No, my mom is an accountant and my dad is a salesman. I am the only scientist in my whole family!</p>
+<p><strong>Do you have any kids?</strong></p>
+<p>Not (yet)!</p>
+<p><strong>Do you have friends?</strong></p>
+<p>Yes, I do!</p>
+<p><strong>Do you have any pets?</strong></p>
+<p>Nope. But I had a dog before coming to the US and I’m looking into having a cat!</p>
+<p><strong>What do you do on your breaks?</strong></p>
+<p>I like to go hiking, I have seen BEAUTIFUL places in nature!</p>
+<p><strong>When is your birthday?</strong></p>
+<p>August the 12th (Candy is welcome)</p>
+<p><strong>What do you like to eat?</strong></p>
+<p>Meat, and Pasta, and Ice-Cream, and Candy, and Chocolate, and Pizza, I eat a lot !</p>
+<p><strong>Do you play sports? Do you like sports?</strong></p>
+<p>Yes!</p>
+<p><strong>Do you like anything else besides science?</strong></p>
+<p>Yes! I play soccer and I run, I cook, I dance, and I am a drummer!</p>
+<p><strong>Do you invent things like robots, mouse traps…?</strong></p>
+<p>I invent things that look like a robot to trap rats. Does it count?</p>
+<p><strong>Do you have a Youtube channel?</strong></p>
+<p>I had a YouTube channel (in Spanish). I teach different things (Math, Science, …) there! My channel is Profesores Gama.</p>
+<p><strong>Did you like science since you were a child?</strong></p>
+<p>Actually, I liked Math the most. But math is most beautiful in Nature, it’s everywhere!</p>
+<p><strong>Is rats the only animal you like to observe and study?</strong></p>
+<p>Nope, I like most animals! I worked with crabs before working with rats. Hopefully I will be able to work with mice, flies, and fish.</p>
+<p><strong>How many rats do you have in your lab?</strong></p>
+<p>It depends on the number of babies! We can have hundreds!</p>
+<p><strong>What do rats like to eat?</strong></p>
+<p>They eat a lot of things, they go crazy about M&amp;Ms and Cheerios.</p>
+<p><strong>What kind of rats do you observe?</strong></p>
+<p>I observe a particular type of albino rat called Sprague Dawley.</p>
+<p><strong>Do you name your rats?</strong></p>
+<p>Yes! My favorite one is called SD7A4B1E3F3G1M2 but I prefer Amelia</p>
+<p><strong>Do you observe boy rats too?</strong></p>
+<p>Sometimes. I mostly observe mother rats.</p>
+<p><strong>What do you do with the baby rats?</strong></p>
+<p>I put the baby rats with mothers and see how they take care of them.</p>
+<p><strong>Is your lab big or small?</strong></p>
+<p>We have several rooms in two floors, fairly big.</p>
+<p><strong>How do you observe your rats?</strong></p>
+<p>Sometimes just looking, sometimes filming, sometimes with the microscope.</p>
+<p><strong>Where do you find your rats?</strong></p>
+<p>We breed them.</p>
+<p><strong>Do your rats wear clothes?</strong></p>
+<p>Nope, any ideas in mind?</p>
+<p><strong>Where do you keep the rats so they will not escape?</strong></p>
+<p>They leave in comfortable cages with rat friends.</p>
+<p><strong>What clothes do you use inside your lab? Uniform?</strong></p>
+<p>Lab coat, gloves, shoe protection, and eye protection. Full package.</p>
+</section>
+<section id="th-grade" class="level2">
+<h2 class="anchored" data-anchor-id="th-grade">7th Grade</h2>
+<p><strong>Why did you want to become a scientist?</strong></p>
+<p>I don’t know…I just felt really curious about how the natural world works. I could see beauty in Math and later in Chemistry, and wanted to learn more. Living things are <em>by far</em> the most complex systems we know of, so I was totally down for the challenge of figuring out how they work.</p>
+<p><strong>When did you become a scientist?</strong></p>
+<p>This question is really challenging. The correct answer is I don’t know. I am not sure there was a date. I could choose a random date when I was around 10 or I could say I’m working <em>to be</em> a scientist. As it happens with everything, there are some days when I feel more scientist than others.</p>
+<p><strong>How many years did you have to go to school before you became a scientist?</strong></p>
+<p>I can tell you how many years I’ve been in school. Elementary school was 7, middle/high-school was 5, then university added another 5-6 years, 2 years for my Master’s of Science degree. School is just the beginning.</p>
+<p><strong>Is science different in Argentina than in the US?</strong></p>
+<p>Science in Argentina is different. To start, we speak in Spanish and drink mate instead of coffee or tea during breaks. One thing that the US has is people from many different places, I’ve met people from all the continents, all of them working here, together, to make the best science they can. In Argentina, things are a bit complicated because of the rough economic situation in the country.</p>
+<p><strong>What fascinates you about neuroscience?</strong></p>
+<p>Evolution has given animals a biological machine that is far more advanced and efficient than anything we’ve ever built or known. We have <em>the most complex</em> machine between our ears and, curiously, we can only understand the world using that machine. We only perceive what our brain interprets, we can’t be sure about things being out there. For all we know, there could be nothing out there, everything could be an illusion recreated by our minds, playing inside our heads. How do you know the color I call red is the color you call red? The first time I heard that question I was 12 years old, and it continues to blow my mind.</p>
+<p><strong>What is the thing that surprised you the most about studying the rodents?</strong></p>
+<p>Rodents are extremely robust. Also, I can’t help but to have the feeling that their life is so much faster than ours. Their metabolism is higher, their lifespan is shorter. Five minutes is a lot of time for a mouse, much more for the tiny neurons in mice brains. Still, five minutes is not enough for long term events that influence 99.999% of the biology of animals.</p>
+<p><strong>Are rodent brains different sizes?</strong></p>
+<p>Yes, different species have different brain sizes. This is true for almost all living things. Here’s a cool plot about brain size<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>!</p>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Figure_35_03_05_Brain_size_Vertical.png/256px-Figure_35_03_05_Brain_size_Vertical.png" class="img-fluid" alt="Figure 35 03 05 Brain size Vertical" width="256"></p>
+<p>It is also impressive that brain sizes grow predictably with body mass<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a><a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>.</p>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Brain-body_mass_ratio_for_some_animals_diagram.svg/512px-Brain-body_mass_ratio_for_some_animals_diagram.svg.png" alt="Brain-body mass ratio for some animals diagram" width="512"></p>
+<p>The brain size question is tricky because we try to jump into conclusions about intelligence or cognitive abilities (also see below). The truth is, most of what a bigger brain is there for has nothing to do with what we humans call intelligence. For example, if you are a bigger animal, you need to receive signals from more places and you have larger muscles to control (aka, there’s a lot of room to tickle an elephant and moving an elephant needs a lot of neurons). Hence, bigger animals will tend to have a bigger brain.</p>
+<p><strong>Are brains smarter if they are bigger?</strong></p>
+<p>This is a frequently asked question. The key thing to consider, as previously stated, is the size of the animal that carries that brain. A mosquito can’t carry a whale’s brain, simply because it’s own size is smaller than the whale’s brain. However, mosquitoes have a nervous system that allows them to solve complex tasks and have successful reproductive endeavors.</p>
+<p>Brains are there to sense, process the information we receive from the outside world and make a decision (aka <em>move</em> towards/away). We also have to consider what <em>smart</em> means. But that’s a discussion for another day. Briefly, we tend to think about <em>being smart</em> as having higher cognitive abilities. For example, a higher cognitive abilities might usually depend on integration of several sensory stimuli and abstraction, like appreciating the regular patterns of a particular instrument in a symphony. Those activities tend to correlate well with the size of a region of the brain called the cortex, which is pretty big in primates.</p>
+<p><strong>Can you show us a rat? Can you show us its brain?</strong></p>
+<p>No, but I can show you <em>pictures</em> of brains.</p>
+<p>These are sections of a mouse brain.</p>
+<blockquote class="twitter-tweet blockquote" data-dnt="true">
+<p lang="eu" dir="ltr">
+Begin again <a href="https://t.co/kfflg6R8XE">pic.twitter.com/kfflg6R8XE</a>
+</p>
+— Matias Andina (<span class="citation" data-cites="NeuroMLA">@NeuroMLA</span>) <a href="https://twitter.com/NeuroMLA/status/1040302367118434305?ref_src=twsrc%5Etfw">September 13, 2018</a>
+</blockquote>
+<script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<p>This is a picture of a special staining showing different kinds of neurons in a rat brain.</p>
+<blockquote class="twitter-tweet blockquote" data-dnt="true">
+<p lang="en" dir="ltr">
+Paint…? Nah, Antibodies :) <a href="https://twitter.com/hashtag/sciart?src=hash&amp;ref_src=twsrc%5Etfw">#sciart</a> <a href="https://t.co/LlxBOPlzs5">pic.twitter.com/LlxBOPlzs5</a>
+</p>
+— Matias Andina (<span class="citation" data-cites="NeuroMLA">@NeuroMLA</span>) <a href="https://twitter.com/NeuroMLA/status/1033079203024052227?ref_src=twsrc%5Etfw">August 24, 2018</a>
+</blockquote>
+<script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<p><strong>Can rats swim underwater? Where do they live?</strong></p>
+<p>Yes they can, check this cool picture of rats swimming. We actually use the fact that rats are good swimmers to challenge them in a maze. It’s called the water maze (also known as <a href="https://en.wikipedia.org/wiki/Morris_water_navigation_task">Morris maze</a>).</p>
+<p>Rats are highly adapted to many different ecosystems. They can also do pretty well near human populations, scavenging city waste for a living. The map below shows an estimate of where rats live (aka <em>everywhere</em>):</p>
+<p><a title="By Jrockley [Public domain], via Wikimedia Commons" href="https://commons.wikimedia.org/wiki/File:Brown_rat_distribution.png"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Brown_rat_distribution.png/512px-Brown_rat_distribution.png" alt="Brown rat distribution" width="512"></a></p>
+<p><strong>What is the difference between a rodent brain and a human brain?</strong></p>
+<p>They are pretty similar, both contain massive amount of cells called neurons and glia. A key distinction is the size of the olfactory bulbs of a rodent and a human. While rodents have huge amount of brain devoted to the task of smelling the outside world, human bulbs are tiny. We are visual animals and hence, much of our brain is devoted to seeing things.</p>
+<p><strong>How is it possible to learn from a rodent’s brain how our brain works?</strong></p>
+<p>Humans and rodents are pretty related. We have a huge amount of DNA in common. We both have spinal cords and a similar brain organization. Many of the things that keep us alive have been functioning since many <strong>many</strong> years ago and are shared in the evolution of both animals.</p>
+<p>Studying the brain of a rodent can tell us many ways in which human brains function, and can help us build models of human diseases to try potential treatment before risking human lives. If it works in mice, there’s a good chance that it will work in humans. At least it’s worth a shot. Moreover, if it <strong>doesn’t</strong> work in mice, especially if mice show detrimental effects, there are good reasons <strong>not</strong> to try it in humans.</p>
+<p><strong>What equipment do you use in your lab to study rodents?</strong></p>
+<p>Lots. Most commons are test tubes, pipettes, and syringes. The microscopes are the fancy equipment we use to take great pictures.</p>
+<p><strong>Can rodents learn math?</strong></p>
+<p>This is a pretty challenging question. I don’t want to get into the <em>What is math</em> question. People tried to teach horses how to do math, which was a commercial success, but turned out that horse was not actually doing it for real, it was responding to the signals of its owner (see Clever Hans <a href="https://en.wikipedia.org/wiki/Clever_Hans">here</a>). Crows can solve puzzles that need a pretty deep understanding of the physical world, like fluid displacement, compare object lengths/weights. In my opinion, that comes super close to <em>our</em> math. Youtube is full of awesome crow videos!</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="crow_puzzle.PNG" class="img-fluid figure-img"></p>
+<figcaption>Crow solving a puzzle that involves fluid displacement</figcaption>
+</figure>
+</div>
+<p>We know mathematical abilities are not fully related to language, cultures that don’t have the words for specific numbers can distinguish different amounts and do simple math without any formal structure. Many animals can definitely learn simple tasks that are related to number of events or a certain amount of time. They can distinguish amounts (e.g., 10 M&amp;Ms is more food than 2 M&amp;Ms), and they can keep a count. However, we often face difficulties to be certain of what is going on in the rat’s head. We can’t ask, we can’t <em>be</em> rats. Thus, the best question would be whether we can test unequivocally that rats are performing mathematical operations, counting, or have any representation of numbers.</p>
+<p>For those of you really tempted to dig further into this question:</p>
+<ul>
+<li>https://en.wikipedia.org/wiki/Number_sense_in_animals</li>
+<li>https://www.ncbi.nlm.nih.gov/pubmed/26463617</li>
+</ul>
+
+
+</section>
+
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>The source of the brain pictures can be found <a href="https://cnx.org/contents/GFy_h8cu">here</a><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>This is called brain::body-mass ratio and it is a famous law of scaling. More info here https://en.wikipedia.org/wiki/Brain-to-body_mass_ratio.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>The source of the graph can be found <a href="http://cr2chicago.weebly.com/with-every-drop/behavior-and-social-interaction-in-a-wet-world-part-ii-whale-vocalizations-and-communication">here</a>. Many other places will have similiar graphs. Also, I recommend a book called Scale by Geoffrey West.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></div></div></section><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{andina2018,
+  author = {Andina, Matias},
+  title = {Skype a {Scientist} Part 1},
+  date = {2018-10-02},
+  url = {https://mauribo2.github.io/WebSite/posts/2018-10-02-skype-a-scientist-1/},
+  langid = {en}
+}
+</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-andina2018" class="csl-entry quarto-appendix-citeas" role="listitem">
+Andina, Matias. 2018. <span>“Skype a Scientist Part 1.”</span> October
+2. <a href="https://mauribo2.github.io/WebSite/posts/2018-10-02-skype-a-scientist-1/">https://mauribo2.github.io/WebSite/posts/2018-10-02-skype-a-scientist-1/</a>.
+</div></div></section></div></main> <!-- /main -->
+<div>
+<hr>
+
+<h3> Enjoy my creations? </h3>
+
+<p> I'm so glad you're here. As you know, I create a blend of fiction, non-fiction, open-source software, and generative art - all of which I provide for free. </p>
+<p> Creating quality content takes a lot of time and effort, and your support would mean the world to me. It would empower me to continue sharing my work and keep everything accessible for everyone. </p>
+
+<h3> How can you support my work? </h3>
+
+<p> There easy ways to contribute. You can buy me coffee, become a patron on Patreon, or make a donation via PayPal. Every bit helps to keep the creative juices flowing. </p>
+
+<!-- Buy Me A Coffee Button -->
+<script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="matiasandina" data-color="#FFDD00" data-emoji="☕" data-font="Lato" data-text="Buy me a coffee" data-outline-color="#ffffff" data-font-color="#ffffff" data-coffee-color="#FFDD00" data-height="44px"></script>
+
+<br>
+
+<!-- PayPal Button -->
+<form action="https://www.paypal.com/donate" method="post" target="_top">
+<input type="hidden" name="business" value="BWWTTZ2XSDAZ8">
+<input type="hidden" name="no_recurring" value="0">
+<input type="hidden" name="currency_code" value="USD">
+<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button">
+<img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1">
+</form>
+
+<br>
+
+<!-- Patreon Button -->
+<a href="https://www.patreon.com/bePatron?u=25827926" data-patreon-widget-type="become-patron-button">Become a Patron!</a><script async="" src="https://c6.patreon.com/becomePatronButton.bundle.js"></script>
+
+<h3> Share the Love </h3>
+
+<p> Not in a position to contribute financially? No problem! Sharing my work with others also goes a long way. You can use the following links to share this post on your social media. </p>
+
+
+<h3> Affiliate Links</h3>
+
+<p> Please note that some of the links above might be affiliate links. At no additional cost to you, I will earn a commission if you decide to make a purchase.</p>
+
+<hr>
+
+<p>© CC-By Matias Andina, 2023 | This page is built with ❤️ and <a href="https://quarto.org/">Quarto</a>.</p>
+
+
+</div>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/mauribo2\.github\.io\/WebSite\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<script src="https://utteranc.es/client.js" repo="mauribo2/WebSite" issue-term="pathname" theme="github-dark" crossorigin="anonymous" async="">
+</script>
+</div> <!-- /content -->
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/mauribo2/WebSite/edit/main/posts/2018-10-02-skype-a-scientist-1/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/mauribo2/WebSite/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer><div class="page-columns page-rows-contents page-layout-article"><div class="social-share"><a href="https://twitter.com/share?url=https://matiasandina.netlify.app/&amp;text=Matias Andina" target="_blank" class="twitter"><i class="fab fa-twitter fa-fw fa-lg"></i></a><a href="https://www.linkedin.com/shareArticle?url=https://matiasandina.netlify.app/&amp;title=Matias Andina" target="_blank" class="linkedin"><i class="fa-brands fa-linkedin-in fa-fw fa-lg"></i></a>  <a href="mailto:?subject=Matias Andina&amp;body=Check out this link:https://matiasandina.netlify.app/" target="_blank" class="email"><i class="fa-solid fa-envelope fa-fw fa-lg"></i></a><a href="https://www.facebook.com/sharer.php?u=https://matiasandina.netlify.app/" target="_blank" class="facebook"><i class="fab fa-facebook-f fa-fw fa-lg"></i></a><a href="https://reddit.com/submit?url=https://matiasandina.netlify.app/&amp;title=Matias Andina" target="_blank" class="reddit">   <i class="fa-brands fa-reddit-alien fa-fw fa-lg"></i></a><a href="https://www.stumbleupon.com/submit?url=https://matiasandina.netlify.app/&amp;title=Matias Andina" target="_blank" class="stumbleupon"><i class="fa-brands fa-stumbleupon fa-fw fa-lg"></i></a><a href="javascript:void(0);" onclick="var mastodon_instance=prompt('Mastodon Instance / Server Name?'); if(typeof mastodon_instance==='string' &amp;&amp; mastodon_instance.length){this.href='https://'+mastodon_instance+'/share?text=Matias Andina https://matiasandina.netlify.app/'}else{return false;}" target="_blank" class="mastodon"><i class="fa-brands fa-mastodon fa-fw fa-lg"></i></a></div></div>
+
+
+
+
+</body></html>

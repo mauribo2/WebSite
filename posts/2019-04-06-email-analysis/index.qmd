@@ -1,0 +1,860 @@
+---
+title: Email analysis
+date: 2019-04-06
+categories: ["R","learning"]
+---
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+#| results: hide
+library(tidyverse)
+library(lubridate)
+library(scales) # for time scaling
+```
+
+I am keen on tracking things. Some people call this *personal analytics*, I call it fun. In this post, I will explore how to extract your email information using python and R. My goal is to do some analysis on the data and, hopefully, explore different visualizations that can inform future behavior. 
+
+
+## Emails from Gmail
+
+Reading emails in python is quite simple, we need to import the mailbox library. My file is called `correo` and comes from downloading my Gmail stuff out of https://takeout.google.com/settings/takeout. It can take a while so be patient.
+
+```{python}
+#| eval: false
+import mailbox
+
+# read in mbox
+mbox = mailbox.mbox('correo')
+
+# Show what we have here
+for key in mbox[0].keys():
+    print(key)
+
+```
+
+This should return something that looks like:
+
+```
+X-GM-THRID
+X-Gmail-Labels
+Received
+MIME-Version
+Date
+To
+From
+Subject
+Content-Type
+Content-Disposition
+Message-Id
+```
+
+Let's save the info we care about into a new file. We select `subject`, `from`, `date`, `to`, and some variables that allow us to keep track of things (i.e, labels and threads).
+
+```{python}
+#| eval: false
+import csv
+with open("gmail_mbox.csv", "w") as outfile:
+    writer = csv.writer(outfile)
+    for message in mbox:
+        writer.writerow([message['subject'], message['from'],
+        message['date'], message['to'],
+        message['X-Gmail-Labels'], message['X-GM-THRID']])
+
+
+```
+
+
+## Emails from Thunderbird
+
+I keep 3 accounts in Thunderbird. Using the [ImportExportTools Add-on](https://addons.thunderbird.net/en-US/thunderbird/addon/importexporttools/), I exported things into `.mbox` format. Following a similar procedure to the one depicted above, I got the other three accounts exported to `.csv` files. Just be sure you select the correct keys (see example below, this might change for other email clients). 
+
+```{python}
+#| eval: false
+
+with open("MIT_mbox.csv", "w") as outfile:
+    writer = csv.writer(outfile)
+    for message in mbox:
+        writer.writerow([message['Subject'],
+        message['From'], message['Date'],
+        message['To'],message['Status']])
+
+```
+
+
+## Data cleaning
+
+Let's switch from python to R[^stay]. 
+
+```{r}
+#| label: read-into-R
+df <- read.csv("data/gmail_mbox.csv",
+               header=FALSE, encoding="UTF-8")
+
+names(df) <- c('subject', 'from', 'date', 'to', 'label', 'thread')
+
+```
+
+
+Unfortunately, emails come tagged (things like `"\\?="` and other nasty stuff) and you might have to deal with different encodings (the perks of speaking multiple languages). As an example, let's see what Quora sends me.
+
+```{r}
+df %>% filter(str_detect(from, "Quora")) %>% dplyr::select(from) %>% slice(1:10)
+```
+
+That's nasty...Let's do some cleaning. This function comes really handy for text replacement.
+
+```{r}
+#| label: sourcing-github
+#| message: false
+
+# originally sourced from
+devtools::source_url("https://raw.githubusercontent.com/hrbrmstr/hrbrmisc/master/R/qp.r")
+
+```
+
+
+We are going to modify the function a bit, we add `x` as the string we pass for cleaning and we will remove the tags progressively.
+
+```{r}
+
+qp_decode <- function(x) {
+  
+  # other email taggs
+  x <- stringr::str_remove_all(x, pattern = "=\\?[U-u][T-t][F-f]-8\\?[Q-q]\\?")
+  x <- stringr::str_remove_all(x, pattern = "\\?=")
+  x <- stringr::str_remove_all(x, "=\\?[I-i][S-s][O-o]-8859-1\\?Q\\?")
+  
+  stringi::stri_replace_all_fixed(x, qp_before, qp_after, vectorize_all=FALSE)
+  
+}
+
+```
+
+We are ready to use our super cool function and clean the text! Not perfect, but gets us 90% of the way.
+
+```{r}
+#| label: clean-emails
+
+df <- df %>% mutate_at(.vars = vars(subject, from, to, label), .funs = qp_decode) 
+
+```
+
+Let's see how emails from Quora changed with this new encoding:
+
+```{r}
+#| label: quora-example
+df %>% filter(str_detect(from, "Quora")) %>% dplyr::select(from) %>% slice(1:10)
+```
+
+Let's filter those from "Received" or "Sent" (in Spanish, "Recibidos" or "Enviado").
+
+```{r}
+emails <- df %>%
+  filter(str_detect(label, "Recibidos|Enviado"))
+```
+
+To save you from reading a considerable amount of code, I will load the other accounts and modify them accordingly in the background. I will finally merge everything together. Just enjoy the kitten while the code is running in my machine.
+
+![](001-kitty.jpg)
+
+
+```{r}
+#| echo: false
+#| message: false
+#| results: hide
+#| warning: false
+#| code-fold: true
+#| code-summary: "A lot of code for reading/parsing"
+
+MIT_sent <- read.csv('data/MIT_Sent.csv',
+                     header=FALSE,
+                     stringsAsFactors = FALSE)
+names(MIT_sent) <- c('subject', 'from', 'date', 'to', 'label')
+MIT_sent$label <- "Sent"
+
+MIT_received <- read.csv("data/MIT_inbox.csv",
+                         header=FALSE,
+                         stringsAsFactors = FALSE)
+names(MIT_received) <- c('subject', 'from', 'date', 'to', 'label')
+MIT_received$label <- "Received"
+
+hotmail_sent <- read.csv('data/hotmail_Sent.csv',
+                         header=FALSE,
+                         stringsAsFactors = FALSE)
+names(hotmail_sent) <- c('subject', 'from', 'date', 'to', 'label')
+hotmail_sent$label <- "Sent"
+
+hotmail_received <- read.csv("data/hotmail_inbox.csv",
+                             header=FALSE,
+                             stringsAsFactors = FALSE)
+names(hotmail_received) <- c('subject', 'from', 'date', 'to', 'label')
+hotmail_received$label <- "Received"
+
+umass_sent <- read.csv("data/umass_Sent.csv",
+                       header=FALSE,
+                       stringsAsFactors = FALSE)
+names(umass_sent) <- c('subject', 'from', 'date', 'to', 'label')
+umass_sent$label <- "Sent"
+
+umass_received <- read.csv("data/umass_inbox.csv",
+                           header=FALSE,
+                           stringsAsFactors = FALSE)
+names(umass_received) <- c('subject', 'from', 'date', 'to', 'label')
+umass_received$label <- "Received"
+
+
+# Bind everything
+
+all_accounts <- bind_rows(list(MIT_received = MIT_received,
+               MIT_sent = MIT_sent,
+               hotmail_received = hotmail_received,
+               hotmail_sent = hotmail_sent,
+               umass_received = umass_received,
+               umass_sent = umass_sent), .id = "account") %>%
+  mutate(account = str_remove(account, "_received|_sent"))
+
+
+emails <- emails %>% mutate(account = "Gmail") %>%
+  bind_rows(all_accounts) %>%
+  mutate(simple_label = ifelse(
+    str_detect(label, pattern = "Recibido|Received"),
+    "Received", 
+    "Sent"))
+
+```
+
+## Analysis
+
+There's still some stuff to clean, but I'd rather go into the analysis. So, let's get some questions to guide our purpose:
+
+1) Who sends me the most emails? Who receives emails from me?
+1) When do I get emails (mostly)?
+1) When should I do something about it (aka, reply)?
+
+> **Warning:** We have to dance with parsing dates and times. 
+> I highly recommend being familiar with `lubridate` (for example, see https://rdrr.io/cran/lubridate/man/parse_date_time.html).
+
+### Most frequent senders
+
+Just because I'm curious, let's take a look at who are the all time senders!
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+emails %>%
+  # Filter me out
+  filter(!str_detect(from, "matiasandina|mandina"))%>%
+  # Count the people
+  count(from) %>% arrange(desc(n)) %>% slice(1:10) %>%
+  mutate(from = str_remove(from, "\\<.+")) %>%
+  separate(from, into = c("from", "lala"), sep=" ") %>%
+  dplyr::select(-lala)
+```
+
+It's cool to know that my lingering feeling ("wow...`Quora` just spams the hell out of me") is supported by data. Other big spammers are, of course, the Bank and Amazon. People I work with and friends come high up too. Funny to see Mendeley and Pubchase on the top ten, it's been a long journey of them sending me papers, thank you for that[^Mendeley].
+
+### From me to you
+
+Let's try to find the people I directly send the most emails to. I tend to send a lot of automatic reminders via email to myself so I removed me from the destination.
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+emails %>% filter(str_detect(from, "matiasandina|mandina") & !str_detect(to, "matiasandina|mandina"))%>%
+  count(to) %>% arrange(desc(n)) %>% slice(1:5) %>%
+  mutate(to = str_remove(to, "\\<.+")) %>%
+  separate(to, into = c("to", "lala"), sep=" ") %>%
+  mutate(to=ifelse(str_detect(to, "feld"), "Mariana", to),
+         to=str_remove(to, "_.+")) %>%
+  dplyr::select(-lala)
+```
+
+Looks like both my former advisers get most of my output (yes, same name first name, not related).
+
+## Working with dates and times
+
+Every time I have to deal with dates, I have a miniature panic attack. As a general rule, you have to have all the variables that you want to use as separate columns (i.e, year, month, day, week_day, time, ...). The `lubridate` package helps a lot, but it's still quite an effort.
+
+Working only with times of the day, regardless of date itself is problematic. Working with periods is difficult, so `as.numeric(x, "hour")` is a friend.
+
+Here's a hint of how the `date` column in the original data actually looks like. This may or might not look the same way for you, it depends on your date settings.  
+
+
+```{r}
+#| label: show-date
+
+emails %>% dplyr::select(date) %>% slice(1:5)
+
+```
+
+
+Let's create all the variables we need. It seems like a lot because it *should* work out of the box and it doesn't, but it's actually somewhat straight-forward to get most of what we want.  
+
+
+```{r}
+#| label: modify-dates
+#| message: false
+#| warning: false
+#| code-fold: true
+#| code-summary: "Again, a bunch of cleaning stuff"
+
+emails <- emails %>%
+  separate(date, into=c("wday", "date"), sep = ", ") %>%
+  # Fixing the fact that some dates do not have weekday
+  mutate(to_fix = ifelse(
+    wday %in% wday(1:7, label=TRUE , abbr = TRUE), 
+    "OK", 
+    "fix"),
+    date = ifelse(to_fix == "OK", date, wday),
+    wday=ifelse(to_fix=="OK", wday, NA),
+    wday=fct_relevel(wday,
+                     levels=c("Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"))) %>%
+  dplyr::select(-to_fix)
+
+
+# remove emails with no date
+emails <- emails %>% 
+  dplyr::mutate(date = dplyr::na_if(date, "")) %>%
+  filter(!is.na(date))
+
+
+# switch everything to my timezone
+# Sys.timezone() gives "America/New_York"
+# some parsing migth fail
+
+emails <- emails %>%
+  mutate(date = str_remove(date, "\\(.+\\)"),
+         my_date = dmy_hms(date, tz = "America/New_York"),
+         my_day = day(my_date),
+         my_month = month(my_date),
+         my_month_abb = month(my_date, label=TRUE, abbr = TRUE),
+         my_year = year(my_date),
+         my_time = data.table::as.ITime(my_date),
+         hour_num = my_time %>% as.integer() %>% `/` (60*60),
+         only_date = ymd(paste(my_year, my_month, my_day, sep="-")))
+
+
+```
+
+
+## Birdseye
+
+Let's look at how the whole email movement looks like. In the last couple of years, I clearly felt the load rising and rising. The lack of data in the early years is mostly due to me not downloading everything from the Hotmail account (it's too late, too far in the past to fix :P). Besides, the trend likely holds quite well.
+
+
+```{r}
+#| label: tile-plot
+#| echo: false
+#| height: 6.0
+# Make summary
+tile_data <- emails %>% 
+  group_by(my_year, my_month, my_day) %>%
+  count() %>%
+  ungroup() %>% 
+  group_by(my_year, my_month) %>%
+  summarise(month_count = sum(n))
+
+ggplot(tile_data, aes(my_month, 
+                      my_year,
+                      fill=month_count)) +
+    geom_tile(color="white", size=0.8)+
+    scale_fill_viridis_c()+
+    scale_x_continuous(expand=c(0,0), breaks = 1:12, labels = month.abb)+
+    scale_y_continuous(breaks = 2003:2019)+
+    labs(x="", y="", fill="Monthly count")+
+    theme(axis.ticks = element_blank(), 
+          panel.background = element_blank(),
+          legend.position = "bottom",
+          legend.key.width = unit(1, "cm"),
+          strip.text = element_text(hjust = 0.01,
+                                    face = "bold",
+                                    size = 12),
+              text = element_text(size=16))+
+      ggtitle("Total emails in all accounts")
+
+```
+
+If we split by input and output, we can easily see that the input-output ratio went nuts when I moved to the US. 
+
+```{r}
+#| echo: false
+# sent vs received
+emails %>%
+  group_by(simple_label, my_year) %>%
+  count() %>%
+  ggplot(aes(my_year, n, color=simple_label)) +
+  geom_vline(xintercept = 2016, lty=2)+
+  geom_line()+
+  geom_point(size=2.5) +
+  scale_color_manual(values = c("orange", "black"))+
+  theme_bw()+ 
+  theme(panel.grid = element_blank())+
+  annotate("text", label=c("ARG","US"), 
+           x=c(2015, 2016.8), y=-1)+
+  labs(
+    title = "Moving to the US means a lot more mail",
+    x=element_blank(), 
+    y="Number of emails", color="")+
+  scale_x_continuous(breaks = seq(2003, 2019, by=2))
+
+```
+
+This is not really surprising, given the amount of unsolicited advertising I started getting since the move. Yes, I'm talking to you again Quora/Amazon/people trying to sell me stuff[^my_fault]. Of course, University related chains likely take a big chunk of the pie. 
+
+I don't feel like parsing out each sender out of the sheer amount. I have had the Gmail and Hotmail accounts for more than 10 years, but the University email is something relatively recent. All in all, considering the time I've had each account, the input rate coming from universities worries me. Here are the total email for each account: 
+
+```{r}
+table(emails$account)
+```
+
+
+### When
+
+Let's add the time of the day to the equation. This plot was made using `ggbeeswarm` package, I highly recommend checking it, it's pure power. I got help to put the labels in the `y` axis from '00:00' to '24:00'. You can find a toy example in [this StackOverflow question](https://stackoverflow.com/questions/55463735/how-to-force-scale-y-datetime-scale-to-show-2400-instead-of-0000-in-r/55464995#55464995).
+
+```{r}
+#| echo: false
+#| fig.height: 8.0
+
+p1 <- ggplot(emails, aes(factor(my_year),
+                   hour_num)) +
+  ggbeeswarm::geom_quasirandom(alpha=0.1)+
+  #scale_y_datetime(breaks = "2 hour",
+  #                 date_labels= "%H:%M")+
+  #scale_x_discrete(position = "top")+
+  theme_bw(base_size = 16)+
+  facet_wrap(~simple_label, nrow=2)+
+  xlab("") + ylab("Time of the day")+
+  #scale_color_manual(values=c("darkorange", "black"))+
+  theme(legend.position = "none")+
+  scale_y_continuous(breaks = 2*0:12,
+                     labels = function(x) {paste0(floor(x),":00")})
+
+
+p2 <- ggplot(emails, aes(factor(my_year), as.POSIXct(my_time, format = "%H:%M:%S"))) +
+  geom_jitter(alpha=0.1)+
+  ylab("") +
+  scale_y_datetime(breaks = "2 hour",
+                   date_labels= "%H:%M")+
+  theme_bw()+
+  facet_wrap(~simple_label, nrow = 2)
+
+
+# We need to make the account into factor
+emails$account <- factor(emails$account, levels=c("Gmail", "MIT", "umass", "hotmail"))
+
+histogram <- emails %>% group_by(account, my_year) %>%
+    count() %>% #ungroup() %>% group_by(my_year) %>%
+    #mutate(rel_count = n/sum(n)) %>%
+    ggplot(aes(my_year, y=n, fill=account))+
+    geom_col()+
+    theme(panel.background = element_blank(), legend.position = "bottom",
+          text = element_text(size=16))+
+    scale_fill_grey() +
+    scale_x_continuous(expand = c(0, 0.1), breaks=2003:2019)+
+    labs(x="", y="Number of emails")
+
+#cowplot::plot_grid(p1,histogram, nrow = 2, rel_heights = c(2, #1))
+
+```
+
+![](email-analysis-beeswarm.png)
+
+#### Daily news
+
+What's the average number of emails per day? I'm including all the emails in from 2015 to 2019, including those that go directly to trash.
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+lala <- df %>% 
+  bind_rows(all_accounts) %>%
+  separate(date, into=c("wday", "date"), sep = ", ") %>%
+  # Fixing the fact that some dates do not have weekday
+  mutate(
+    to_fix = ifelse(
+    wday %in% wday(1:7, label=TRUE , abbr = TRUE), 
+    "OK",
+    "fix"),
+     date = ifelse(to_fix == "OK", date, wday),
+     wday=ifelse(to_fix=="OK", wday, NA),
+     wday=fct_relevel(wday,
+                      levels=c("Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"))) %>%
+  dplyr::select(-to_fix) %>%
+  mutate(date = dplyr::na_if(date, "")) %>%
+  filter(!is.na(date)) %>%
+  mutate(date = str_remove(date, "\\(.+\\)"),
+         my_date = dmy_hms(date, tz = "America/New_York"),
+         my_day = day(my_date),
+         my_month = month(my_date),
+         my_month_abb = month(my_date, label=TRUE, abbr = TRUE),
+         my_year = year(my_date),
+         my_time = data.table::as.ITime(my_date),
+         hour_num = my_time %>% as.integer() %>% `/` (60*60),
+         only_date = ymd(paste(my_year, my_month, my_day, sep="-")))
+
+
+lala %>% group_by(my_year, only_date) %>%
+  count() %>%
+  filter(my_year %in% c(2015:2019)) %>%
+  ggplot(aes(n)) + geom_density(fill="gray50") + 
+  theme_bw()+
+  scale_x_continuous(breaks=seq(0, 150, 15))+
+  labs(title = "Email amount per day", 
+       x = "Emails/day")
+
+
+```
+
+For those looking for some tabulated info, here it is:  
+
+```{r}
+#| echo: false
+lala_sum <- lala %>% group_by(my_year, only_date) %>%
+  count() %>% filter(my_year %in% c(2015:2019)) %>%
+  group_by(my_year) %>%
+  summarise(mean_n = mean(n),
+            min_n = range(n)[1],
+            max_n = range(n)[2],
+            mode_n = which.max(tabulate(n)))
+
+knitr::kable(lala_sum, 
+             caption = "Number of emails per day received in all accounts",
+             digits = 1,
+             col.names = c(
+               "Year", "Mean", "Min", "Max", "Mode"
+             ))
+  
+```
+
+I am more inclined to graphics, the following figure shows not only an increasing mean, but, surprisingly, a widening range.  
+
+```{r}
+#| echo: false
+lala_sum %>% ggplot(aes(my_year, mean_n))+
+  geom_point(size=3)+
+  geom_segment(aes(x=my_year, 
+                   xend=my_year, 
+                   y=min_n, 
+                   yend=max_n))+
+  coord_flip()+
+  theme_bw()+
+  labs(title = "Mean emails per day",
+       subtitle = "Segment shows the range",
+       x = element_blank(),
+       y = element_blank())
+
+
+```
+
+### All days were not created equal
+
+Of course, the number of emails somewhat depends on the day of the week. We can easily see a decreasing trend.  
+
+```{r}
+table(emails$wday)
+```
+
+
+Although the day of the week has influence on the amount of emails received, the time of the day seems to have a stronger, more permanent effect.  
+
+```{r}
+#| warning: false
+#| fig.height: 6.0
+
+emails %>%
+filter(!is.na(wday)) %>%
+ggplot(aes(wday, hour_num)) +
+  ggbeeswarm::geom_quasirandom(alpha=0.1)+
+  theme_bw(base_size = 16)+
+  facet_wrap(~simple_label, nrow=2)+
+  labs(y = "Time of the day", 
+        x = element_blank()) +
+  theme(legend.position = "none")+
+  scale_y_continuous(breaks = 2*0:12,
+                     labels = function(x) {paste0(floor(x),":00")})
+```
+
+### Everything together
+
+If we pool all the data together, it seems that I receive/send emails at all times, although there is more movement in the accounts around 10:00 and 16:30. Overall, the distributions are quite similar[^little_prince].  
+
+```{r}
+#| echo: false
+
+ggplot(emails,
+       aes(hour_num)) +
+  geom_density(aes(fill=simple_label), alpha=0.7) +
+  labs(
+    title = "✉ Email is an all-day activity️", 
+    x = "Time of the Day", 
+    y = element_blank()) +
+  theme(axis.ticks.y = element_blank(),
+        axis.text.y = element_blank(),
+        panel.grid = element_blank(),
+        panel.background = element_rect(
+          fill=NA, color="black"))+
+   scale_x_continuous(breaks = 2*0:12,
+                     labels = function(x) {paste0(floor(x),":00")})+
+  facet_wrap(~simple_label, nrow=2) +
+  scale_fill_manual(values=c("orange", "gray20"))+
+  theme(legend.position = "none")
+
+
+```
+
+#### Just for fun
+
+Just for the fun of data visualization. Here's the same plot but adding `coord_polar` to it. I believe it creates a very weird but good looking thing. It's not really a clock but there's something about it I can't stop looking at[^fix_zero].  
+
+```{r}
+#| label: polar-plot
+
+theme_clock <- theme(axis.ticks.y = element_blank(),
+          axis.ticks.x = element_line(color="black"),
+          axis.text.x = element_text(size=12, face="bold"),
+          axis.text.y = element_blank(),
+          panel.background = element_rect(fill=NA, color="black"),
+          panel.grid.major.y = element_line(color="gray50"),
+          panel.grid.major.x = element_line(color="gray10", linetype = 2),
+          legend.position = "none")
+
+
+ggplot(emails,
+       aes(x=hour_num)) +
+    geom_density(aes(fill=simple_label), alpha=0.7) +
+    xlab("") + ylab("") +
+    theme_clock +
+    scale_x_continuous(breaks = 2*0:12,
+                     labels = function(x) {paste0(floor(x),":00")})+
+    scale_y_continuous(breaks = c(0, 50))+
+    facet_wrap(~simple_label) +
+    scale_fill_manual(values=c("orange", "gray20"))+
+    coord_polar() 
+
+```
+
+### Split in two
+
+As you can see from the figures above, the emails in the received bucket have two humps (wink, Bactrian camel, little prince), but I send emails at almost all times (except maybe between 2 AM and 5 AM). This is a **bad habit**, I should not be sending emails all the time, I should batch to diminish the costs associated with shifting tasks. I could just put a rule of thumb and check emails only once a day (e.g, 12:00:00). However, this might not be the best decision, because it chunks the response time in two very broad categories (either I get back to you somewhat quick, within 2 hours, or I take almost a full day to reply).  
+
+
+```{r}
+
+emails %>% filter(simple_label == "Received") %>%
+  mutate(response_period = seconds_to_period(data.table::as.ITime("12:00:00") - my_time),
+         response_seconds = as.numeric(response_period),
+         # If the delay between response and received time is negative
+         # Means the email got in the day before
+         # Adjust for 24 hours delay (86400 seconds in 24 hs)
+         response_seconds = ifelse(response_seconds < 0,
+                                   abs(response_seconds) + 86400,
+                                   response_seconds),
+         response_hours = response_seconds/3600) %>%
+  ggplot(aes(response_hours)) +
+  geom_histogram(bins=30, fill="gray80", color= "black")+
+  scale_x_continuous(breaks=seq(0, 36, 2))+
+  labs(title = "Chunking means either right away or very late replies", 
+       x="Time to reply (hours)") + 
+  theme_clock + 
+  theme(panel.grid.minor.y = element_blank(),
+        panel.grid.major.y = element_blank(),
+        panel.grid.major.x = element_line(color = "gray80", linetype = 2))
+```
+
+Additionally, checking emails only once might make me miss something somewhat fleeting. In general, I want to read things during the time they are relevant (did anybody say free pizza?). 
+
+The primary goal, then, is to minimize the times I check/send emails without **1)** impacting my perceived response rate and **2)** missing out too much info during the day. But that optimization problem is hard to solve and likely a waste of time (trust me, I tried and I'm not that smart). 
+
+I believe we can solve it with a rule of thumb anyway. Let's say, I would check emails *twice* a day and respond immediately, unless I need to harness some brain power to create an elaborate response[^checked].  
+
+I just wrote a "cost function" and calculated the cost for several combinations of times.
+
+```{r}
+#| echo: true
+#| code-fold: true
+#| code-summary: "Show the code" 
+#| 
+values <- emails %>%
+  filter(simple_label=="Received") %>%
+  mutate(val = as.numeric(seconds_to_period(my_time))) %>%
+  pull(val)
+
+# calculate linear distance to minimize 
+
+dist_to_min <- function(values, possible_times){
+ 
+  min_time <- min(possible_times)
+  max_time <- max(possible_times)
+  # do nothing to first batch
+  corrected_values <- ifelse(values < max_time,
+                           values,
+  # shift the ones answered on next day, this already gives positive distance
+                          86400 - values + min_time)
+
+  
+  to_second <- between(corrected_values, min_time, max_time)
+  second_batch <- corrected_values[to_second]
+  first_batch <- corrected_values[!to_second]  
+  
+  # Calculate distance (should be all positive)
+  dist_second <- max_time - second_batch 
+  
+  dist_first <- ifelse(first_batch < min_time,
+                       min_time - first_batch,
+                       corrected_values)
+
+  total_dist <- sum(c(dist_first, dist_second))
+  
+  return(total_dist)
+}
+
+
+```
+
+Now we can use our `dist_to_min` function in a loop. We'll calculate from the first second of the day, to the last (86400) every half hour (1800 sec).
+
+```{R}
+#| echo: true
+#| code-fold: true
+#| code-summary: "Show the code" 
+#| 
+# Create the data to iterate over
+val <- seq(1, 86400, 1800)
+val <- data.frame(t(combn(val,2)))
+names(val) <- c("Var1", "Var2")
+distance <- numeric(length=nrow(val))
+
+# For loop...
+for (i in 1:nrow(val)){
+  possible_times <- val[i, ]
+  
+  distance[i] <- dist_to_min(values, possible_times)
+  
+}
+
+```
+
+The function calculates the distance we want to minimize. The output looks like this. 
+
+```{R}
+#| echo: false
+#| width: 8.0
+
+ggplot(data.frame(distance=distance),
+       aes(x=1:length(distance), distance)) + 
+  geom_line() +
+  theme_bw() +
+  labs(x="Combinations", y="Latency to reply (seconds)")
+
+
+```
+
+Sounds like the combinations we care about are those below 2.5e+8.
+
+```{r}
+#| echo: false
+
+pp <- data.frame(val[which(distance < 2.5e+8),],
+           distance = distance[which(distance < 2.5e+8)]) %>%
+  arrange(distance) %>%
+  mutate_at(vars(Var1,Var2), .funs = seconds_to_period) 
+
+pp <- rename(pp, first_batch = Var1, second_batch=Var2)
+
+ggplot(pp, aes(as.numeric(first_batch, "hours"),
+               as.numeric(second_batch, "hours"))) + geom_point(aes(size=distance))+
+  theme_bw()+
+  theme(legend.position = "none")+
+#  scale_color_gradient(low="green", high="black")+
+  xlab("First Batch (hours)") + ylab("Second Batch (hours)")+
+  ggtitle("When should I answer emails?",
+          subtitle = "Increasing size shows increasing cost")
+
+```
+
+All this long post is to say that, from now on, I will be answering my emails in either one of these combinations.  
+
+```{r}
+#| label: answer
+#| echo: false
+#| 
+pp[1:2, 1:2]
+
+```
+
+### A finer grain
+
+Just for the fun of it, let's take a closer look, a second by second analysis. It seems like machine programmed emails peak at 2 and 3 seconds past midnight.
+
+```{r}
+#| echo: false
+data.frame(table(as.POSIXct(emails$my_time), emails$simple_label)) %>%
+  rename(date=Var1, simple_label = Var2) %>%
+  mutate(time = as.character(date),
+         time = str_extract(time, "[0-9]{2}:[0-9]{2}:[0-9]{2}")) %>%
+  dplyr::select(time, simple_label, Freq) %>%
+  arrange(desc(Freq)) %>% slice(1:10)
+```
+
+Who are these emails coming from anyway? 
+
+```{r}
+
+emails %>% filter(str_detect(as.character(my_time),  "00:00:02|00:00:03")) %>%
+  group_by(from) %>%
+  count() %>% ungroup() %>% arrange(desc(n)) %>%
+  mutate(from = str_extract(from, "@.+edu")) %>%
+  slice(1:10)
+  
+```
+
+Looks like people at MIT programmed news to be sent seconds after midnight.
+
+## Summary
+
+I have had *a lot* of fun doing this project. I also experienced an enormous amount of frustration with dates. Moreover, every time I thought this project was over, a new little idea for a *not so little* graph came into my mind. Of course, I went after it. I hope this info helps other people take a look at their own personal analytics and make some decisions. I am somewhat happy I have almost all notifications turned off (hence, no Facebook/Twitter/Slack/whatever appearing as top senders). In fact, turning email notifications off is the first thing I do when I sign up for a service/site, I encourage you to do the same.
+
+Batching is something I will start testing. I can't control my input but, hopefully, the distributions of my sent email will start matching the times I designated. More importantly, people will not notice, even if the email input keeps increasing.
+
+
+***
+
+Some people requested me to do the following scatter-plot. I went with the ggbeeswarm version on the text because I find it more appealing.
+
+```{r}
+#| echo: false
+lala %>%
+  ggplot(aes(only_date, hour_num))+
+  geom_point(size=0.1)+
+  theme_bw()+
+  scale_y_continuous(breaks = 2*0:12,
+                     labels = function(x) {paste0(floor(x),":00")})+
+  scale_x_date(date_breaks = "1 year", labels = date_format("%Y"))+
+  xlab("") + ylab("Time of the day")
+
+```
+
+***
+
+I excluded parts of the code because it was too much. I am happy to share if requested!
+
+***
+
+**Sources:**  
+
+https://jellis18.github.io/post/2018-01-17-mail-analysis/  
+https://blog.stephenwolfram.com/2012/03/the-personal-analytics-of-my-life/  
+https://uc-r.github.io/kmeans_clustering  
+
+[^stay]: You could actually stay in python (follow https://jellis18.github.io/post/2018-01-17-mail-analysis/). I'm way more comfortable with R for analysis and I only wanted python because I had the copy-paste version of getting my `.mbox` file to `.csv` fast.
+[^Mendeley]: I had signed up for Mendeley *before* Elsevier bought it...I'm not quite happy about it now, but at least I still get paper recommendations.
+[^my_fault]: I know I could just *unsubscribe* to these kind of things, just the way I do with 99% of all other aggressive garbage. I just didn't do it for these senders.
+[^little_prince]: Do they look like an elephant inside a boa or a hat? 
+[^fix_zero]: Please, if you know how to make the 0:00 or 24:00 appear on the center, reach out! I couldn't figure it out.
+[^checked]: If you have as much free time as me, you can run a `kmeans(...)`. My emails actually turned out to be around 2 clusters. 

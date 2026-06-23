@@ -1,0 +1,690 @@
+---
+title: Queen's Gambit
+subtitle: A trip down the chess rabbit hole
+date: 2021-02-07
+categories: ["chess","fun", "design"]
+code-fold: true
+---
+
+I love games. I enjoy the fun in many formats: cards, boards, consoles.
+Yet, over the years, chess has consolidated as the game I play most often, and it is likely the only game I both **really** like and can limit the amount I play[^1].
+
+[^1]: However, after reading this post you might believe I'm a bit of a
+    chess junkie 😝
+
+It's been a couple of months since I noticed something weird going on in my games, a sort of disturbance in the force. I felt I was playing a type of position called **Queen's Gambit** way more often than normal. 
+
+Because there's currently a sort of chess mania fueled by the very successful new series that gets the name from the gambit[^2], I thought it would be pretty easy to find out whether the data reflected my gut feeling.
+
+[^2]: But mostly because the star is a kick-ass woman.
+
+## Too Long — Didn't Read
+
+I apologize for writing long posts. Be my guest and jump directly to the popularity of the Queen's Gambit across time by clicking [here](#popularity)
+
+## The data
+
+To do any sort of analysis, I needed data. Although there are probably many places where I could have found it, `www.chess.com` has a large dataset and it is somewhat accessible (if you can parse websites, see [how](#more-readings)). It is also the place where I play, so the dataset of *my* games comes from there. 
+
+Throughout this post, I will be using two datasets:
+
+1) Master Games: games played by Chess Masters where Queen's Gambit is played.
+2) My games: All my games at chess.com, spanning from 2012 to January 2021.
+
+Let's minimally explore the dataset of Master Games for the sake of DataViz 📈.
+
+```{r}
+#| label: setup
+#| message: false
+#| warning: false
+#| echo: false
+
+library(tidyverse, warn.conflicts = F)
+# read previous datasets
+df <- read_csv("./queens_gambit/queen_gambit.csv")
+my_games <- read_csv("./queens_gambit/chess_games/my_games_UNPUBLISHED.csv")
+
+# add text result to the data
+df <- 
+df %>% 
+  mutate(text_result = case_when(Result == "1-0" ~ "white wins",
+                                 Result == "0-1" ~ "black wins",
+                                 TRUE ~ "draw"),
+         text_result = factor(text_result, 
+                              levels = c("white wins", "draw", "black wins"))) 
+
+general_caption <- "Source: chess.com\nViz: @NeuroMLA"
+
+```
+
+I first started looking at a dataset with `r nrow(df)` entries, from games played between chess Masters (aka Master Games) that open with Queen's Gambit. Games were played between `r min(df$Year)` and `r max(df$Year)`. After a bit of data cleaning, there were a few quick things I wanted to look at.
+
+Below, you can find a violin plot of the number of moves a chess match between masters normally has.
+
+```{r}
+#| echo: false
+ 
+df %>% 
+  ggplot(aes(text_result, Moves, fill=text_result)) +
+  geom_violin()+
+  stat_summary(fun.data = mean_se,
+               show.legend = F,
+               color="#bbb4a9ff")+
+  scale_y_continuous(breaks=seq(0,200,40))+
+  ggthemes::theme_fivethirtyeight() +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  scale_fill_manual(values = c("white", "#777574ff", "black"))+
+  labs(fill = "",
+       title = "Chess Master Games last around 40 moves",
+       caption = general_caption)
+ 
+```
+
+If you are curious, here's a table with summary statistics for the number of moves in the games by result.
+
+```{r}
+#| label: table-results
+#| warning: false
+#| message: false
+#| echo: false
+tibble_summary <- function(x){
+  summary(x) %>% 
+    as.matrix() %>% 
+    t() %>% 
+    as_tibble() %>% 
+    janitor::clean_names() %>% 
+    rename(q25 = x1st_qu,
+           q75 = x3rd_qu)
+}
+  
+dt <-   
+df %>% 
+  group_by(text_result) %>% 
+  summarise(y=list(tibble_summary(Moves))) %>% 
+  unnest(y) %>% 
+  rename(Result = text_result) %>%
+  mutate_if(is.numeric, ~round(., digits=2)) 
+
+dt %>% 
+  gt::gt()
+
+# data table not rendering right now
+#dt %>% 
+#  DT::datatable(options = list(dom = 't'))
+```
+
+
+```{r}
+#| label: data-clean
+#| echo: false
+#| warning: false
+#| message: false
+clean_df <- 
+df %>%
+  mutate(Players=str_squish(Players)) %>% 
+  separate(Players, into=c("Players", "moves"), sep=" 1. ") %>%
+  separate(moves, into=c("moves", "accepted"), sep = " Queen's Gambit") %>%
+  separate(accepted, into=c("accepted", "variation"), sep=": ") %>% 
+  separate(moves, into = c("first", "second", "third"), sep=" [2-3]\\. ")
+
+# a few ones need further cleaning
+clean_df <- 
+  clean_df %>% 
+  filter(accepted != "") %>% 
+  filter(!str_detect(string = accepted, pattern = " Declined with.")) %>% 
+  mutate(Result = factor(Result, levels = c("1-0", "½-½", "0-1")))
+
+```
+
+## What is this "Queen's Gambit", anyway?
+
+Generally speaking, a gambit is a position where both players stand to exchange pieces. In the particular case of the **Queen's Gambit**, we are most often referring to this position (although see further below).
+
+```{r}
+#| out.width: 50%
+#| out.height: 50%
+#| echo: false
+#| fig.align: center
+knitr::include_graphics("./queens_gambit/boards/board01.png")
+```
+
+## When does it happen?
+
+Queen's gambit is an opening, this means it occurs early in the game. In this case, the gambit is overwhelmingly proposed on the second move and just a few games develop into a position that is equivalent to the Queen's gambit later in the game.
+
+```{r}
+#| echo: false
+clean_df %>% 
+  count(second = str_detect(second, "^c4"),
+        third = str_detect(third, "^c4")) %>%
+  mutate(proposal = factor(c("later", "third move", "second move"),
+                           levels = c("second move", "third move", "later"))) %>%
+  ggplot() +
+  geom_col(aes(proposal, n)) +
+  geom_text(aes(proposal, n - n/10, label=n), vjust = -0.5) +
+  scale_y_continuous(labels = scales::label_number(scale_cut = scales::cut_short_scale()))+
+  ggthemes::theme_fivethirtyeight() +
+  labs(title="Games with Queen's Gambit proposal",
+       subtitle = "Counting games with proposal on 2nd move, 3rd move, or afterwards",
+       caption = general_caption)
+
+```
+
+## Who benefits?
+
+In chess, whoever starts (aka plays white) has advantage. However, Chess Masters are heavily trained in defense, so it's not a walk in the part for white. It always depends heavily on the initial positions (openings), gambit proposals, and responses (accepted or declined with many variations). In the case of the Queen's Gambit, the machines predict white is favorite to win, while accepting the gambit increases the likelihood of draws. Interestingly, if we calculate the expected value for black from the observed frequencies, it might be slightly better for black to accept the gambit[^3].
+
+[^3]: I'm using the observed frequencies and calculating one point per     win and 0.5 points per draw. This gives the expected values for each     player.
+
+```{r}
+#| label: barplots-patch
+#| message: false 
+#| echo: false
+prop_df <- 
+clean_df %>% 
+  count(accepted, text_result) %>% 
+  group_by(accepted) %>% 
+  mutate(total = sum(n),
+         prop = n/total,
+         pos = 1 - cumsum(prop) + prop/2)
+# barplot
+prop_plot <-
+prop_df %>% 
+  ggplot()+ 
+  geom_col(aes(accepted, prop, fill = text_result), color="black") +
+  geom_text(aes(accepted, pos, label = scales::percent(prop, accuracy = 1L)),
+            color="#bbb4a9ff", size=12) +
+  scale_fill_manual(values = c("white", "#777574ff", "black"))+
+  ggthemes::theme_fivethirtyeight(base_size = 16) +
+  labs(fill= "",
+       title="Accepting Queen's Gambit: better for black?",
+       subtitle="Proportion of Master Games") +
+  coord_flip()
+
+# expected_win
+expected_game_value <-
+prop_df %>% 
+  group_by(accepted) %>% 
+  summarise(expected_white = 
+              0.5 * prop[text_result=="draw"] + 
+              1 * prop[text_result=="white wins"],
+            expected_black = 
+              0.5 * prop[text_result=="draw"] + 
+              1 * prop[text_result=="black wins"]
+              ) %>% 
+  pivot_longer(-accepted) %>%
+  mutate(name = str_remove(name, "expected_")) %>% 
+  group_by(accepted) %>% 
+  mutate(pos = ifelse(name=="black",
+                      1 - value/2,
+                      value - value/2)) %>% 
+  ggplot(aes(accepted, value, fill=name))+
+  geom_col(color="black") +
+  geom_text(aes(accepted, pos,
+                label= round(value, 2)),
+            hjust = 0.5, 
+            color="#bbb4a9ff", size=12)+
+  coord_flip()+
+  scale_fill_manual(values=c("black", "white"))+
+  ggthemes::theme_fivethirtyeight(base_size = 16)+
+  labs(subtitle="Expected Game Value (based on observed proportions)",
+       fill="",
+       caption = general_caption) 
+
+library(patchwork)
+bars_together <- 
+prop_plot / expected_game_value +
+  plot_layout(nrow=2, widths = c(1.5,1)) #+
+  #plot_annotation()
+
+# I cannot figure out how to do the proper ggsave here. doing it manually
+# ggsave(plot = bars_together, filename = "./queens_gambit/bars_together.png", width=8, height=4)
+
+```
+
+
+```{r}
+#| label: bars-together-plot
+#| echo: false
+#| out.width: 80%
+#| out.height: 80%
+knitr::include_graphics("./queens_gambit/bars_together.png")
+
+```
+
+
+I wouldn't treat this tiny increment as something real. It is likely just noise. In reality, Chess Masters decline the Queen's gambit way more often than they accept it (about
+`r clean_df %>% count(accepted) %>% summarise(prop=round(last(n)/first(n), 2)) %>% pull(prop)` times more often!). 
+
+In fact, if we check with the chess engines, they seldom accept the Queen's Gambit either. On a personal, totally amateur note, I don't feel like accepting the Queen's Gambit, it just doesn't feel right.
+
+## Where do they go?
+
+After the opening, chess games branch into a myriad possible positions. I believe a cool way to see this is to use alluvial plots to visualize how the games evolve in time. It would really be a mess to visualize all moves, so I just focused on certain games and kept it short around proposal/response in regards to Queen's Gambit. I added the result of the game, just out of curiosity.
+
+```{r}
+#| label: alluvial
+#| message: false
+#| warning: false
+#| echo: false
+library(ggalluvial)
+clean_df %>% 
+  mutate(first = paste("1.", first, "\n2. c4"),
+         second = str_remove(second, "c4 ")) %>% 
+  # remove "Nf3 Nf6" so we only focus on the gambit on the first two moves
+  filter(second != "Nf3 Nf6") %>% 
+  # lump the moves 
+  mutate(first = fct_lump_min(factor(first), min = 1500),
+         second = fct_lump_min(factor(second), min = 1000),
+         third = fct_lump_min(factor(third), min = 1000)) %>%
+  # remove first == "other"
+  filter(first != "Other") %>% 
+  group_by(accepted) %>%  
+  count(first, second, third, text_result) %>% 
+ggplot(aes(axis1 = first, axis2 = second, axis3 = third, axis4=text_result,
+           y = n)) +
+  scale_x_discrete(limits = c("White moves c4", "Black's\nResponse", "Third\nMove", "Result"),
+                   expand = c(0.1, 0.1)) +
+  geom_alluvium(aes(fill=accepted), width = 0.5) +
+  geom_stratum(width=0.5, alpha=0) +
+  geom_text(stat = "stratum", 
+            aes(label = after_stat(stratum)), fontface = "bold")+
+  ggthemes::theme_fivethirtyeight() +
+  theme(legend.position = "bottom",
+        axis.text.y = element_blank(),
+        panel.grid.major = element_blank(),
+        plot.title = element_text(hjust=0.5)) +
+  scale_fill_brewer(palette = "Set1") +
+  labs(title="Flow of Master Chess Games After Queen's Gambit",
+       fill="Queen's Gambit",
+       caption= general_caption)
+
+
+```
+
+As you can see, I focused on the two cases where white moves their pawn
+to c4 (`c4`) to actually "propose" the gambit. This is how both
+situations look on the board.
+
+|           1\. d4 d5 2. c4                                             |                1\. d4 Nf3 2. c4                                            |
+|:-------------------------------------------------------------:|:-------------------------------------------------------------:|
+| <img src="./queens_gambit/boards/board01.png" width="180"/> | <img src="./queens_gambit/boards/board02.png" width="180"/> |
+
+"Accepting" the gambit means taking the pawn at c4 (`dxc4`). As we said before, this is the least frequent case, and it is interesting to see that almost none of the `Nf6` games go to accept the gambit. It's also quite telling that the vast majority of Masters respond to Queen's Gambit with `e6`. This is how it looks in the board.
+
+
+|                      1\. d4 d5 2. c4 e6                      |                         1. d4 Nf6 2. c4 e6                       |
+|:------------------------------------------------------------:|:----------------------------------------------------------------:|
+| <img src="./queens_gambit/boards/board_e6.png" width="180"/> | <img src="./queens_gambit/boards/board_Nf6_e6.png" width="180"/> |
+
+### Special case
+
+There's a special case where games take a bit longer to reach the gambit.  These are the games where the second move is `Nf3 Nf6`. I made the same alluvial plot for these games. For some reason, this position prompts the majority of Chess Masters to accept the gambit.
+
+Thus, if you like to play the gambit as white, and you like the other side to accept it, you should delay your `c4` advance just one move.
+
+```{r}
+#| message: false
+#| warning: false
+#| echo: false
+clean_df %>% 
+  # get "Nf3 Nf6" 
+  filter(second == "Nf3 Nf6") %>% 
+  mutate(first = fct_lump_min(factor(first), min = 200),
+         second = fct_lump_min(factor(second), min = 1000),
+         third = fct_lump_min(factor(third), min = 200)) %>%
+  # remove first == "other"
+  #filter(first != "Other") %>% 
+  group_by(accepted) %>%  
+  count(first, second, third, text_result) %>% 
+  ggplot(aes(axis1 = first, axis2 = second, axis3 = third, axis4=text_result,
+             y = n)) +
+  scale_x_discrete(limits = c("First\nMove", "Second\nMove", "Third\nMove", "Result"),
+                   expand = c(0.1, 0.1)) +
+  geom_alluvium(aes(fill=accepted), width = 0.5) +
+  geom_stratum(width=0.5, alpha=0) +
+  geom_text(stat = "stratum", 
+            aes(label = after_stat(stratum)), fontface = "bold")+
+  ggthemes::theme_fivethirtyeight() +
+  scale_fill_brewer(palette = "Set1") +
+  labs(title="Flow of Master Chess Games After Queen's Gambit",
+       subtitle="Only showing games where `2. Nf3 Nf6` was second move",
+       fill="Queen's Gambit",
+       caption="Source: chess.com | Viz: @NeuroMLA")+
+  theme(legend.position = "bottom",
+        axis.text.y = element_blank(),
+        panel.grid.major = element_blank(),
+        plot.title = element_text(hjust=0.5),
+        plot.subtitle = element_text(hjust=0.5)) 
+
+```
+
+This is how your board should look like if you want black to accept the gambit.
+
+
+```{r}
+#| out.width: 50%
+#| out.height: 50%
+#| echo: false
+#| fig.align: center
+knitr::include_graphics("./queens_gambit/boards/board_second_move_accept.png")
+```
+
+
+## Popularity
+
+Enough with the chess lingo, show me what I came here for! Alright, alright, don't bark. Here's the popularity plot on the Masters Games.
+
+```{r}
+#| label: pop-plot-masters
+#| echo: false
+clean_df %>% 
+  count(Year) %>% ggplot(aes(Year, n))+ 
+  ggthemes::theme_fivethirtyeight()+
+  geom_line(lwd=1) +
+  geom_point(size=3) +
+  labs(title = "Frequency of Queen's Gambit Games",
+       subtitle="Data from Chess Masters",
+        caption = general_caption)
+
+
+```
+
+This plot shows that the popularity of the gambit increased dramatically. But my prediction was *wrong*, the gambit was super popular a few years ago and I didn't notice anything.
+
+What happened between 2017 and 2019? I don't really know if the total amount of games just skyrocketed, but it's possible. Maybe the 2018 world championship had something to do with it. I didn't parse the full database, so I can't tell you about the frequency of all games. 
+
+What happened in 2020? If you are from the future, I would like to remind you that there was a Global Pandemic on 2020, stay safe whenever you are.
+
+The popularity graph didn't show what I was expecting to see, but I still trust my gut feeling. It all started just a few months ago, I'm pretty sure that there is something in the data that needs to be unmasked. 
+
+Data from 2020 will not reflect my gut feeling easily. First, the pandemic messed up with the tournament schedule. Second, the TV series might be super popular with normal people, but we shouldn't expect Chess Masters to change the way they open games because of it. 
+
+So...what about simple mortals like you and me? Well, my friend, if you made it this far, I trust you to go on with my game database.
+
+## My games
+
+First, you should know that I *mostly* play blitz games (either 3 minutes in the clock at start or 3 minutes with 2 seconds added per move). Nonetheless, it looks like the move distribution of games is quite similar to what we see in Masters games.
+
+```{r}
+#| label: density_plot
+#| echo: false
+density_plot_for_arrows <-
+ggplot() +
+  geom_density(data = my_games,
+               aes(NMoves, fill = "My Games"), alpha=0.8)+
+  geom_density(data=df,
+               aes(Moves, fill = "Master Games"), alpha=0.8)+
+    see::scale_fill_material()+
+    ggthemes::theme_fivethirtyeight()+
+    theme(#axis.text.y = element_blank(),
+          axis.title = element_text())+
+    labs(fill="", 
+         y="Game Frequency", 
+         x = "Moves per game",
+         title = "",
+         caption = general_caption)
+
+density_plot_for_arrows
+```
+
+There are two places where I see differences. First, Master Games show a bump quite early, even below 20 moves. This is unusual because it takes more moves to break a good defense. We will come back later to this.
+
+```{r}
+#| label: first-arrow
+#| echo: false
+density_plot_for_arrows +
+  annotate(
+    geom = "curve", x = -0.1, y = 0.02, xend = 5, yend = 0.01, 
+    curvature = .05, arrow = arrow(length = unit(2, "mm"))
+  ) +
+  annotate(geom = "label", x = 2, y = 0.022,
+           label = "1")
+```
+
+Second, there is another bump on longer games. I attribute this to the nature of my skill level. I can't play much more than an opening and a few attempts on the "middle game". Most of my games will evolve pretty quickly (either because the clock forces you to be aggressive or because our chess level is not good). It's often the case that one player makes a crucial mistake and the game evolves fast after that.
+
+```{r}
+#| label: second-arrow
+#| echo: false
+density_plot_for_arrows +
+  annotate(
+    geom = "curve", x = 100, y = 0.01, xend = 80, yend = 0.005, 
+    curvature = .1, arrow = arrow(length = unit(2, "mm"))
+  ) +
+  annotate(geom = "label", x = 105, y = 0.01,
+           label = "2")
+
+```
+
+There's another explanation for these differences. If we separate games according to result. We see that Masters games have almost the same shape as mine but, when they get to a draw, they get to it really fast. For us novices, getting a draw is often an accident. Masters deliberately draw, and they do it early.
+
+```{r}
+#| label: facet-result
+#| echo: false
+# add results
+my_games <- my_games %>% 
+  mutate(text_result = case_when(Result == "1-0" ~ "white wins",
+                                 Result == "0-1" ~ "black wins", TRUE ~ "draw"),
+         text_result = factor(text_result, levels = c("white wins", "draw", "black wins")))
+
+# add years
+my_games <- my_games %>%
+  mutate(Date = lubridate::as_date(Date),
+         year = lubridate::year(Date))
+
+# most typical variations
+#clean_df %>% count(variation, sort = T)
+
+bind_rows(select(clean_df, Moves, text_result) %>%
+            mutate(source = "Masters Games"),
+          select(my_games, Moves = NMoves, text_result) %>%
+            mutate(source = "My Games")) %>% 
+  ggplot()+
+  geom_density(aes(Moves, fill=source), alpha=0.8)+
+  facet_wrap(~text_result)+ 
+  see::scale_fill_material()+ 
+  ggthemes::theme_fivethirtyeight()+ 
+  theme(axis.text.y = element_blank(), axis.title = element_text())+ 
+  labs(fill="", y="Game Frequency", 
+       x = "Moves per game", 
+       title = "Master Games get into draws much faster", 
+       caption = general_caption)
+
+
+
+```
+
+### Drawing is a signal of quality
+
+At my level, drawing a game is not common. For pros, it's quite the opposite. Something else that draws my attention is that black is really unlikely to win a game. This is similar to other games, like tennis, where the player that serves (aka, starts the game) has a huge advantage.
+
+```{r}
+#| label: result-prop
+#| echo: false
+# Result proportions
+
+bind_rows( clean_df %>% count(text_result) %>% 
+             mutate(prop = n/sum(n), source = "Master Games"), 
+           my_games %>% count(text_result) %>% 
+             mutate(prop = n/sum(n), source = "My Games") ) %>% 
+  ggplot(aes(text_result, prop, fill=source))+ 
+  geom_col(position="dodge", alpha=0.8)+ 
+  scale_y_continuous(labels=scales::label_percent())+ 
+  scale_fill_brewer(palette = "Set1", direction = -1)+ 
+  ggthemes::theme_fivethirtyeight()+ 
+  theme(axis.title = element_text())+ 
+  labs(fill="", y="Game Frequency", 
+       x="",
+       title = "Master Games get into draws more often", 
+       caption = general_caption)
+
+```
+
+### My openings
+
+In my database, I have all the games I played. Up to February 2021, it was a total of `r nrow(my_games)`. Yes, I know, a lot, roughly `r round(nrow(my_games)/(max(my_games$year) - min(my_games$year)) / 365, 2)` per day since `r min(my_games$year)`. Anyway, I can get all the openings from my games.
+
+I selected the ten most frequent first moves when I am playing white and when I am playing black. You can see that `d4 d5` doesn't appear on the top ten at all when playing white. The only times I face the `d4 d5` opening (which might lead to Queen's Gambit) is when I play black.
+
+```{r}
+#| label: frequent-openings
+#| echo: false
+#most frequent openings
+data_for_freq_op <-
+my_games %>% 
+  mutate(playing = ifelse(White=="matiasandina",
+                          "Playing White", "Playing Black"), 
+          playing = fct_rev(factor(playing)),
+         first = paste(W1, B1) ) %>%
+  count(playing, first) %>%
+  group_by(playing) %>%
+  slice_max(n=10, order_by = n) %>%
+  mutate(first = fct_reorder(first, n)
+    #first = tidytext::reorder_within(first, by=n, within = playing)
+    )
+
+data_for_freq_op %>% 
+  ggplot(aes(first, n)) + 
+  geom_col()+ 
+  geom_col(data = filter(data_for_freq_op, first == "d4 d5"),
+           aes(first, n), fill="darkred") +
+  coord_flip()+
+  #tidytext::scale_x_reordered()+
+  facet_wrap(~playing)+
+  ggthemes::theme_fivethirtyeight()+
+  labs(title = "Queen's gambit is played on me",
+       subtitle = "Tally of the top 10 first moves when I'm playing white or black",
+       caption = general_caption)
+```
+
+### How often do I play against the gambit?
+
+The amount I play has not been even over the years, but the frequency of games where I play the gambit seems somewhat marginal and independent of the how much I play.
+
+```{r}
+#| label: all-games-by-year
+#| echo: false
+# my_games %>% group_by(year) %>% ggplot(aes(year)) + geom_bar()
+my_games %>% 
+  mutate(open = paste(W1, B1, W2),
+         queen_gambit = ifelse(
+           open == "d4 d5 c4" | open == "d4 Nf6 c4",
+           "Queen's Gambit", 
+           "other")) %>% 
+  group_by(year) %>% 
+  count(queen_gambit) %>% 
+  mutate(prop = n/sum(n)) -> gambit_prop_my_games
+
+gambit_prop_my_games %>% 
+  ggplot(aes(year, n)) + 
+  geom_col(aes(fill=fct_relevel(queen_gambit, c("Queen's Gambit", "other"))))+
+  scale_fill_brewer(palette="Set1")+
+  ggthemes::theme_fivethirtyeight()+
+  labs(title="All my games by year", 
+       fill="",
+       caption=general_caption)
+```
+
+Marginal proportions are hard to see on a frequency graph, so maybe this graph is a bit more evident. I have played the Queen's Gambit in roughly `r gambit_prop_my_games %>% filter(queen_gambit=="Queen's Gambit") %>% pull(prop) %>% mean() %>% round(digits=2) %>% scales::percent(accuracy=0.1)` of the games. The game sample from 2021 might not be big enough to be representative (only January is present).
+
+```{r}
+#| label: prop-games-by-year
+#| echo: false
+gambit_prop_my_games %>% 
+  ggplot(aes(year, prop)) +
+  geom_col(aes(fill=fct_relevel(queen_gambit, c("Queen's Gambit", "other"))))+
+    scale_fill_brewer(palette="Set1")+
+  ggthemes::theme_fivethirtyeight()+
+  scale_y_continuous(labels = scales::label_percent())+
+  scale_x_continuous(breaks=2012:2021)+
+  geom_label(
+    data = filter(gambit_prop_my_games, queen_gambit=="Queen's Gambit"),
+    mapping = aes(x = year, y = 1.05, label=scales::percent(prop, accuracy = 0.1))) + 
+  labs(title="All my games by year",
+       subtitle="Label shows percentage of Queen's Gambit Games",
+       fill="",
+       caption=general_caption)
+```
+
+The small increases in late years are not big enough for me to notice, especially when spread evenly across the year. But what happens if we only look at 2020? The TV series started in October. In November, we see a big jump in the Queen's Gambit's frequency!
+
+```{r}
+#| label: gambit-pop
+#| echo: false
+my_games %>% 
+  filter(year >= 2020) %>% 
+  mutate(open = paste(W1, B1, W2), 
+         queen_gambit = case_when(open == "d4 d5 c4" | open == "d4 Nf6 c4" ~ "Queen's Gambit",
+                                  paste(W1, B1) == "e4 d5" ~ "Scandinavian Defense", 
+                                  TRUE ~ "other"), 
+         month = lubridate::as_date(cut(Date, "1 month"))) %>% 
+  group_by(month) %>% 
+  count(queen_gambit) %>% 
+  mutate(prop = n/sum(n)) %>% 
+  filter(queen_gambit=="Queen's Gambit") %>% 
+  ggplot(aes(month, prop)) + 
+  geom_col() + 
+  scale_x_date(breaks = "1 month", date_labels = "%b\n%Y")+
+  scale_y_continuous(label=scales::label_percent())+
+  ggthemes::theme_fivethirtyeight() +
+  labs(title="Proportion of Queen's Gambit Games",
+       caption=general_caption,
+       x="")
+```
+
+
+This is increase is not big. In fact, during November I also played the Scandinavian Defense[^another] more often. But even so, the **Queen's Gambit** got a ~3X jump on November, something that is way more noticeable when going from ~2.5% to ~ 7.5% than a 5-10% increase in an opening that I already play pretty often.
+
+[^another]: Scandinavian Defense is a position characterized by `1.e4 d5`, it's by far my prefered opening when playing black.
+
+```{r}
+#| label: gambit-pop2
+#| echo: false
+my_games %>% 
+  filter(year >= 2020) %>% 
+  mutate(open = paste(W1, B1, W2), 
+         queen_gambit = case_when(open == "d4 d5 c4" | open == "d4 Nf6 c4" ~ "Queen's Gambit", 
+                                  paste(W1, B1) == "e4 d5" ~ "Scandinavian Defense",
+                                  TRUE ~ "other"), 
+         month = lubridate::as_date(cut(Date, "1 month"))) %>%
+  group_by(month) %>%
+  count(queen_gambit) %>%
+  mutate(prop = n/sum(n)) %>%
+  filter(queen_gambit %in% c("Scandinavian Defense", "Queen's Gambit")) %>% 
+  ggplot(aes(month, prop, fill=queen_gambit)) + 
+  geom_col(position="dodge") +
+  scale_y_continuous(label=scales::label_percent())+
+  scale_x_date(breaks = "1 month", date_labels = "%b\n%Y")+
+  ggthemes::theme_fivethirtyeight()+
+  scale_fill_brewer(palette="Set1")+
+  labs(
+    title = "Proportion of games by opening",
+    fill = "",
+    caption=general_caption
+    )
+
+
+```
+
+## Wrap
+
+This project started with just an intuition and went down the rabbit hole of exploration. It took quite a long time to write (and re-write), but I was a lot of fun to mess around with. I hope you have enjoyed it if you made it this far!
+
+## More readings
+
+If you want to read a nice, data rich, post about the "Chess Boom" that
+the series brought about, check
+<https://www.bloomberg.com/graphics/2020-chess-boom/>.
+
+Even if you ask, Chess.com does not give you all the games in your
+database nicely (probably trying to limit the bandwidth). So I slightly
+adapted the following script
+<https://github.com/arnsholt/chesscom-games> for the purpose of "Gimme
+all my games with almost no clicks involved!". It uses the API, so I
+think it's all cool :).
+
+I should have probably searched for somebody's package. Here are some references that might be useful:
+
+* [https://github.com/JaseZiv/chessR](https://github.com/JaseZiv/chessR)
+* [https://github.com/curso-r/chess](https://github.com/curso-r/chess)

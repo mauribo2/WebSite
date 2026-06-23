@@ -1,0 +1,181 @@
+---
+title: Inequality
+subtitle: Makeover of Pyramid Plot
+date: 2022-10-10
+tags: ["fun", "design"]
+---
+
+I love [Future Crunch](https://futurecrunch.com/). The idea of receiving positive news that I wouldn't otherwise get is fantastic and I appreciate the work they do. However, during one of the latest editions I got a pyramid plot coming from [Credit Suisse](https://www.credit-suisse.com/about-us-news/en/articles/news-and-expertise/credit-suisse-global-wealth-report-2022-fast-wealth-growth-in-times-of-uncertainty-202209.html?ref=Future+Crunch-newsletter) which was really hard to read. Moreover, the people who made the plot were trying to make the case that the world is a better place, because there is less inequality.
+
+You are welcome to try to interpret the plot on its source, [here's the link again](https://www.credit-suisse.com/about-us-news/en/articles/news-and-expertise/credit-suisse-global-wealth-report-2022-fast-wealth-growth-in-times-of-uncertainty-202209.html?ref=Future+Crunch-newsletter). Because I think the representation is lacking, I do want to produce my own version using their data (aka, the values provided in their plot). Here's a basic table for their data:
+
+```{r}
+#| label: data
+#| warning: false
+#| message: false
+library(tidyverse)
+library(waffle)
+ranges <- 1:4
+names(ranges) <- c("<10K", "10K-100K", "100K-1M", "1M+")
+values_2011 <-c(3054, 1066, 369, 29.7)
+values_2021 <- c(2818, 1791, 627, 62.5)
+fill_color = c("#b27500ff", "#ebaf34ff", "#e5d2afff", "#265682ff")
+
+tab <-
+tibble::tibble(
+  ranges=ranges,
+  labels=factor(names(ranges), levels = names(ranges)),
+  below = c("<10K", "10K+", "10K+","10K+"),
+  values_2011,
+  values_2021
+) %>% pivot_longer(cols = starts_with("values"), 
+                   names_prefix = "values_")
+
+rename(tab %>% dplyr::select(-ranges), 
+       Year=name,
+       `Bracket2`=below,
+       `People (M)`=value, 
+       Bracket=labels) %>% 
+  gt::gt() 
+```
+
+
+## Why I don't like the pyramid plot
+
+* Pyramids have angles, I strive to stay away from angles.
+* The x axis is reversed.
+* All quantities are changing but there are horizontal levels trying to guide us. I think they do more harm than good.
+  * These horizontal levels play the role of a y axis, only to add confusion because the scale is logarithmic.
+
+## Enter Waffle
+
+I think Waffle plots are a fantastic alternative to all the nasty pie and pyramid plots. The representation of fractions is clear and explicit, and there are no angles that mess things up. I kept their colors to make it as similar as possible. Note that the world's population has increased, so 1 square (or 1% of the population) is different on the 2011 and 2021 plots.
+
+```{r}
+#| label: firstwaffle
+#| eval: false
+
+# as of today, waffle depends on plyr. I don't think I want to install it just to make this plot...looking forward to removal of plyr dependency, likely soon
+
+sq_val <- tab %>% group_by(name) %>% summarise(people = round(sum(value)/100)) %>% pull(people)
+
+arrow_df <- tibble::tibble(
+  name = c(2011, 2021),
+  x=c(-1, 12),
+  xend = c(0,11),
+  y = 1.5,
+  yend=1,
+  label = paste("1 ◻ ≈", sq_val, "M people"),
+  lab_x = c(5.5, 5.5),
+  lab_y = c(-1, -1)
+)
+
+my_caption <- "Data: Credit Suisse\nViz:@NeuroMLA"
+tab %>% 
+  ggplot() +
+  geom_label(data = arrow_df, aes(x=lab_x, y=lab_y, label=label)) +
+  waffle::geom_waffle(aes(fill=labels, values=value),
+                      color="white",
+                      flip = T, 
+                      make_proportional = T, size=1) +
+  facet_wrap(~name) +
+  coord_equal() +
+  theme_void() +
+  theme(legend.position = "bottom",
+        strip.text = element_text(size=22),
+        plot.title = element_text(size=22, hjust=0.5),
+        plot.caption = element_text(hjust=0.5)) +
+  labs(fill = "Wealth Range (USD)",
+       title = "Global Wealth Distribution",
+       caption = my_caption) +
+  scale_fill_manual(values = fill_color)
+
+```
+
+![](firstwaffle-1.png)
+
+## The case
+
+The case that people are trying to make is: "Good News! There's more people in the wealthier categories!". For sure, we can say that these numbers indeed point towards the right direction. Is it fast enough? That depends on how much expectations you had for the global change we can achieve in one decade. If anything, things are better, but we have much room for improvement.  
+
+In the following plot, I tried to focus attention on the bottom bracket. If we manage to get people out of the bottom bracket, that would be a huge triumph for global development. 
+
+
+```{r}
+#| eval: false
+#| label: secondwaffle
+tab %>% 
+  ggplot() +
+  geom_label(data = arrow_df, aes(x=lab_x, y=lab_y, label=label)) +
+  waffle::geom_waffle(aes(fill=below, values=value),
+                      color="white",
+                      flip = T, 
+                      alpha=0.8,
+                      make_proportional = T, size=1) +
+  facet_wrap(~name) +
+  coord_equal() +
+  theme_void() +
+  theme(legend.position = "bottom",
+        strip.text = element_text(size=22),
+        plot.title = element_text(size=22, hjust=0.5),
+        plot.caption = element_text(hjust=0.5)) +
+  labs(fill = "Wealth Range (USD)",
+       title = "Global Wealth Distribution",
+       caption = my_caption) +
+  paletteer::scale_fill_paletteer_d("awtools::mpalette") 
+#  geom_curve(data = arrow_df, aes(x=x, xend=xend,y=y,yend=yend),
+#             arrow = arrow(length = unit(0.03, "npc")))
+
+```
+
+
+![](secondwaffle-1.png)
+
+We are making progress. Progress is slow, but the share of people living in the bottom bracket is decreasing. However, looking at these plots, I cannot help but notice the immense task we have ahead: we still have to lift half of the planet out of this bracket. This challenge is something I wanted to convey, and I think it's more evident in these waffle than the pyramid plots. I think Hans, put it better than anyone:
+
+> Things can be bad, and getting better. 
+> -- Hans Rosling
+
+## The downside
+
+There are downsides of using Waffle Plots. I'm quoting from a nice person who gave me feedback directly, they said: "One disadvantage of the waffle plot is a lack of precision. For instance, your version doesn't show the change at the top from .5% to 1.2% (more than double!)".
+
+I was somewhat saving this idea for another plot. What idea? The idea that *all* wealthier brackets increased by a lot (~2X!). I decided to go with a bar plot showing the absolute number of people. This is because I want to keep numbers in terms of people, real human beings that belong to each bracket. Each person that we move is a lot, and we have a lot to do!
+
+```{r}
+#| label: colplot
+
+my_caption <- "Data: Credit Suisse\nViz:@NeuroMLA"
+ratio_tab <- tab %>% 
+  mutate(ratio = round(last(value)/first(value),1), .by=labels,
+         max_val = max(value)) %>% 
+  distinct(labels, max_val, ratio)
+
+  tab %>% 
+  ggplot(aes(labels, value, fill = name)) + 
+  geom_col(position = position_dodge(), width = 0.5) +
+  geom_label(data=ratio_tab, 
+            aes(labels, y = max_val + 10^3/2, label=paste0(ratio, "x")),
+            inherit.aes = FALSE)+ 
+  geom_hline(yintercept = 0)+
+  theme_minimal()+
+  theme(legend.position = "none",
+        panel.grid.major.y = element_line(color="gray50", linetype = 3),
+        panel.grid.major.x = element_blank(),
+        strip.text = element_text(size=12),
+        plot.title = element_text(size=16, hjust=0.5, face = "bold"),
+        plot.caption = element_text(hjust=0.5))+
+  scale_y_continuous(labels = scales::label_number(scale_cut = scales::cut_short_scale())) +
+  labs(y = "Global Population", 
+       x=element_blank(),
+       title = "The rise of the wealthier",
+       subtitle = "We almost doubled the number of people in higher brackets during in a decade.",
+       caption= my_caption)+
+  paletteer::scale_fill_paletteer_d("basetheme::void")
+
+```
+
+
+This is not the only issue with waffle plots. As I said before, the wealth brackets here are logarithmic, and the highest bracket is virtually infinite. Counting methods (aka, counting how many people belong to each bracket), can go far to give a sense of the overall distribution, but cannot bring a picture of the massive differences in wealth between the higher and the lower brackets when the axis is discretized to condense a logarithmic scale. Looking further the actual wealth range exceeds my intentions for this quick makeover, but I couldn't help to mention it.
+
+

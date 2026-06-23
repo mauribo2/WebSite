@@ -1,0 +1,162 @@
+---
+title: "Curriculum Vitae"
+comments: false
+toc: true
+page-layout: full
+---
+
+---
+
+## Education
+
+**Ph.D. in Chemical Engineering**  
+The University of Queensland, Australia — *2014*  
+Dissertation: *Multiscale modelling of transport in porous media*  
+Advisors: Prof. Suresh K. Bhatia  
+
+**M.Sc. in Chemical Engineering**  
+Universidad Nacional de Colombia — *2007*
+
+**B.Sc. in Chemical Engineering**  
+Universidad Nacional de Colombia — *2004*
+
+---
+
+## Work Experience
+
+**Basque Center for Applied Mathematics (BCAM), Spain**\
+Senior Researcher &nbsp;&nbsp;&nbsp; *2024 – Present*.\
+Juan de la Cierva Research Fellow &nbsp;&nbsp;&nbsp; *2020 - 2023*.\
+Postdoctoral Research Fellow &nbsp;&nbsp;&nbsp; *2017 - 2019*.
+
+**The University of Queensland, Australia**\
+Postdoctoral Research Fellow &nbsp;&nbsp;&nbsp; *2014 - 2016*.
+
+**Nutresa S.A**\
+Research and Development Engineer; *2007 - 2009*.
+
+---
+
+
+## Individual Grants and Awards
+- **Ramon y Cajal fellowship** \
+Agencia Estatal de Investigación (MICIU) - *2024–2028*
+- **Juan de la Cierva Fellowship** \
+Agencia Estatal de Investigación (MICIU) - *2020–2023*
+- **Key Foreign Experts Travel Grant** \
+State Administration of Foreign Expert Affairs - Chinese Government *2024, 2025*
+- **HPC-Europa3 Fellowship** \
+European Commission - *2019*
+
+---
+
+## Invited Seminars
+
+- **R&D Center-Korea University (Seoul, South Korea):** “Unravelling structure-transport relationships in Li7La3Zr2O13 garnets via data-driven structure prediction and ml-assisted dynamics and trajectory analysis.” Open Seminar. Seoul, South Korea. Feb. 3, 2026 (on invitation by Prof. Seoin Back).
+- **Tecnalia (virtual):** “Modelización atomística de la difusión y atrapamiento de hidrógeno en aceros”. Workshop “Tecnologías para acelerar la implantación de la metodología ICME (Integrated Computational Materials Engineering)”. Mar 31, 2025. 10+ industrial guests.
+- **Tongji University (Shanghai, China):** “Understanding lonic diffusion in solid electrolytes: an atomistic perspective”. Tongji-Covestro Young Scholars Lecture, Oct. 17, 2024 (on invitation by Prof. Menghao Yang).
+- **UPV/EHU (Bilbao, Basque Country):** “De los átomos a las aplicaciones: diseño y caracterización de materiales pioneros mediante simulaciones atomísticas”. Aulas BCAM, Apr 10, 2024.
+- **BCAM (Bilbao, Basque Country):** “Explotando métodos de “data-mining” en el diseño de materiales mejorados para baterías de estado sólido”. Innolab success stories, Open seminar, Dec 17, 2024.
+- **The University of Queensland (Brisbane, Australia):** “A first principles approach for understanding the impact of solute content and distribution in the dynamics of Hydrogen in alloys”. School of Mechanical Engineering, Oct 14, 2023 (on invitation by Prof. Mingyuan Lu).
+- **Universidad de Antioquia (Medellín, Colombia):** “An atom’s-eye view of the lithium dynamics at the polymer/oxide interface in composite solid state electrolyte materials incorporating active particles”.  CIDEMAT seminars, Jun. 22, 2022 (on invitation by Prof. Jorge Calderon).
+- **CIC energiGUNE (Vitoria-Gasteiz, Basque Country):** “Molecular understanding of the interfacial Li-ion dynamics in composite solid-state electrolytes: the case of polyethylene oxide: Li7La3Zr2O12 composites”. Modeling and Computational Simulation group, March 18, 2022 (on invitation by Prof. Javier Carrasco).
+- **University of St Andrews (St Andrews, UK):** “Enhanced sampling for the atomistic simulation of energy storage materials”. Computational Chemistry Seminar, School of Chemistry, Apr 22, 2019 (on invitation by Dr. Tanja van Mourik).
+- **RISE institute (Gothenburg, Sweden):** “Modelling the micromechanics of carbohydrate-based hydrogels”. Dpt. Food and Agriculture, Mar 12, 2018 (on invitation by Prof. P. Lopez-Sanchez).
+- **National University of Colombia (Medellín, Colombia):** “A multiscale approach for the modelling of adsorption and diffusion in nanoporous materials”. School of Mines seminar, March, 23, 2014 (on invitation by Prof. Hernán Alvarez).
+
+
+
+---
+
+## Selected Conference Talks
+
+- Bonilla, M.R., Cortés H.A., Akhmatskaya E.  Decoding Structure-Transport Relationships in Li7La3M2O13 (M = Nb, Ta) Garnets via ML Driven Simulation and Analysis. *E-MRS Fall Meeting 2026 symposium: From Atoms to Applications: Multiscale Modelling and Data-Driven Strategies for Advanced Materials.* Warsaw, Poland. Sep. 16–17, **2026** (**invited**).
+- Bonilla, M.R., Cortés H.A., Akhmatskaya E. Unsupervised framework for automating the analysis of structure and diffusion in solid-state electrolytes from atomistic simulations. *Materials Development for Batteries (MDB): Progresses and Challenges*. Seoul, South Korea. Sep. 29 – Oct. 3, **2025** (**invited**).
+- Akhmatskaya, E.,  Cortés, H.A., Bonilla, M.R., Teruel, A., Melnik, R. Screening Energetically Stable Structures of LLZO garnets for Lithium-Ion Battery Applications. *XI International Conference on Coupled Problems in Science and Engineering COUPLED PROBLEMS 2025*. Villasimius, Italy, May 25-28 **2025** (**invited**).
+- Bonilla M. R., Cortés H.A., Akhmatskaya E. Uunsupervised learning framework for unraveling the structure-conductivity link in solid-state electrolytes. *247th Electrochemical Society Meeting*. Montréal, Canada, May 18 – 22, **2025**.
+- Kumar B. D., Bonilla M. R., Chakraborty P., Akhmatskaya E. The role of manganese and aluminium on hydrogen trapping and diffusion in Mn/Al rich steel alloys. *Annual Conference of the German Physics Society (DPG)*. Berlin, Germany, Mar. 17 – 22, **2024** (**speaker**).
+- Bonilla M.R., Das B.K., Goswami K., Akhmatskaya, E. Modelling and Simulation of hydrogen diffusion and embrittlement in steels. *ECMI 2023 EU-MATHS-IN minisymposium: Success Stories of Mathematical Technologies in Societal Challenges and Industry*. Wrocław, Poland, Jun. 26-30, **2023** (**invited**).
+- Bonilla M.R., Akhmatskaya E. Interfacial physics of polymer/oxide interfaces in electrolyte materials: an atomistic approach. *Dynamical Systems Applied to Biology and Natural Science - DSABNS 2023*. Bilbao, Spain. Feb. 5-8, **2023** (**invited**). 
+- Bonilla M.R. Atomistic modelling of embrittlement in complex alloys. *1st Conference on Advance Materials in Spain AMats*. Valencia, Spain. Nov. 7-9, **2022** (**invited**).
+- Bonilla M. R., García-Daza F., Cortés H.A., Carrasco J., Akhmatskaya E. Towards a molecular understanding of the interfacial Li-ion dynamics in composite solid-state electrolytes: the case of polyethylene oxide: Li7La3Zr2O12 Composites. *Materials Research Society - Fall Meeting*. Boston, USA, Nov. 26 – Dec. 2, **2022**.
+- Bonilla M.R., García-Daza F., Carrasco J., Akhmatskaya, E. Modelling and simulation of polymer/ceramic composite electrolyte materials using molecular dynamics simulations. *Dynamical Systems Applied to Biology and Natural Science - DSABNS 2022*. Bilbao, Spain. Feb. 8 - 11, **2022** (**invited**). 
+- Bonilla M.R., García-Daza F., Carrasco J., Akhmatskaya E. Towards a molecular understanding of the interfacial Li-ion dynamics in composite solid-state electrolytes: the case of polyethylene oxide: Li7La3Zr2O12 composites. *Materials Oceania*. Virtual. Oct. 11-14, **2021** (**invited**).
+- Bonilla M.R., García-Daza F., Carrasco J., Akhmatskaya E. Exploring Interfacial Li-ion exchange in PEO:LLZO composite solid electrolytes for all-solid-state Li-ion batteries. *European Materials Research Society - Fall Meeting*. Virtual. Sep. 20 - 23, **2021**.
+- Bonilla M.R., García-Daza F., Fernandes-Pendás M., Carrasco J., Akhmatskaya, E. Multiscale modelling of ionic conduction in advanced battery materials. *VIII International Conference on Coupled Problems in Science and Engineering*. Sitges, Spain, Jun. 3 - 5, **2019** (**invited**).
+- Bonilla M.R., Lozano A., Escribano B., Carrasco J., Akhmatskaya E. Force field development and advanced force-field simulation of diffusion in solid energy materials. *7th EuCheMS Chemistry Congress*. Liverpool, UK. Aug. 26 - 30, **2018**.
+- Bonilla M.R. Lozano A., Escribano B., Carrasco J., Akhmatskaya E. Transport of Na in NaxFePO4 cathode material: insights from advanced force-field molecular simulations. *European Materials Research Society - Spring Meeting*. Strasbourg, France. Jun. 18 - 22, **2018**.
+- Bonilla M. R. Lessons on cell wall mechanics from the mechanical analysis of bacterial cellulose. *Multiscale Modeling of Cell Wall Mechanics and Growth in Walled Cells*. Banff, Canada, Oct. 18 - 23, **2015** (**invited**).
+
+---
+
+## Leadership Roles
+
+- **2017 – present:** Co-leader (with Prof. Elena Akhmatskaya) of the Energy Materials research line of the Modelling and Simulation in Life and Materials Science group (BCAM). We jointly set the line’s priorities, define future directions, and lead early career postdocs (Poulami Chakraborty, Bikram K. Das, Henry A. Cortés, Fabián G. Daza, Carlos A. León, Pinku Nath, Kamal Goswami) and research technicians (full list in Section 5.2). In addition, I co-coordinate an international consortium on Multiscale Simulation of Advanced Materials which is led by BCAM and brings together researchers from Basque Country (CIC energiGUNE), USA (Purdue U.), UK (U. St Andrews), and Colombia (U. Antioquia), as well as collaborators from Canada (U. Wilfrid Laurier), Spain (U. Carlos III) and China (Tongji U.).
+- **2023 – present:** Member of BCAM Knowledge Transfer Unit (funded by Bizkaia Regional Council (DFB/BFA)) which among other objectives aims at providing a service to approach mathematical modelling for industrial research.
+- **2022 – present:** Member of the Management Committee in Group 3 “Efficient, secure and clean energy” of PET MSO-ED (“Spanish Technology Platform in Modelling, Simulation, and Optimization in a Digital Environment”) associated with the platform Math-in. The Group organizes meetings with industry leaders in Spain to channel computational, statistical, and mathematical expertise within the research centers towards the solution of problems in generation, distribution, and storage of green energy.
+- **2014 – 2016:** Member of the Project Management Team (PLT) in the ARC centre of Excellence in Plant Cell Walls. The PLT was the main organizational body under the SAC and was in charge of organizing internodal meetings (between U. Queensland, U. Melbourne, and U. Adelaide) and conferences, preparing the annual reports for the Australian Research Council, designing, and tracking KPIs and promoting national and international collaborations.
+- **2012 – 2014:** Treasurer of the postgraduate research society at the University of Queensland, Australia.
+
+---
+
+## Student Supervision and Mentoring
+
+**PhD advisory**\
+- *Ram Mohan T. Vallinayagam* (2023 - 2027). *Topic*: Combining experiment and computation to engineer H-embrittlement resistant steels for wind-energy generation. (co-supervised by Dr. Iban Quintana, Tekniker (Spain)).\
+- *Upcoming co-supervisor of a PhD student* (2027 - 2030) within the eChemin MSCA Doctoral networks grant (main supervisor: Prof. Sergey Dvinskikh, KTH (Sweden)).
+
+**Internship Students / Research Technicians**\
+- *Iker Jahangir Pérez* (Digipen, Spain). *Topic*: Digital atomistic reconstruction of steel samples from SEM imaging (2026).\
+- *Oscar David Orozco* (Universidad del Norte, Colombia). *Topic*: Simulation of composite electrolytes incorporating high entropy oxides (2025).\
+- *Behrooz Karami* (Università degli Study di Brescia). *Topic*: Implementation of Meta-heuristic methods for resolving the crystal structure of semi-disordered materials (2023).\
+- *Dr. Bikram K. Das* (Jadavpur University, India). *Topic*: Assessing reaction mechanisms associated with SEI formation (currently a postdoc in the MSLMS group) (2022).\
+- *Dr. Henry A. Cortés* (UBA, Argentina). *Topic*: Modelling of battery materials and associated interfaces (currently a postdoc in the MSLMS group) (2021).\
+- *Guo D. Zhao* (Shanghai University, China). *Topic*: Using DFT to assess Na-Fe-Cl compounds as cathode materials for Na-ion batteries (2020).\
+- *Dr. Andrew C. Girder* (SFSU, USA). *Topic*: Force Field development in solid electrolytes (2019).
+	
+
+**Mentoring**\
+The BATERA Mentoring program at BCAM connects PhD students with experienced researchers to develop learning, time management and leadership skills. I have mentored three BCAM students to date: Dr. Marina Echeverría (2022), Ms. Cristina Galán (2023), and Mr. Gabriel Guzmán Schiller (2025).)
+
+
+---
+
+## Internationalization and mobility
+
+I have spent 12 years outside my native country (Colombia) in 4 different nations: as a PhD student (Australia), postdoctoral researcher (Australia, Spain), and long-term academic visitor (Germany, UK, Colombia). I speak 3 languages (Spanish, English, Italian), and have collaborated with 46 co-authors from over 10 nationalities. I have (co-) supervised researchers (between PhD students, technicians, and interns) from USA, China, India, Colombia.
+
+**Selected research visits**
+
+- Institution: R&D Center-Korea University (Seoul, South Korea).\
+Dates: 1-Feb-2026 to 7-Feb-2026.\
+Host: A/Prof. Prof. Seoin Back (sback@korea.ac.kr).
+
+- Institution: Tonji University (Shanghai, China). \
+Dates: 10-Oct-2024 to 26-Oct-2024. \
+Host: A/Prof. Menghao Yang (menghaoyoung@tongji.edu.cn).
+
+- Institution: The University of Queensland (Brisbane, Australia). \
+Dates: 10-Oct-2024 to 26-Oct-2024. \
+Host: Dr. Mingyuan Lu (m.lu1@uq.edu.au). 
+
+- Institution: Universidad de Antioquia (Colombia) - CIDEMAT (Centro de Investigación, Innovación y Desarrollo de Materiales). \
+Dates: 10-Jun-2022 to 25-Jun-2022. \
+Host: Prof. Jorge Andrés Calderón (andres.calderon@udea.edu.co). 
+
+- Institution: St Andrews University (St Andrews, UK). \
+Dates: 06-Apr-2019 – 26-May-2019. \
+Host: Dr. Tanja van Mourik (tvm22@st-andrews.ac.uk).
+
+- Institution: RISE institutes (Sweden). \
+Dates: 20-Feb-2019 – 27-Feb-2019. \
+Host: Dr. P. Lopez-Sanchez (currently at U. Santiago de Compostela, Spain: patricialopez.sanchez@usc.es).
+
+- Institution: IBM research (Melbourne, Australia). \
+Dates: 10-Sept-2015 – 30-Sept-2015. \
+Host: Prof. Toni Bacic (abacic@unimelb.edu.au).
+
+- Institution: Leipzig University (Germany). \
+Dates: July-2012 – Nov-2012 (Predoctoral). \
+Host: Emeritus Prof. Jörg Kärger (kaerger@physik.uni-leipzig.de). 
+
+---

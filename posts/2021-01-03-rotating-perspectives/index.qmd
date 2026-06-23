@@ -1,0 +1,115 @@
+---
+title: Rotating perspectives
+date: 2021-01-03
+categories: ["generative-art","R"]
+execute: 
+  echo: true
+code-fold: true
+---
+
+I have been asked to unveil a bit of what's under the hood on [this post](https://matiasandina.netlify.app/2021/01/art-in-a-new-year/). I decided to make a new post to share how my creative process took place and maybe inspire others to play along.
+
+Something interesting about all of this is how well it plays into common sense. Looking at things from a different perspective, in this case adding just a rotation, can yield outstanding results.  
+
+### The shapes
+
+First of all, we are going to use the shapes provided by `ggforce::geom_regon()`.
+
+```{r}
+#| label: show-shapes
+#| message: false
+#| warning: false
+library(tidyverse)
+library(ggforce)
+
+df <- data.frame(
+  x0=3:8,
+  y0=1,
+  r=0.2
+)
+
+ggplot(df)+
+  geom_regon(aes(x0 = x0, y0 = y0,
+                 r = r, sides= x0, angle = 0),
+             fill="gray50", color="black")+
+  coord_equal()+
+  labs(title="Regular polygons using ggforce", 
+       x="", y="",
+       caption="@NeuroMLA")+
+  theme(panel.background = element_blank(),
+        axis.text.y = element_blank(),
+        axis.ticks.y = element_blank(),
+        plot.title = element_text(hjust=0.5))
+```
+
+### The twist
+
+Now we can implement a rotation to each figure. We will use the previous `df` and `expand_grid()` to add an angle rotation to the regular polygon. The greater the number of sides, the closer we get to a circular shape illusion when we rotate and overlap the polygons. For `n>6` it didn't generate the type of look I was looking after during my experimentation. 
+
+```{r}
+#| label: rotations
+df <- expand_grid(df, angle = seq(0, 0.5, 0.1))
+
+ 
+ggplot(df)+
+  # notice we use angle = angle now
+  geom_regon(aes(x0=x0,y0=y0,r=r, sides=x0, angle=angle),
+             fill="gray50", color="black")+
+  coord_equal()+
+  labs(title="Rotated regular polygons using ggforce", 
+       x="", y="",
+       caption="@NeuroMLA")+
+  theme(panel.background = element_blank(),
+        axis.text.y = element_blank(),
+        axis.ticks.y = element_blank(), 
+        plot.title = element_text(hjust=0.5))
+
+```
+
+We can tinker with the `alpha` and `fill` to make some nice looking shapes. I'm not going to modify `color` but it's also a possibility.
+
+```{r}
+#| label: color-tinkering
+ggplot(df)+
+  # notice we use angle = angle now and fil=factor(x0)
+  geom_regon(aes(x0=x0,y0=y0,r=r, sides=x0, angle=angle,
+                 fill=factor(x0)), 
+             alpha=0.1, color="black")+
+  coord_equal()+
+  labs(title="Rotated regular polygons using ggforce", 
+       x="", y="",
+       caption="@NeuroMLA")+
+  theme(panel.background = element_blank(),
+        legend.position = "none",
+        axis.text.y = element_blank(),
+        axis.ticks.y = element_blank(),
+        plot.title = element_text(hjust=0.5)) -> p
+
+print(p)
+```
+
+### Make it palette
+
+We can have unlimited color combinations. Just as a start, two places I like to use when dealing with color palettes in R:
+
+* [R Color Brewer Palettes](https://www.r-graph-gallery.com/38-rcolorbrewers-palettes.html)
+* [Adobe Color Picker](https://color.adobe.com)
+
+We will use `scale_fill_*()` functions of `ggplot`. I normally use `scale_fill_manual()` if I want to handpick the values, but `scale_fill_viridis()` and `scale_fill_brewer()` often do a nice job too!
+
+```{r}
+#| label: palettes
+#| echo: false
+
+p + scale_fill_viridis_d() +
+  labs(caption = "Viridis:D\n@NeuroMLA")
+p + scale_fill_viridis_d(option="C") +
+  labs(caption = "Viridis:C\n@NeuroMLA")
+p + scale_fill_brewer(palette = "Pastel1") +
+  labs(caption = "Pastel1\n@NeuroMLA")
+
+random_colors <- c("#0958BD", "#4C678A", "#F2C461", "#24E9F0", "#F28461", "#BD1B09")
+p + scale_fill_manual(values=random_colors) + labs(caption = "Manual Choice\n@NeuroMLA")
+
+```
+

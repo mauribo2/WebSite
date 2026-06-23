@@ -1,0 +1,16 @@
+---
+title: "Revealing the Mechanism of Sodium Diffusion in NaxFePO4 Using an Improved Force Field"
+author: ["Mauricio R. Bonilla", "Ariel Lozano", "Bruno Escribano", "Javier Carrasco", "Elena Akhmatskaya"]
+date: 2018-04-02
+publication: "The Journal of Physical Chemistry C, **122**, 8065–8075 (2018)."
+categories: ["Li-ion"]
+url_source: https://doi.org/10.1021/acs.jpcc.8b00230
+url_preprint:
+journ: "The Journal of Physical Chemistry C"
+issue: 122
+page: 8065–8075
+year: 2018
+image: featured.png
+pub_number: 1
+
+---

@@ -1,0 +1,49 @@
+# Freeze computed outputs
+freeze: true
+
+# Enable banner style title blocks
+title-block-banner: true
+
+# Enable CC licence appendix
+license: "CC BY"
+
+# Default for table of contents
+toc: true
+toc-title: Table of contents
+toc-location: right
+
+# Default knitr options
+execute:
+  echo: false
+  message: false
+  warning: false
+
+# Default author
+author:
+  - name: Matias Andina
+    url: https://matiasandina.netlify.app
+    affiliation: Massachusetts Institute of Technology
+    orcid: 0000-0002-1996-2539
+
+# Default fields for citation
+citation: true
+
+# Filters
+filters:
+  - social-embeds
+  - social-share
+share:
+  permalink: "https://matiasandina.netlify.app/"
+  description: "Matias Andina"
+  twitter: true
+  facebook: true
+  reddit: true
+  stumble: true
+  tumblr: false
+  linkedin: true
+  email: true
+  mastodon: true
+  
+format:
+  html:
+    include-after-body: ../footer.html

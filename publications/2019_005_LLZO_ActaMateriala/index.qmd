@@ -1,0 +1,15 @@
+---
+title: "Exploring Li-ion conductivity in cubic, tetragonal and mixed-phase Al-substituted Li7La3Zr2O12 using atomistic simulations and effective medium theory"
+author: ["Mauricio R Bonilla", "Fabián A García Daza", "Javier Carrasco", "Elena Akhmatskaya"]
+date: 2019-08-15
+publication: "Acta Materialia, **175**, 426-435 (2019)."
+categories: ["SSBs"]
+url_source: https://doi.org/10.1016/j.actamat.2019.06.033
+url_preprint:
+journ: "Acta Materialia"
+issue: 175
+page: 426-435
+year: 2019
+image: featured.png
+pub_number: 5
+---

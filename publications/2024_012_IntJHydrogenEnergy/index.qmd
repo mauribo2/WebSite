@@ -1,0 +1,16 @@
+---
+title: "The impact of Mn and Al on the trapping and diffusion of hydrogen in γ-Fe: An atomistic insight"
+author: ["Bikram Kumar Das", "Poulami Chakraborty", "Mingyuan Lu", "Mauricio R. Bonilla", "Elena Akhmatskaya"]
+date: 2024-09-19
+publication: "International Journal of Hydrogen Energy, **83**, 731-744 (2024)."
+categories: ["Hembrittlement"]
+url_source: https://doi.org/10.1016/j.ijhydene.2024.06.322
+url_preprint:
+journ: "International Journal of Hydrogen Energy"
+issue: 83
+page: 731-744
+year: 2024
+image: featured.png
+pub_number: 12
+
+---

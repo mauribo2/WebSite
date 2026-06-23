@@ -1,0 +1,309 @@
+---
+title: "A calorie is a calorie"
+date: 2020-09-06
+categories: ["dataviz"]
+---
+
+```{r}
+#| label: setup
+#| include: false
+knitr::opts_chunk$set(echo = FALSE, message=FALSE, warning=FALSE)
+library(tidyverse)
+library(gganimate)
+```
+
+```{R}
+#| label: functions
+
+fix_area_name <- function(area){
+  case_when(area == "United States of America" ~ "USA",
+            TRUE ~ area)
+}
+
+
+fix_format <- function(df){
+  df %>%
+  pivot_longer(cols=starts_with("Y"),
+               names_prefix = "Y",
+               names_to = "year") %>%
+    mutate(year = as.numeric(year)) %>%
+    # fix countries with very long names
+    mutate(Area = fix_area_name(Area))
+  
+}
+
+
+filter_out_organizations <- function(df) {
+  organizations <- c(
+    "World",
+    "Asia", "Europe", "Eastern Europe", "Western Europe",
+    "Southern Europe", "Northern Europe", "Oceania",
+    "Southern Asia", "Central Asia",
+    "Low Income Food Deficit Countries",
+    "Eastern Asia", "Australia & New Zealand", "Australia and New Zealand",
+    "Net Food Importing Developing Countries",
+    "Americas", "Northern America", "South America", "Central America",	
+    "Africa", "Western Africa", "Eastern Africa", "Northern Africa",
+    "Middle Africa",
+    "Australia & New Zealand", "Australia and New Zealand"
+  )
+  df %>% filter(!Area %in% organizations)
+}
+
+
+
+
+```
+
+```{r}
+#| label: read-data
+#| message: false
+#| warning: false
+# data here https://ourworldindata.org/food-supply
+# FAO http://fenixservices.fao.org/faostat/static/bulkdownloads/FoodBalanceSheetsHistoric_E_All_Data.zip
+
+df <- read_csv("/home/matias/Projects/faostats/FoodBalanceSheetsHistoric_E_All_Data_NOFLAG.csv")
+
+new_method <- read_csv("/home/matias/Projects/faostats/NewFoodBalanceSheets_E_All_Data_NOFLAG.csv")
+
+# fix format
+df <- df %>% fix_format()
+new_method <- fix_format(new_method)
+
+# bind them
+df <- bind_rows(df, new_method)
+
+```
+
+The world was a different place around 1960. But humans were humans, roughly similar to those that were alive thousands of years ago and likely, as most humans do, they needed to eat.
+
+The good news is that we have quite some data of humans eating and we have an interminable debate over *how much* should we eat. 
+
+It all boils down to one number: **Total Calories**. They would have us believe that "a calorie is a calorie" and it doesn't matter where it comes from. Well, I'm not going to challenge the assumption on this blog, I'm saving that for later. But I was curious to see the evolution of this magical number across the world since around 1960. 
+
+Before we begin, I want to make some brief remarks.
+
+Data from FAO can be found [here](http://fenixservices.fao.org/faostat/static/bulkdownloads/FoodBalanceSheetsHistoric_E_All_Data.zip).
+
+> **NOTE:** In this analysis, calorie data contains all what's available for consumption, including waste, which can unfortunatelly be significant. Also note that "Calorie" is easier to write about than kiloCalorie, which is the unit we are actually referring to.
+
+### Spagetthi Trend
+
+```{r}
+#| warning: false
+# Total Calories ----
+df %>% 
+  filter_out_organizations() %>% 
+  filter(str_detect(Item, "Grand Total"), 
+              str_detect(Element, "Food supply")) -> total_calories
+
+# choose some random countries
+countries <- c("France", "USA", "China")
+
+ggplot(total_calories, aes(year, value, group=Area))+
+  geom_line(alpha=0.1) +
+  geom_line(data=filter(total_calories, Area %in% countries),
+            aes(year, value, group=Area, color=Area), lwd=1)+
+  ggthemes::theme_pander()+
+#stat_summary(fun= mean, geom="line", col="red", lwd=2)+
+labs(title = 'The Rise of Total Calories',  
+       subtitle  = glue::glue("Each line is one country. Highlighted countries: ",
+                              glue::glue_collapse(countries, ", ")),
+       caption  = "DataViz: @NeuroMLA | Data Source: FAO",
+     y = "Calories (kcal/person/day)",
+     x = "", color="")+
+  scale_color_brewer(palette = "Set1")+
+  theme(legend.position = c(0.9, 0.1),
+        legend.background = element_rect(fill=NA)) +
+  scale_x_continuous(breaks = seq(1960,2020,10))+
+  NULL
+
+
+```
+
+This looks mostly like an upward trend. In fact, just for fun, I am going to simplify this whole situation into the before/after scenario. The trend is so clear that I'm not going to lose too much information.
+
+```{r}
+#| warning: false
+total_calories %>% 
+  group_by(Area) %>% 
+  filter(year == last(year) | year == first(year)) %>% 
+  ggplot(aes(year, value, group=Area))+
+  geom_line(alpha=0.5)+
+  ggthemes::theme_pander()+
+  labs(title = 'The Rise of Total Calories',  
+       subtitle  = "Each line is one country.",
+       caption  = "DataViz: @NeuroMLA | Data Source: FAO",
+     y = "Calories (kcal/person/day)",
+     x = "", color="")
+
+```
+
+In the plot above, we see that most countries increase their food supply as measured by the calories available for consumption since 1960. We can more easily observe each country's travel in the calorie spectrum in the dot plot below. An interesting thing to focus on this plot is the little amount of countries that have stayed around the dietary guidelines (1900 to 2400 kCal/day/person).
+
+```{r}
+  # Bin the last ~60 years in 2 moments
+  total_calories %>% 
+    group_by(Area) %>% 
+    filter(year == last(year) | year == first(year)) %>%
+    summarise(
+      before = first(value),
+      after = last(value),
+      change = after - before,
+      percent = change/before) -> country_change
+
+  country_change %>%
+  pivot_longer(c(before, after), names_to = "moment") %>%
+  mutate(moment = factor(moment,
+                         levels=c("before", "after"),
+                         labels = c("~1960", "~2020"))) %>% 
+  filter(complete.cases(.)) -> country_change
+
+  country_change %>% 
+  pivot_wider(names_from = moment,  values_from = value) %>% 
+  ggplot(aes(`~1960`, `~2020`)) + 
+  #geom_segment(aes(x=1900, xend=2400, y=1900, yend=2400), color="yellow", lwd=4, alpha=0.1)+
+  #geom_segment(aes(x=1900, xend=2400, y=2000, yend=2500), color="yellow", lwd=4, alpha=0.1)+
+  geom_abline(slope=1, intercept = 0, lty=2) +
+  geom_point(aes(color= `~1960` > `~2020`)) + 
+  ggthemes::theme_pander()+  
+  theme(legend.position = "bottom",
+        legend.background = element_rect(fill = NA, color="black"))+
+  scale_color_manual(name = "Calories",
+                     labels = c("Increased", "Decreased"),
+                     values = c("orange", "black"))+
+  labs(title = "Countries' Total Calories Increase",
+       subtitle = "Each dot is one country.",
+       x="Total Calories circa 1960",
+       y="Total Calories circa 2020",
+       caption  = "DataViz: @NeuroMLA | Data Source: FAO")
+
+
+```
+
+
+### How much of an increase
+
+When we look at the calorie increase as a proportion of the original available, we see most countries increasing calories between 5% and 25%, with a good number of countries increasing heavily, even doubling their calories.  
+
+```{r}
+ggplot(country_change %>% filter(moment == "~1960"),
+       aes(percent)) +
+  geom_histogram(binwidth = 0.05, color="black", fill="#F53838") +
+  scale_x_continuous(
+    breaks = seq(-0.2,1.20,0.20),
+    labels = scales::label_percent()
+    )+
+  labs(title = "Countries' Total Calories Increase",
+       subtitle = "Calorie change from ~1960 to ~2020 as percentage increase from ~1960",
+       y="Number of Countries", x="1960-2020 Calorie increase",
+       caption  = "DataViz: @NeuroMLA | Data Source: FAO") +
+  ggthemes::theme_pander()
+
+```
+
+Can you make it move? Yes! To nail the point home, I want to add some motion to the plots, to see the World's constant move into higher and higher calorie values. Surprisingly, we don't see the world moving above 2000 calories and narrowing the distribution into an efficent "Enough food for everyone without waste" stage. We see this terrifying amoeba-like distribution creep into higher and higher caloric values.
+
+```{r}
+#| label: density-gif
+#| eval: false
+#| warning: false
+# check here https://github.com/thomasp85/gganimate/wiki/Temperature-time-series
+library(RColorBrewer)
+red_pal <- colorRampPalette(brewer.pal(9, "Reds"))(length(unique(df$year)))
+
+# Total calories density ----
+ggplot(total_calories, aes(value))+
+  #geom_histogram()+
+  geom_density(aes(value, fill=factor(year)))+
+  scale_fill_manual(values = red_pal)+
+  theme(legend.position = "none",
+        axis.line.y = element_blank(),
+        axis.ticks.y = element_blank(),
+        axis.text.y = element_blank(),
+        axis.line.x=element_line(color="black", size = 2),
+        axis.text.x = element_text(size=16),
+        panel.background = element_blank(),
+        panel.grid = element_blank())+
+  xlim(c(1000,4200))+
+  transition_states(year) +
+  shadow_trail(distance = 1, fill=NA, color="black")+
+  labs(title = paste("World's Daily Caloric Supply in {closest_state}"),  
+       subtitle  =  paste("Distribution of food available for consumption (kcal/capita/day)."),
+       caption  = "DataViz: @NeuroMLA | Data Source: FAO",
+       y="", x="Calories (kcal/person/day)") -> anim_density
+
+animate(
+  plot = anim_density, 
+  nframes = length(unique(total_calories$year)), 
+  detail = 8,
+  fps = 4, height = 4, width = 6, units = "in", res = 150,
+  end_pause = 8
+)
+anim_save("calorie_density.gif")
+```
+
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Feel the excess calories creeping in? It&#39;s not just you it&#39;s <a href="https://twitter.com/hashtag/worldwide?src=hash&amp;ref_src=twsrc%5Etfw">#worldwide</a> <a href="https://t.co/NILcKc9vDg">pic.twitter.com/NILcKc9vDg</a></p>&mdash; Matias Andina (@NeuroMLA) <a href="https://twitter.com/NeuroMLA/status/1302668758125875203?ref_src=twsrc%5Etfw">September 6, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+I found this *waterfall (?)* plot to be also quite telling about the overall movement by decade. 
+
+```{r}
+# Animate this
+floor_decade    = function(value){ return(value - value %% 10) }
+
+ggplot(total_calories %>% mutate(decade = floor_decade(year)),
+       aes(x = year, value)) +
+  geom_point(alpha=0.5)+
+  coord_flip()+
+  scale_x_reverse()+
+  transition_states(decade)+
+  labs(title = paste("World's Daily Caloric Supply in {closest_state} decade"),  
+       subtitle = "Each dot is one country",
+       caption  = "DataViz: @NeuroMLA | Data Source: FAO",
+       x="", y="Calories (kcal/person/day)") +
+  scale_y_continuous(breaks=seq(1500, 4000, 500)) +
+  ggthemes::theme_pander() -> waterfall
+
+animate(
+  plot = waterfall, 
+  detail = 8,  height = 4, width = 6, units = "in", res = 150,
+)
+# anim_save("waterfall.gif")
+```
+
+
+### The good and the Bad
+
+Good news is we lifted an incredible amount of people out of poverty. With that, we see the daily available calories in all countries go up above a somewhat arbitrary 2000 Calories/day/person. The bad news, is that  
+
+
+```{r}
+#| label: points-going-up
+ggplot(total_calories,
+       aes(x = as.numeric(factor(Area)),
+           value, color = value>2000)) +
+  geom_hline(yintercept = 2000)+
+  geom_point(size=2, alpha=0.5)+
+  scale_color_manual(values=c("black", "orange"))+
+  ggthemes::theme_pander()+
+  theme(legend.position = "none", axis.text.x = element_blank())+
+  transition_states(year) +
+  #shadow_trail(distance = 1, fill=NA, color="black")+
+  labs(title = paste("World's Daily Caloric Supply in {closest_state}"),  
+       subtitle  =  paste("Food available for consumption not accounting for waste (kcal/capita/day).\nEach dot is one country."),
+       caption  = "DataViz: @NeuroMLA | Data Source: FAO",
+       x="Country (unranked)", y="Calories (kcal/person/day)") -> points_going_up
+
+
+animate(
+  #filename = "points_going_up.gif",
+  plot = points_going_up, 
+  nframes = length(unique(total_calories$year)), 
+  detail = 8, height = 4, width = 6, units = "in", res = 150,
+  fps = 4,
+  end_pause = 8
+)
+#anim_save("points_going_up.gif")
+```
+
+Calories are just the tip of the iceberg. If you want to see analysis at the macro levels, check my post about cereals.  

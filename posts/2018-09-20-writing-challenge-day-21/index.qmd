@@ -1,0 +1,131 @@
+---
+title: Writing challenge Day 21
+date: 2018-09-20
+categories: ["research", "writing", "learning", "DocumentingLearning"]
+---
+
+Third week has had ups and downs. I finished another short story. But I keep losing the word count battle. Yes, again, work.
+
+## The data
+
+The word count data is somewhat similar to what I've seen for last week. Definitely writing bouts are going down, just being able to write a few words before bedtime knocks me over. 
+
+```{r}
+#| echo: false
+#| results: hold
+#| message: false
+#| warning: false
+library(ggplot2)
+library(dplyr)
+suppressPackageStartupMessages(library(lubridate))
+```
+
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+
+tracking_writing <- read.csv("tracking_writing.csv")
+
+tracking_writing <- dplyr::select(tracking_writing, -place) %>%
+  mutate(date=ymd(date))
+
+ggplot(tracking_writing, aes(date,word_count))+
+  geom_point()+
+  scale_x_date(date_labels="%b %d",date_breaks  ="5 day")+
+  geom_smooth(color="black")+
+  theme_bw()+
+  ggtitle("Word count per writing bout")
+  
+
+```
+
+
+Looking at the aggregate, the downward slope of the third week is a little bit disappointing. We will see if I recover my energies for this following week and start going up again. 
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+
+tracking_writing %>% group_by(date) %>%
+  summarise(total_count = sum(word_count)) %>%
+ggplot(aes(date,total_count))+
+  geom_point()+
+  scale_x_date(date_labels="%b %d",date_breaks  ="5 day")+
+  geom_smooth(color="black")+
+  theme_bw()+
+  ggtitle("Total count per day")+
+  geom_hline(yintercept = 2000, lty=2)+
+  annotate(geom="text", label="daily target", x= ymd("2018-09-11"), y=2100)
+
+
+```
+
+
+Actually, while Tuesday and Wednesday are my weakest days, it seems that my output ramps up from Thursday into the weekends, which are definitely highest. Surprisingly, Mondays are quite good![^sorry]
+
+```{r}
+#| echo: false
+#| warning: false
+
+p1 <- ggplot(data.frame(week_day = factor(weekdays(tracking_writing$date, abbreviate = T),
+       levels = c("Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun")))
+       , aes(week_day)) +
+  geom_bar() +
+  ggtitle("Number of bouts per day", subtitle = "Aggregate over all challenge")+
+  ylab("") + xlab("")+
+  theme_bw()
+
+
+
+p2 <- tracking_writing %>% mutate(week_day = factor(weekdays(tracking_writing$date, abbreviate = T),
+       levels = c("Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"))) %>%
+  group_by(week_day) %>% summarise(total_words = sum(word_count))%>%
+  ggplot(aes(week_day, total_words)) +
+  geom_col() +
+  ggtitle("Total words per day", subtitle = "Aggregate over all challenge")+
+  ylab("") + xlab("")+
+  theme_bw()
+
+
+cowplot::plot_grid(p1, p2)
+
+```
+
+
+
+```{r}
+#| echo: false
+#| warning: false
+#| eval: false
+
+# Something along these lines
+
+tracking_writing %>% group_by(date) %>%
+  mutate(id = row_number()) %>% 
+  ggplot(aes(time_start, date, group=date)) + geom_point(aes(time_end, color= factor(id)))
+
+# Also something like 
+tracking_writing %>% pull(time_start) %>% table()
+# But having that into better bins
+
+
+```
+
+
+## The good
+
+I finished another short story and I am quite close to finishing two more. The words are still there, the desires are still there, I begin to imagine actually compiling the work into something that is *published*. 
+
+I started exploiting the the power of the outline. It happened with a blog post I'm writing for my experiences with Skype a Scientist (stay tuned). And it also happened with my short stories. Markdown to the rescue, making sub-headers with main ideas, developing paragraphs and erasing later (during a second draft).
+
+I tried writing on the bus on the way home. It's not impossible, it is actually somewhat OK for outlines, sketching things around in a 20 minute trip can go a long way. I would definitely not recommend that for big time writing, I find I need to be still and focused to write on a computer. Paradoxically, I have a lot of good ideas *on the move*.
+
+## The bad
+
+The downward trend reflects me collapsing at night. I also skipped a couple of days, so technically I'm close to cheating. It's really difficult to write when the energy level is zero. This week has also had very long work days and writing during the night is quite difficult. The solution could be sleeping less, but I'm aiming for a solution that is compatible with life.  
+
+
+[^sorry]: Yes, a bar plot. I am really really sorry about that.

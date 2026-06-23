@@ -1,0 +1,51 @@
+---
+title: About Teaching Nonsense
+date: 2017-11-16
+categories: ["teaching","learning"]
+---
+
+## Life without purpose
+
+Living without a purpose is something I am unable to do. I am into the *rules of the game*, the idea that there's a goal, and we are trying to achieve something, do something, create an object or service that was not there before and now fulfills a function. There are few games that I play for the sake of keep playing like the learning game. But, more often than not, I stand on the side of finite games. Still, when I compare myself with the average student in the United States (US), I feel I know nothing about finite games. Their whole Universe cycles around winning, knowing how to follow the rules, hack the multiple choice, get the job done, keep the eyes on the prize, *[fill here yet another catchy phrase]*.
+
+These young individuals come to University being highly driven and stumble upon a wall of requirements and unclear bureaucratic norms. They are expected to sit quietly and go through several courses that have little purpose. They shuttle between irrelevant numbing experiences and crucial content, delivered in mini-lectures (attention spans are shortening), that only happen in the classes that actually matter (supposedly those that offer 3 or 4 credits). Everything else is hiding under a mystic cloud. Most of my students complain about classes being vague, unstructured, pointless. I thought they would also complain about the amount of money that goes into acquiring these *credits* but they are still willing to allow the system to borrow from their pocket. It seems to me that they have been indoctrinated, well done high-school!   
+
+What am I talking about? Maybe a couple of examples could help. Some of the things that are currently being taught in US higher education.
+
+* How do you make a friend?
+* How do you detect and respond to a *microagression*?
+* Where is the Campus Center?
+* How to watch television?
+* How to climb a tree?
+
+When I say being taught, I mean this is actual class content and students are graded on their answers to these questions. Don't get me wrong, I am not making any judgement on the value about how important this information is. I would suggest that knowing to make friends is one of the most fundamental traits any *Homo Sapiens* should have. My question lives at another level. I wonder about higher education requirements and whether this content is something that needs to be taught in formal education or not. I wonder about the training the next generation of builders, writers, and creatives receives. We ask them to 'Answer with an opinion', 'React to a class' or 'React to a reaction'. We give them points for breathing, as long as it is inside the classroom. If they want to breathe outside, they better have a piece of paper signed by an authority for the next class.     
+
+![Making Friends by xkcd](https://imgs.xkcd.com/comics/how_to_make_friends.png)
+
+## What do I have to do with this?
+
+As a grad student, you don't always get to choose who is paying your rent. I talk with my brain quite often, theoretical experiment ahead (pun intended): 
+
+> **Brain**: How much would you need to be paid to do XYZ?  
+> **Me**: XYZ? Pff.....a lot, I cannot even tell you how much...  
+> **Brain**: I can tell you how much, your stipend it's coming from teaching XYZ class next semester.  
+> **Me**: What!?  
+> **Brain**: Yes, you've guessed...welcome to grad school.  
+
+When I have to teach these classes, I cannot help but wonder: why are we doing this? what is the purpose?
+
+## What is the purpose of higher education?
+
+I believe this question has no general answer. I find myself unsatisfied by the attempts to encapsulate higher education, particularly facing the fact that somewhere during this century human performance will be out-passed by computer's performance in the vast majority of tasks. I host a mix of hope and fear about that, but I am somewhat confident in the fact that it will happen. 
+
+Whatever answer we go for, it is going to be highly dependent on the field. It will not be the same if you are doing Physics or Business. The lens through which you see the world, your daily mental framework, is going to be different. Yet, it appears to me that, from Public Policy perspective, we should find overlapping opinions. To a certain extent, this is such a fundamental issue that we cannot afford to have it diverge in the way it is diverging now. It not only affects the training students receive from an academic perspective, it **devaluates the degree** on the job market. Could we find a set of experiences and abilities (professional or personal) that we agree upon? 
+
+## Mix and Match
+
+Arguments towards diversification of higher education are everywhere, should we aim towards teaching the so called *well-rounded* individuals [^GRE]? I believe the borders dividing areas are blurry but they do exist. In that blurry interface, I believe there's a huge potential to win from interdisciplinary work. Moreover, I would venture to say that many of the groundbreaking work will only be possible due to interdisciplinary team efforts. I still debate myself about what is the correct mix and match for the optimal results. I will have a tentative, not extensive but forever updating, list below:  
+
+* Engineers using bio-mimicry to improve train design [^JapanTrain]. 
+
+
+[^JapanTrain]: Biology inspired Engineering https://www.youtube.com/watch?v=iMtXqTmfta0
+[^GRE]: Actually, this was one of the questions for my GRE exam. I hate how pre-formatted these cardboard questions are. 

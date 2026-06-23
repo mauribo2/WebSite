@@ -1,0 +1,15 @@
+---
+title: "DMC matters: the role of dimethyl carbonate in SEI formation on oxygen functionalized anodes"
+author: ["Bikram Kumar Das", "Henry A. Cortés", "Mauricio Rincón Bonilla", "Menghao Yang", "Javier Carrasco", "Elena Akhmatskaya"]
+date: 2025-07-16
+publication: "Journal of Materials Chemistry A, **13**(33), 27557-27576 (2025)."
+categories: ["Li-ion"]
+url_source: https://doi.org/10.1039/d5ta02003d
+url_preprint:
+journ: "Journal of Materials Chemistry A"
+issue: 33
+page: 27557-27576
+year: 2025
+image: featured.png
+pub_number: 13
+---

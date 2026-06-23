@@ -1,0 +1,21 @@
+---
+title: "Escribiendo en pocas palabras"
+date: 2020-01-02
+---
+
+> Lo bueno, si breve, dos veces bueno. 
+
+Me tomo la libertad de este juego literario[^lacoma] para introducir un ensayo con algunas pautas interesantes para escribir. En pocas palabras, Paul Graham nos regala una lista de acciones que es conveniente tomar para producir escritos de calidad. 
+
+La siguiente es una traduccion del ensayo "Writing, Briefly" escrito por Paul Graham[^link].
+
+## Escribir, en pocas palabras
+
+(En el proceso de responder un email, accidentalmente escribí un pequeño ensayo sobre cómo escribir. Normalmente dedico semanas a cada ensayo. Este tardó 67 minutos -- 23 para escribirlo y 44 para reescribirlo.)
+
+Creo que escribir bien es mucho más importante que lo que la gente se imagina. Escribir no sólo comunica ideas, las genera. Si eres malo escribiendo y no te gusta hacerlo, perderás la oportunidad de generar la mayoría de las ideas que la escritura te hubiera regalado.
+
+En cuanto a cómo escribir bien, aquí dejo una breve sugerencia: Escribe una primera versión mala tan rápido como puedas; reescríbela una y otra vez; remueve todo aquello que sea innecesario; escribe en un tono de conversación; desarrolla un buen olfato para detectar malos escritos, de modo que así puedas arreglar los tuyos; imita a escritores que te gusten; Si no puedes empezar, cuéntale a alguien sobre lo que planeas escribir, luego escribe lo que les contaste; ten en cuenta que 80% de las ideas en un ensayo ocurren después de empezar a escribirlo, y 50% de las ideas con las que empiezas estarán erradas; mantén la confianza para remover texto; comparte tus textos con amigos de confianza, para que te digan qué partes son confusas o lentas; no siempre es necesario empezar con un esquema del texto; reflexiona sobre las ideas por un par de días antes de escribirlas; lleva contigo un anotador o pedazos sueltos de papel; empieza a escribir cuando pienses en la primera oración; si una fecha límite te fuerza a empezar antes de tener la primera frase, escoge la frase más importante para comenzar; escribe sobre cosas que te gusten; no trates de impresionar con tu vocabulario; no dudes en cambiar el tópico en el medio del texto; usa notas al pie para conservar digresiones; usa anáforas para entretejer las oraciones; lee tus ensayos en voz alta para ver (a) dónde suenan extraños y (b) qué pedazos son aburridos (aquellos que odias leer); intenta decirle al lector algo nuevo y útil; trabaja durante períodos prolongados; cuando debas comenzar de nuevo, hazlo releyendo lo que tienes hasta ahora; cuando debas terminar, deja algo que facilite comenzar de nuevo; acumula notas de tópicos que planeas escribir al final del archivo; no te sientas obligado a tratar ninguno de ellos; escribe para un lector que no va a leer tu ensayo con tanto cuidado como tú, del mismo modo que las canciones pop fueron diseñadas para sonar de manera aceptable en radios baratas; si dices algo equivocado, corrígelo inmediatamente; pregunta a amigos cuáles son las oraciones de las que te arrepentirás; vuelve al texto y baja el tono de los comentarios duros; publica tus textos online, porque tener una audiencia te hace escribir más y, por lo tanto, generar más ideas; imprime borradores en vez de mirarlos en la pantalla; utiliza palabras simples; aprende a distinguir sorpresas de digresiones; aprende a reconocer la oportunidad para finalizar y, cuando uno aparezca, tómala.
+
+[^lacoma]: La coma en "Writing, briefly" cambia el significado de "escribiendo" a "escribir". Me permito jugar a estar escribiendo en pocas palabras sobre cómo escribir en pocas palabras.
+[^link]: http://www.paulgraham.com/writing44.html

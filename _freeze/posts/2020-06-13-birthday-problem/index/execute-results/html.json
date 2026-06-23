@@ -1,0 +1,16 @@
+{
+  "hash": "8872d664507a5bc7a21f0ced179f37b4",
+  "result": {
+    "markdown": "---\ntitle: Birthday Problem \ndate: 2020-06-13\ntags: [\"fun\", \"python\", \"R\"]\nmathjax: true\n---\n\n\nWe have all been there, classic math riddle:\n\n> How many people need to be in one room so that the probability of two of them having the same birthday is more than 0.5?\n\nIn a recent bootcamp exercise we tackled this in python and I wanted to share, just because it's fun. I did it for a range of probabilities. My solution is probably not the fastest/shortest/most pythonic, but it's a little thing I put out there so, if you want to use/improve it, please do!\n\n\n\n::: {.cell}\n\n```{.python .cell-code}\nimport numpy as np\nimport matplotlib.pyplot as plt\n\n\ndef prob(n):\n\tnumerator = np.math.factorial(365) / np.math.factorial(365-n)\n\tdenominator = 365 ** n\n\treturn(1 - numerator/denominator)\n\nprobs = list(map(prob, range(100)))\n\nplt.plot(range(len(probs)), probs)\nplt.show()\n```\n:::\n\n\n\nA bad translation into R, it would be something like:\n\n\n::: {.cell}\n\n```{.r .cell-code}\nprob <- function(n){\n  numerator = exp(lfactorial(365) - lfactorial(365-n))\n\tdenominator = 365 ** n\n\treturn(1 - numerator/denominator)\n}\n\nprobs = sapply(0:99, function(n) prob(n))\n\nplot(0:99, probs, type=\"l\",\n     main=\"Probability of 2 people having same birthday\",\n     xlab = \"People in a room\", ylab=\"probability\")\n```\n\n::: {.cell-output-display}\n![](index_files/figure-html/unnamed-chunk-2-1.png){width=672}\n:::\n:::\n",
+    "supporting": [
+      "index_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

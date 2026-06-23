@@ -1,0 +1,34 @@
+---
+title: Li-ion and Na-ion Batteries
+alias: &ALIAS Li-ion
+image: featured.png
+listing:
+  id: pubs
+  template: ../../_ejs/publications-people.ejs 
+  contents: ../../publications/**/*.qmd
+  sort: "date desc"
+  # sort-ui: true
+  filter-ui: true
+  include:
+    categories: *ALIAS
+  fields: [publication, title, categories, image, date, author]
+
+---
+Atomistic simulations accelerate the development and optimization of intercalation batteries by providing molecular-level insights to predict the performance and stability of new materials, optimize ion transport, and mitigate degradation mechanisms before ever stepping foot in a lab.
+
+My research centers on three key areas:
+ 
+ - Characterization and performance prediction of novel cathode materials; \
+ - optimization of ionic conduction in electrolyte mixtures; and \
+ - understanding the molecular processes behind solid electrolyte interphase (SEI) initiation and evolution.
+
+<figure style="text-align: center;">
+    <img src="featured.png" alt="Featured Image" style="display: block; margin-left: auto; margin-right: auto; width: 800px; height: auto;">
+</figure>
+
+
+## Related Publications
+
+
+:::{#pubs}
+:::

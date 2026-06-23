@@ -1,0 +1,16 @@
+---
+title: "The crystal chemistry and reactivity of ternary Na2Fe3Cl8 from the NaCl-FeCl2 system and its potential application as coating layer for cathode in sodium ion batteries"
+author: ["Liliana T. López Ch.", "Franklin Jaramillo", "Jorge A. Calderón", "José L. Tirado", "Elena Akhmatskaya", "Mauricio R. Bonilla"]
+date: 2023-12-15
+publication: "Journal of Alloys and Compounds, **968**, 172123 (2023)."
+categories: ["Li-ion"]
+url_source: https://doi.org/10.1016/j.jallcom.2023.172123
+url_preprint:
+journ: "The Journal of Physical Chemistry C"
+issue: 968
+page: 172123
+year: 2023
+image: featured.png
+pub_number: 9
+
+---

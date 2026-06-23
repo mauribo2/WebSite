@@ -1,0 +1,475 @@
+---
+title: "Fitbit Analysis"
+date: 2019-11-22
+categories: ["tracking","learning", "R"]
+---
+
+It's been a bit more than a year since I got a fitbit and I have been pretty excited about tracking my activity and heart rate. I should say I'm quite surprised about the sleep data. Tracking sleep has been, in fact, the most exciting feature, and I now strive to get at least 7 hours of sleep per night.
+
+
+
+```{r}
+#| label: setup
+#| include: false
+#| results: hide
+#| warning: false
+#| message: false
+
+knitr::opts_chunk$set(echo = FALSE, comment = NA, warning = FALSE)
+set.seed(12345)
+library(tidyverse)
+```
+
+```{r}
+#| label: read-data
+#| cache: true
+#| warning: false
+#| message: false
+#| results: hide
+
+df <- readr::read_csv("UNPUBLISHED_heart_steps.csv")
+
+
+```
+
+Let's first see a glimpse of the data, just to know what type of data we are dealing with. 
+
+```{r}
+#| cache: true
+df %>% 
+  slice(1:5)
+```
+
+## Density plots
+
+Let's now inspect the overall distribution for heart rate and step values.
+
+```{r}
+#| cache: true
+#| warning: false
+
+dens <- ggplot(df, aes(value)) +
+          geom_density(fill = "gray75") +
+          facet_wrap(~variable,
+                     scales = "free")
+
+# Data for text
+text_data <- data.frame(
+  variable = sort(rep(c("heart_rate", "steps"), 3)),
+  value = c(70, 80, 120, 30, 30, 110),
+  y = c(0.04, 0.03, 0.01, 0.22, 0.03, 0.03),
+  label = c("sleep", "sitting", "walking", 
+            "sleep/sitting", "coffee break?", "walk/run")
+)
+
+
+dens +
+  geom_label(data = text_data,
+            aes(x = value, y = y, label = label))+
+  labs(x = "value per minute", y="density")
+```
+
+
+```{r}
+#| label: subset-data
+# get the steps
+steps <- filter(df, variable == "steps")
+# get the heart
+heart <- filter(df, variable == "heart_rate")
+
+# Helper function
+get_time <- function(x){hms::as_hms(format(x, "%H:%M:%S"))}
+
+heart <- mutate(heart,
+                  dataset_time = get_time(date_time),
+                  dateTime = lubridate::ymd(format(date_time, "%Y-%m-%d")))
+
+
+```
+
+## When do I move?
+
+I will start by focusing on the data for steps.
+
+I'm curious to see what times of the day have the most activity. Because I have a quite large amount of data points (~`r paste(round(nrow(steps)/1000), "K")`) I will use `geom_hex()` to count for me and simplify rendering[^searching].
+
+[^searching]: I had been searching for excuses to use this function for a while. Check it out [here](https://ggplot2.tidyverse.org/reference/geom_hex.html)
+
+```{r}
+#| label: steps-1
+#| cache: true
+#| warning: false
+
+# create a custom x scale
+my_hour_scale <-   scale_x_continuous(
+    # x is in seconds
+    breaks = seq(0, 24 * 3600, 3 * 3600),
+    labels = paste0(
+      str_pad(seq(0, 24, 3), width = 2, pad = 0),
+      ":00"))
+
+
+ggplot(steps,
+       aes(dataset_time, value))+
+  geom_hex(color="black")+
+  scale_fill_viridis_c(limits = c(0, 25000),
+                       labels = scales::unit_format(unit = "K", scale = 1e-3),
+                       guide = guide_legend(label.hjust = 1)) +
+  my_hour_scale +
+  theme_bw() +
+  theme(legend.position = "bottom") +
+  labs(y="Number of Steps", 
+       x="",
+       title = "Number of steps vs time of the day",
+       subtitle = "Each hexagon represents the number of steps at a time.\nThe fill indicates the amount of times this combination is found in the data.",
+       caption="@NeuroMLA")
+```
+
+Well, I should have remembered that for the vast majority of minutes (regardless of the hour of the day), the count is exactly zero. Let's only look at the positive counts:
+
+```{r}
+#| label: steps-2
+#| cache: true
+
+ggplot(filter(steps, value > 0), 
+       aes(dataset_time, value))+
+  geom_hex(color="black")+
+  scale_fill_viridis_c(#labels = scales::unit_format(unit = "K", scale = 1e-2),
+                       guide = guide_legend(label.hjust = 1)) +
+  my_hour_scale +
+  theme_bw() +
+  theme(legend.position = "bottom") +
+  labs(y="Number of Steps", 
+       x="",
+       title = "Number of steps vs time of the day",
+       subtitle = "Each hexagon represents the number of steps at a time.\nThe fill indicates the amount of times this combination is found in the data.\nOnly including minutes with steps greater than zero. ",
+       caption="@NeuroMLA")
+
+
+```
+
+We see now some patches that have high activity (> 100 steps), particularly around 9:00, 12:00 and 18:00. These mostly correspond to "going to work", "activity around lunch time (?)", and "going home / physical activity". For all other cases, it looks like I move around 10-20 steps per minute, regardless of the minute within the hour.
+
+
+### Last 10 minutes
+
+The result above is interesting because I usually have to be reminded by Fitbit to "move up to 250 steps in the hour". I receive this notification during the last 10 minutes of the hour and I would think that during those 10 minutes I put more steps than during the first 50. The data show I'm wrong:
+
+```{r}
+#| label: last-10-plot
+
+steps %>%
+  filter(value > 0) %>%
+  mutate(stage = ifelse(
+    str_detect(dataset_time, ":5[0-9]"),
+    "last-10", "first-50")) %>%
+    ggplot(aes(value))+
+    geom_density(aes(fill = stage), alpha = 0.8)+
+  paletteer::scale_fill_paletteer_d("awtools::mpalette") +
+    labs(y="Density", 
+       x="Number of Steps",
+       title="The 'move' reminder does not make me walk more",
+       caption="@NeuroMLA")
+  
+
+```
+
+That being said, I want to keep my reminder on. I feel like having it turned on definitely adds ~ 1000-2000 steps per day.
+
+### Daily average
+
+Let's get one level above and aggregate each day as a unit. This plot shows a nice trend, with months from May to August showing an increase on the number of steps. Keep in mind that November will show little average steps because for that month we have incomplete data (last day in database is `r steps %>% pull(dateTime) %>% last()`),  
+
+```{r}
+#| label: steps-3
+#| cache: true
+#| warning: false
+#| message: false
+daily_steps <- steps %>% group_by(dateTime) %>%
+         summarise(total_value = unique(total_value))
+
+ggplot(daily_steps,
+       aes(dateTime, total_value))+
+  geom_smooth(method = "loess", color ="black")+
+  scale_y_continuous(labels = scales::label_number_si())+
+  labs(y="Daily Number of Steps", 
+       x="",
+       title="Daily step average by date",
+       caption="@NeuroMLA")+
+  scale_x_date(breaks="3 months",
+               date_labels = "%b-%Y")
+  
+
+```
+
+At this part of the analysis, I should make clear that I took vacations from `2019-06-27` to `2019-07-11`. We will use this information in the analysis to make some things clear.
+
+```{r}
+#| label: vacations
+# make vector
+vacations <- seq(from = as.Date("2019-06-27"), to = as.Date("2019-07-11"), by = "1 day")
+# add it to daily_steps
+daily_steps <- mutate(daily_steps, vacations = dateTime %in% vacations)
+# Since we are here, let's add the weekdays
+
+daily_steps <- daily_steps %>%
+         mutate(wday = lubridate::wday(dateTime, week_start = 1, label=TRUE))
+
+
+```
+
+
+## Distribution
+
+We looked at the average daily steps for each month, how about the distribution of daily steps? We see that most days I come quite close to the default target of 10K steps. There are some days with very little steps (see below) and, obviously, some days with extreme number of steps.
+
+```{r}
+#| label: typical-events
+
+daily_steps %>%
+  ggplot(aes(total_value))+
+  geom_density(fill="gray50")+
+  geom_vline(xintercept =
+               c(median(daily_steps$total_value),
+                        10000),
+                            lty=2)+
+  annotate("text", x = 10300, y = 5 * 10^-5,
+           label = "Target 10K",
+           angle = 90, color = "white")+
+  annotate("text",
+           x = median(daily_steps$total_value) - 400,
+           y = 5 * 10^-5,
+           label = paste0("median: ",
+                      median(daily_steps$total_value)),
+           color = "white", angle = 90)+
+ scale_y_continuous(
+    labels = scales::label_scientific()) +
+  scale_x_continuous(
+    labels = scales::label_number(
+      scale_cut = scales::cut_short_scale())) + 
+  labs(x="Total number of steps in a day",
+       y="Density")
+  
+```
+
+## Extreme events
+
+Using the boxplot below, we can define *extreme events* as instances where I walked more than 20K steps. I chose to plot this by day of the week, to get an insight about periodicity of events.
+
+```{r}
+box_plot <- ggplot(daily_steps,
+       aes(wday, total_value, group=wday))+
+  geom_boxplot()+
+  theme_bw()+
+  labs(title="Total steps by day of the week",
+       y="Total steps in a day",
+       x="") +
+    scale_y_continuous(
+    labels = scales::label_number(
+      scale_cut = scales::cut_short_scale()))
+
+box_plot
+```
+
+Because I walked a lot during the vacations, I highlighted the days on top of the previous boxplot. Most of the extreme events are definitely during the vacations. Moreover, none of the days I walked less than 10K steps, pretty amazing!
+
+```{r}
+#| label: vacations-2
+
+box_plot + geom_point(data = filter(daily_steps, vacations == TRUE),
+                      aes(wday, total_value),
+                      color = "red")+
+  labs(subtitle="Points colored in red highlight vacations.")
+
+```
+
+
+There are some extreme *low* events, these are quite likely the days I just don't wear the fitbit (or days I forget to wear it for most of the day). Just because I can order the data and make another plot, I went ahead and did it!
+
+
+```{r}
+#| label: arranged-steps
+
+arranged_steps <- daily_steps %>%
+  arrange(desc(total_value)) 
+
+arranged_steps <- arranged_steps %>%
+  mutate(step_order = 1:nrow(arranged_steps))
+  
+# get the below 1000 days
+below_1000 <- arranged_steps %>% filter(total_value < 1000)
+
+above_20K <- arranged_steps %>% filter(total_value > 20000)
+
+ggplot(arranged_steps, 
+       aes(step_order,
+           total_value)) +
+  geom_hline(yintercept = median(daily_steps$total_value), lty=2) +
+  ggforce::geom_mark_rect(data = below_1000, description = 'Fitbit at home',
+                          radius = unit(2.5, 'mm'),
+                          expand = unit(6, "mm"),
+                          color="red", 
+                          label.colour = "red",
+                          con.colour = "red", con.type = "straight") +
+  ggforce::geom_mark_rect(data = above_20K, description = 'Vacations',
+                          radius = unit(2.5, 'mm'),
+                          expand = unit(2.5, "mm"),
+                          color="red", 
+                          label.colour = "red",
+                          con.colour = "red", con.type = "straight") +
+  geom_point(alpha = 0.5) +
+  geom_point(data = filter(above_20K, vacations == TRUE),
+                           aes(step_order, total_value), color="red") +
+  geom_point(data = below_1000,
+                           aes(step_order, total_value), color="red") +
+  theme_bw() +
+  scale_y_continuous(breaks = c(0, 10^4, 2*10^4, 3*10^4),
+                     labels = c("0", "10K", "20K", "30K")) +
+  labs(x = "Ranking",
+       y = "Total daily steps",
+       title = "Step distribution",
+       subtitle = "Horizontal line is the median.",
+       caption = "@NeuroMLA")
+
+
+```
+
+
+We usually go for walks on Saturdays and/or Sundays. Knowing this little piece of data, it's quite expected to see Saturdays being the days with higher number of steps (and hence higher success rate on the 10K target). 
+
+
+```{r}
+daily_steps %>%
+         mutate(wday = lubridate::wday(dateTime, week_start = 1, label=TRUE),
+                goal = ifelse(total_value > 10000,
+                              "10K+", "<10K")) %>%
+  ggplot(aes(x=wday, fill=goal))+
+  geom_bar(position = "fill") +
+  scale_y_continuous(labels = scales::percent,
+                     expand = expansion(add = c(0, 0.05)))+
+  coord_flip()+
+  scale_fill_brewer(palette = "Set1",
+                    guide = guide_legend(reverse = TRUE))+
+  theme_minimal() +
+  theme(legend.position = "bottom", panel.grid = element_blank())+
+  labs(fill="10K steps?", 
+       x="", y="Days with 10K achievement (%)")
+```
+
+## Season
+
+I want to turn the focus now to the seasonality of the data. I will use a helper function `getSeason()` that I took from [StackOverflow](https://stackoverflow.com/questions/9500114/find-which-season-a-particular-date-belongs-to).
+
+```{r}
+#| label: helper
+#| echo: false
+
+# from here
+# https://stackoverflow.com/questions/9500114/find-which-season-a-particular-date-belongs-to
+
+getSeason <- function(DATES) {
+    WS <- as.Date("2012-12-15", format = "%Y-%m-%d") # Winter Solstice
+    SE <- as.Date("2012-3-15",  format = "%Y-%m-%d") # Spring Equinox
+    SS <- as.Date("2012-6-15",  format = "%Y-%m-%d") # Summer Solstice
+    FE <- as.Date("2012-9-15",  format = "%Y-%m-%d") # Fall Equinox
+
+    # Convert dates from any year to 2012 dates
+    d <- as.Date(strftime(DATES, format="2012-%m-%d"))
+
+    ifelse (d >= WS | d < SE, "Winter",
+      ifelse (d >= SE & d < SS, "Spring",
+        ifelse (d >= SS & d < FE, "Summer", "Fall")))
+}
+
+```
+
+We can inspect the effect of season on my walking.
+
+```{r}
+
+# levels = c("Spring", "Summer", "Fall", "Winter")
+season_colors <- c("#5EADBF", "#A60311", "#A67D03", "#3C1A2F") 
+
+daily_steps %>%
+  mutate(season = factor(getSeason(dateTime), levels = c("Spring", "Summer", "Fall", "Winter")),
+         year = lubridate::year(dateTime)) %>%
+  ggplot(aes(dateTime, total_value))+
+  geom_point(aes(color=season))+
+  scale_y_continuous(breaks = c(0, 10^4, 2*10^4, 3*10^4),
+                     labels = scales::unit_format(unit = "K", sep = "", scale = 10^-3)) +
+  theme_bw() +
+  labs(y="Daily Number of Steps", 
+       x="",
+       title="Daily number of steps by date",
+       caption="@NeuroMLA")+
+  scale_x_date(#breaks="3 months",
+               date_labels = "%Y-%b") +
+  theme(legend.position = "bottom") +
+  scale_color_manual(values = season_colors)
+# facet_grid does not really help
+# facet_grid(year ~ season)+
+
+```
+
+
+The plot above is not good, it fails to communicate. I think this is a better way to show the data. 
+
+```{r}
+# levels = c("Spring", "Summer", "Fall", "Winter")
+season_colors <- c("#5EADBF", "#A60311", "#A67D03", "#3C1A2F") 
+
+daily_steps %>%
+  mutate(season = factor(getSeason(dateTime), levels = c("Spring", "Summer", "Fall", "Winter")),
+         year = lubridate::year(dateTime)) %>%
+  ggplot(aes(season, total_value, color = season)) +
+  ggbeeswarm::geom_quasirandom(show.legend = FALSE) +
+  scale_color_manual(values = season_colors) +
+  scale_y_continuous(breaks = c(0, 10^4, 2*10^4, 3*10^4),
+                   labels = scales::unit_format(unit = "K", sep = "", scale = 10^-3)) +
+  theme_bw() +
+  labs(y="Daily Number of Steps", 
+       x="",
+       title="Daily number of steps by date",
+       caption="@NeuroMLA")
+```
+
+
+## A year's heart rate in one plot
+
+I'm borrowing **heavily** from [Nick](https://livefreeordichotomize.com/2017/12/27/a-year-as-told-by-fitbit/) here. But I thought it was a brilliant plot, so I took it for a ride with my data. I actually changed a few things, I decided to keep the native sampling rate and use `geom_line()` instead of down-sampling and using `geom_tile()`. The overall trend is clear, movements during the morning and the afternoon that correlate well with going and coming back from work. Somewhere around July 2019 you can see the change in timezone when I took vacations. There are a couple of days in late May with continuously high or lacking values, I take this as one of the days I forgot the fitbit at home, likely spurious measures. 
+
+```{r}
+#| label: hear-rate
+#| eval: false
+
+heart %>%
+    ggplot(aes(dataset_time, dateTime, color = value)) +
+  # geom_point(pch="|")+
+    geom_line(aes(group = dateTime)) +
+    my_hour_scale +
+   scale_y_date(date_labels = "%Y-%b", expand = c(0, 0)) +
+   scale_color_gradientn(guide = "legend", colours = RColorBrewer::brewer.pal(n = 9, name = "Oranges")) +
+    theme_minimal() +
+    theme(
+      legend.position = "bottom",
+      panel.grid.major = element_blank(),
+      panel.grid.minor = element_blank()
+    )+
+    labs(y="", 
+       x="",
+       title = "Heart Rate",
+       subtitle = "Each row represents one day.",
+       caption="@NeuroMLA")-> heart_plot
+
+#ggsave(plot = heart_plot, "heart_plot.png")
+```
+
+![](heart_plot.png)
+
+## Code
+
+The code for this post is quite long and I thought it would get in the way. I am happy to share upon request, hit me up on [Twitter](https://twitter.com/NeuroMLA) or in the comments below.
+
+## Sources
+
+* https://livefreeordichotomize.com/2017/12/27/a-year-as-told-by-fitbit/

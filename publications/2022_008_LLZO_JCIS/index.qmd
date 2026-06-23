@@ -1,0 +1,15 @@
+---
+title: "On the interfacial lithium dynamics in Li7La3Zr2O12: poly (ethylene oxide)(LiTFSI) composite polymer-ceramic solid electrolytes under strong polymer phase confinement"
+author: ["Mauricio R. Bonilla", "Fabián A. García Daza", "Henry A Cortés", "Javier Carrasco", "Elena Akhmatskaya"]
+date: 2022-10-01
+publication: "Journal of colloid and interface science, **623**, 870–882 (2022)."
+categories: ["SSBs"]
+url_source: https://doi.org/10.1016/j.jcis.2022.05.069
+url_preprint:
+journ: "ACS Applied Materials & Interface"
+issue: 623
+page: 870–882
+year: 2022
+image: featured.png
+pub_number: 8
+---

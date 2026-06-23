@@ -1,0 +1,28 @@
+---
+title: Art in a New Year
+date: 2021-01-02
+categories: ["generative-art","R"]
+---
+
+I have not made resolutions for this year[^notreally]. I have instead spent that time playing with patterns on a canvas. It's been a while since I wanted to have some time to do generative art using geometric figures and I finally got down to it on the very first day of this year. I found a fountain of joy after just a few hours of tinkering, something inside tells me this could be a new New Year's tradition for me.
+
+
+I started out with a simple form like a hexagon and started looking for patterns that were appealing to me, like the color palette. 
+
+![](img/hex_057.png)
+
+Something that I like about generative art is that I'm not in control, it's a discovery process. I just set a few rules and pleasant aesthetics appear before me. The patterns might appear by design, but often they are the result of a benign error that created something beautiful. After tinkering with these patterns for a bit, I arrived at these new forms. They take me to a special place.
+
+I have selected some of the results that I like the most below.
+
+
+![](img/RP_020.png)
+![](img/RP_073.png)
+![](img/RP_090.png)
+![](img/RP_098.png)
+![](img/RP_099.png)
+![](img/RP_100.png)
+
+
+
+[^notreally]: Well, at least not in the classical way, mostly just wishing we could get back to normal life sometime before 2022.

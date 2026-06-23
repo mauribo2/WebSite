@@ -1,0 +1,91 @@
+---
+title: "t-tests for correlation"
+date: 2018-04-20
+categories: ["teaching"]
+---
+
+I have been having a recurrent nightmare in the Statistics class I'm teaching. The nightmare goes like:  
+
+> We used an independent sample t-test and found a significant correlations (t(df)=...).
+
+It also comes in the shape of non-significant data, maybe even more haunting than the first version.
+
+> We found a non-significant difference between Factor level A (M= ..., SD= ... ) and Factor level B (M= ..., SD= ...), meaning there is a negative correlation between Factor and response variable.
+
+These phrases are not actual statements made by my students on paper **but** they come quite close. I have been trying to wrap my head around their confusion between correlation and t-test, which persists even though I remove points on papers and make announcements in class. It persists whether I repeat the material from a different angle, draw stuff on the board, and have face to face interaction with firm believers of the *t-correlation* theory. I have made frustrated comments during TA meetings only to find that other TAs experience the same issue. One of the TAs was adamant about it, she even makes them sing! But the confusion is still intact.
+
+## How to
+
+It's not my full intention to preach about what a *t-test* or a correlation analysis are (although see below). I'm trying to figure out what makes students be so confused about these two. More thoughts on this topic will come in the near future.
+
+## Two different worlds
+
+Correlation and factor analysis are essentially different. Continuous vs discrete. A car's transmission can be automatic *or* manual. There is no scale, no range of values. We can study how a continuous variable (such as miles per gallon) is affected by the type of transmission.
+
+```{r}
+#| label: factor-t
+#| echo: !expr F
+#| warning: !expr F
+
+suppressPackageStartupMessages(library(ggplot2))
+mtcars$am_factor <- ifelse(mtcars$am==0, 'Automatic', 'Manual')
+ggplot(mtcars, aes(am_factor, mpg)) +
+  geom_point(size=2, alpha=0.8) +
+  xlab("Transmission") +
+  ylab("Miles per gallon") +
+   theme_light() + theme(text = element_text(size=20))
+
+```
+
+Moreover, we are trying to collapse the groups into a comparison of their means, standard deviations, and N. But let's focus on the means, let's reduce the previous scatterplot to two dots.
+
+```{r}
+#| label: mean-comp
+#| echo: !expr F
+
+ggplot(mtcars, aes(am_factor, mpg)) +
+  stat_summary(fun.y = 'mean', geom='point', size=2, color='red')+
+  xlab("Transmission") + ylim(10, 35) +
+  ylab("Miles per gallon") +
+   theme_light() + theme(text = element_text(size=20))
+
+```
+
+The underlying question is: Are these 2 values *statistically* different? We can test for it, using a t-test!
+
+```{r}
+#| label: am-ttest
+#| echo: !expr F
+
+ttest_table <- broom::tidy(t.test(mpg~am, data=mtcars))
+
+```
+
+Using a *t-test*, we can find that the magnitude of the difference between groups is `r abs(round(ttest_table$estimate, 3))`, which is unlikely to be found by chance. If our assumptions hold, the probability of finding such a difference when there is none is p=`r round(ttest_table$p.value, 3)`.
+
+On the other hand, we could be interested in studying the relationship between two continuous variables. The nature of these variables is fairly different from discrete ones. Both variables are unconstrained regarding the values they can take (Big, small and fractions allowed!). In this case, we can take a look at how the weight of cars is related to the miles per gallon.  
+
+```{r}
+#| label: wt-mpg
+#| echo: !expr F
+
+ggplot(mtcars, aes(wt, mpg)) + geom_point(size=2, alpha=0.8) +
+  theme_light() + 
+  ylab("Miles per gallon") +
+  xlab("Weight (1000 lbs)")+ 
+  theme(text = element_text(size=20))
+
+```
+
+
+We would see that, overall, heavier cars tend to be able to drive less miles per gallon of gas. In principle, with a correlation analysis we wouldn't be able to establish causal relationships. Is it the weight causing the mileage per gallon to go down? We can't address that question with this type of analysis. But we can test whether there is a *significant* association using a linear correlation test.
+
+```{r}
+#| label: cor-test
+#| echo: false
+
+cor_test_table <- broom::tidy(with(mtcars, cor.test(wt, mpg)))
+
+```
+
+The correlation analysis shows a significant negative correlation (r = `r round(cor_test_table$estimate, 3)`), which is different from zero, unlikely to be found by chance (p = $`r cor_test_table$p.value`$).

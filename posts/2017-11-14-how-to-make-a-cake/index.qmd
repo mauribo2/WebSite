@@ -1,0 +1,46 @@
+---
+title: How do *you* make a cake?
+date: 2017-11-14
+categories: ["teaching","learning"]
+---
+
+This post is inspired by my brief experience with the education system in the United States (US) and the way some students approach learning. I do not know what it is. Maybe it has to do with the tsunami of multiple-choice exams they have to go through, or the endless preparation for another standardized test on the horizon, or the glorification of the *take-home message* culture.
+
+I wrote a question for an assignment that was pointing towards mechanisms at the level of the synapse that could result in drug tolerance. The question went something like
+
+> What is the mechanism of action of XYZ at the synapse and how is it related to tolerance?
+
+All students had one week to write answers and submit. One student came to talk right after class finished and asked for clarification on the question. The student was confused about what would the expected answer be. As you can see, it is not possible to answer the question by guessing between *quite wrong* and *less wrong* options; you have to know what XYZ does and some bits and pieces that make up synapses. Finally, you have to write something coherent.
+
+If I was given this question, my first impulse is to go to Google. The original question was a bit more general, so I will not search for a particular drug. Let's google:
+
+![](Google_Tolerance_Mechanisms.JPG){fig-align="center"}
+
+This experience gets you towards a good number of resources, some of my favorite are:
+
+-   [Wikipedia](https://en.wikipedia.org/wiki/Drug_tolerance)
+-   [Neurowiki](http://neurowiki2013.wikidot.com/individual:tolerance)
+
+Both of which have enough material to answer the question. I also want to make a honorable mention to Google Images, there's plenty cartoon synapses and cascades there.
+
+But my experience went a little different. The student was looking for a magic word that would solve the problem. She was looking for naming nodes and not for explaining mechanisms. Actually, it didn't take long to realize that the student was actually not sure about what a mechanism was.
+
+## How do you make a cake?
+
+> Me: How do you make a cake?\
+> Student: You take the list of ingredients and put them in the oven.
+
+That was not the answer I was looking for. At that moment, I realized how important was for me to receive the kind of education I received. I was taught to look for processes, not to rush for the answer. But the underlying idea of *a sequence of steps* had to be there, so I looked for it and it appeared:
+
+> Me: So...you take the piece of paper, with the list of ingredients and you bake it?\
+> Student: No...(rolls eyes, explains better)
+
+How could it be possible? The student knew what we were talking about and had understanding about the fact that there is a the sequence of events causally interconnected. However, making the same connection for the assignment question did not come as easy. This was a good student, my concern started growing. In other words, I had failed in writing the exercise in terms that were easy to relate, the question was vague and did not point towards a clear path to answer it.
+
+## A wave of uncooked cakes
+
+The truth is that, when the assignments came back, most of the students failed to recognize what the question was aiming towards. Many used phrases like "Dopamine is a mechanism" or "Dopamine receptor is a mechanism". So we went along and tried to cook [the best chocoloate cake {ever}](https://addapinch.com/the-best-chocolate-cake-recipe-ever/). I believe this exercise was good for working from the concrete up, into more abstract, general ideas of what a mechanism is.
+
+I assume most of the fault about the wording, but I cannot disregard completely students' responsibility. My guess is that part of this issue had to do with the way some students approach the exercises. They are looking for the quickest way to solve it, normally a noun to name a node of the network. *Flour* is an ingredient of cakes, but yelling it to my face does not help me understand how to make one. The question is about *how* flour gets modified into cake. The question needs you to tell me the story of the ingredients and how they become related to one another.
+
+These things don't come naturally, they are acquired through a lifetime of thinking and rethinking. What concerns me the most are the general education they received; what are the relevant predictors of success in learning? what are the ways to acquire and consolidate knowledge they have been taught? Maybe that's why there was a mismatch after all.

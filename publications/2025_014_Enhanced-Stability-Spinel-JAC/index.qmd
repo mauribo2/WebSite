@@ -1,0 +1,15 @@
+---
+title: "Enhanced stability of spinel LiMn1.5Ni0.5O4 with V doping for high-voltage Li-ion batteries in organic and ionic liquid electrolytes"
+author: ["Héctor D. Agudelo", "Ferley A. Vasquez", "Jorge A. Calderón", "Roberto M. Torresi", "Eduardo Carmine", "Bikram Kumar Das", "Henry A. Cortés", "Mauricio Rincón Bonilla", "Elena Akhmatskaya"]
+date: 2025-08-14
+publication: "Journal of Alloys and Compounds, **1039**, 183060 (2025)."
+categories: ["Li-ion"]
+url_source: https://doi.org/10.1016/j.jallcom.2025.183060
+url_preprint:
+journ: "Journal of Alloys and Compounds"
+issue: 1039
+page: 183060
+year: 2025
+image: featured.png
+pub_number: 14
+---

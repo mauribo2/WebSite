@@ -1,0 +1,34 @@
+---
+title: Hydrogen -  metal alloys interactions
+alias: &ALIAS Hembrittlement
+image: featured.png
+listing:
+  id: pubs
+  template: ../../_ejs/publications-people.ejs 
+  contents: ../../publications/**/*.qmd
+  sort: "date desc"
+  # sort-ui: true
+  filter-ui: true
+  include:
+    categories: *ALIAS
+  fields: [publication, title, categories, image, date, author]
+
+---
+Understanding the interactions between hydrogen and metal alloys is fundamental to developing durable, cost-effective materials capable of withstanding hydrogen-induced embrittlement, which otherwise leads to mechanical degradation and failure.
+
+ My research in this field focuses on three primary areas: 
+
+ - Understanding how different solutes impact hydrogen trapping and diffusion in steels;\
+ - developing advanced simulation schemes, such as on-the-fly kinetic/grand canonical Monte Carlo, to bridge the gap between atomistic effects and macroscopic mechanical behavior; and \
+- unraveling the influence of magnetic ordering on hydrogen dynamics in metals at low temperatures.
+
+<figure style="text-align: center;">
+    <img src="featured.png" alt="Featured Image" style="display: block; margin-left: auto; margin-right: auto; width: 700px; height: auto;">
+</figure>
+
+
+## Related Publications
+
+
+:::{#pubs}
+:::

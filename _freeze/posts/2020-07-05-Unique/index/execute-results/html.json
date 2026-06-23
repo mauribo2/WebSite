@@ -1,0 +1,14 @@
+{
+  "hash": "6f6dd42e376669cfd814d4571b1ef963",
+  "result": {
+    "markdown": "---\ntitle: Unique\ndate: 2020-07-05\ncategories: [\"fun\", \"python\", \"R\"]\nmathjax: true\n---\n\n\nI have experienced a few explosions here and there. Yes, it's me not reading the docs. But it's also me, assuming that verbs mean one thing and not another. Let's do some `unique` operations in different languages.\n\n### The MATLAB way\n\n```\n>> unique([3, 3, 3, 90, 10])\n\nans =\n\n3 10 90\n```\n\n### The Python way\n\n```\n>>> import numpy as np\n>>> np.unique([3, 3, 3, 90, 10])\narray([ 3, 10, 90])\n```\n\n### The R way\n\n\n::: {.cell}\n::: {.cell-output .cell-output-stdout}\n```\n[1]  3 90 10\n```\n:::\n:::\n\n\nThis is what I would expect. I want the unique values, **without** the sorting. If I wanted to sort, I would do:\n\n\n::: {.cell}\n::: {.cell-output .cell-output-stdout}\n```\n[1]  3 10 90\n```\n:::\n:::\n\n\nMaybe this is just me and R is the odd (read intuitive) ball here, but 🤷...\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

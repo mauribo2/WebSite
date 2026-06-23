@@ -1,0 +1,64 @@
+---
+title: Icebreaker
+date: 2021-04-25
+---
+
+There are many managers I admire, some of whom I was lucky personally meet, others I "know" through reading their books/blogs.
+
+I have have borrowed different questions and suggestions I liked from these managers to create an *Icebreaker*, a set of questions that can quickly provide me information about a new person I'm working with. At the same time, I wrote this post to provide new people in our team with basic knowledge about me, the new person they are working with.
+
+Here are the questions and my answers[^change].
+
+[^change]: My own answers might change overtime, I will try my best to keep a note of that change in this log.
+
+* **Would you say you are a morning person?**
+
+Average. As of 2021, I am transitioning from night owl to early bird. Ask me again in a couple years.
+
+- **Do you like to be praised? Is it better to receive praise in public or in private?**
+
+I generally dislike to be praised. If anything must be said, I prefer that private and informal.
+
+- **What is your preferred method of communication for feedback?**
+
+Unless it's concrete feedback about a piece of work, something that is better written onto the work itself (e.g., code comments), I prefer conversation during a meeting. Written communication must be super accurate to avoid misunderstandings.
+
+- **When do you prefer to receive feedback—routinely in 1:1s, or as-it-happens?**
+
+Both.
+
+- **What’s your favorite way to treat yourself?**
+
+Food.
+
+- **What makes you grumpy or turns you off?**
+
+In general, having to do too many thing at the same time makes me grumpy and turns me off. Scheduling conflicts turn me off.
+
+- **How will I know you are not in good mood?**
+
+My face will be good evidence.
+
+- **Human learning and growth requires the right amount of four things: new challenges, low ego, space to reflect and brainstorm, and timely and clear feedback. How are these four going for you? Is there one you need more or less of?**
+
+I believe I need more time to reflect and brainstorm. I have a thing for going after that new shiny challenge and investing more time on that than something that has known problems that must be solved.
+
+- **What type of people do you normally work best with?**
+
+I work best with people who communicate often and honor commitments. I work best with people who communicate with candor and create an atmosphere of trust where we can say things to each other because everyone wants the best for their teammate.
+
+- **What do you need from your teammates?**
+
+Advice. Guidance. Intellectual stimulation.
+
+- **What do you need from your manager?**
+
+Advice. Guidance. Intellectual stimulation. Space to think, support to do, pressure to maintain my work level and keep improving.
+
+- **How do I know when not to interrupt you?**
+
+In general you can interrupt me. When I'm coding or reading are two of the worst moments though.
+
+- **What are the manager behaviors that you know you hate?**
+
+Displays of preference towards a member of the team. Being extremely hands-off, especially as a result of not liking the member's work or the outcomes the work is generating.
