@@ -70,22 +70,22 @@ European Commission - *2019*
 
 ## Selected Conference Talks
 
-- Bonilla, M.R., Cortés H.A., Akhmatskaya E.  Decoding Structure-Transport Relationships in Li7La3M2O13 (M = Nb, Ta) Garnets via ML Driven Simulation and Analysis. *E-MRS Fall Meeting 2026 symposium: From Atoms to Applications: Multiscale Modelling and Data-Driven Strategies for Advanced Materials.* Warsaw, Poland. Sep. 16–17, **2026** (**invited**).
-- Bonilla, M.R., Cortés H.A., Akhmatskaya E. Unsupervised framework for automating the analysis of structure and diffusion in solid-state electrolytes from atomistic simulations. *Materials Development for Batteries (MDB): Progresses and Challenges*. Seoul, South Korea. Sep. 29 – Oct. 3, **2025** (**invited**).
-- Akhmatskaya, E.,  Cortés, H.A., Bonilla, M.R., Teruel, A., Melnik, R. Screening Energetically Stable Structures of LLZO garnets for Lithium-Ion Battery Applications. *XI International Conference on Coupled Problems in Science and Engineering COUPLED PROBLEMS 2025*. Villasimius, Italy, May 25-28 **2025** (**invited**).
-- Bonilla M. R., Cortés H.A., Akhmatskaya E. Uunsupervised learning framework for unraveling the structure-conductivity link in solid-state electrolytes. *247th Electrochemical Society Meeting*. Montréal, Canada, May 18 – 22, **2025**.
-- Kumar B. D., Bonilla M. R., Chakraborty P., Akhmatskaya E. The role of manganese and aluminium on hydrogen trapping and diffusion in Mn/Al rich steel alloys. *Annual Conference of the German Physics Society (DPG)*. Berlin, Germany, Mar. 17 – 22, **2024** (**speaker**).
-- Bonilla M.R., Das B.K., Goswami K., Akhmatskaya, E. Modelling and Simulation of hydrogen diffusion and embrittlement in steels. *ECMI 2023 EU-MATHS-IN minisymposium: Success Stories of Mathematical Technologies in Societal Challenges and Industry*. Wrocław, Poland, Jun. 26-30, **2023** (**invited**).
-- Bonilla M.R., Akhmatskaya E. Interfacial physics of polymer/oxide interfaces in electrolyte materials: an atomistic approach. *Dynamical Systems Applied to Biology and Natural Science - DSABNS 2023*. Bilbao, Spain. Feb. 5-8, **2023** (**invited**). 
-- Bonilla M.R. Atomistic modelling of embrittlement in complex alloys. *1st Conference on Advance Materials in Spain AMats*. Valencia, Spain. Nov. 7-9, **2022** (**invited**).
-- Bonilla M. R., García-Daza F., Cortés H.A., Carrasco J., Akhmatskaya E. Towards a molecular understanding of the interfacial Li-ion dynamics in composite solid-state electrolytes: the case of polyethylene oxide: Li7La3Zr2O12 Composites. *Materials Research Society - Fall Meeting*. Boston, USA, Nov. 26 – Dec. 2, **2022**.
-- Bonilla M.R., García-Daza F., Carrasco J., Akhmatskaya, E. Modelling and simulation of polymer/ceramic composite electrolyte materials using molecular dynamics simulations. *Dynamical Systems Applied to Biology and Natural Science - DSABNS 2022*. Bilbao, Spain. Feb. 8 - 11, **2022** (**invited**). 
-- Bonilla M.R., García-Daza F., Carrasco J., Akhmatskaya E. Towards a molecular understanding of the interfacial Li-ion dynamics in composite solid-state electrolytes: the case of polyethylene oxide: Li7La3Zr2O12 composites. *Materials Oceania*. Virtual. Oct. 11-14, **2021** (**invited**).
-- Bonilla M.R., García-Daza F., Carrasco J., Akhmatskaya E. Exploring Interfacial Li-ion exchange in PEO:LLZO composite solid electrolytes for all-solid-state Li-ion batteries. *European Materials Research Society - Fall Meeting*. Virtual. Sep. 20 - 23, **2021**.
-- Bonilla M.R., García-Daza F., Fernandes-Pendás M., Carrasco J., Akhmatskaya, E. Multiscale modelling of ionic conduction in advanced battery materials. *VIII International Conference on Coupled Problems in Science and Engineering*. Sitges, Spain, Jun. 3 - 5, **2019** (**invited**).
-- Bonilla M.R., Lozano A., Escribano B., Carrasco J., Akhmatskaya E. Force field development and advanced force-field simulation of diffusion in solid energy materials. *7th EuCheMS Chemistry Congress*. Liverpool, UK. Aug. 26 - 30, **2018**.
-- Bonilla M.R. Lozano A., Escribano B., Carrasco J., Akhmatskaya E. Transport of Na in NaxFePO4 cathode material: insights from advanced force-field molecular simulations. *European Materials Research Society - Spring Meeting*. Strasbourg, France. Jun. 18 - 22, **2018**.
-- Bonilla M. R. Lessons on cell wall mechanics from the mechanical analysis of bacterial cellulose. *Multiscale Modeling of Cell Wall Mechanics and Growth in Walled Cells*. Banff, Canada, Oct. 18 - 23, **2015** (**invited**).
+- **Bonilla, M.R.***, Cortés, H.A., Das B.K., Früchtl H., van Mourik T., Thangadurai V., Akhmatskaya, E. Mitigating Aluminium Contamination in Garnet Solid Electrolytes via Rational Substrate Design. *Materials Development for Batteries (MDB): Progresses and Challenges*. Seoul, South Korea. Sep. 29 – Oct. 3, **2026** (**invited**).
+- **Bonilla, M.R.***, Cortés H.A., Akhmatskaya E.  Decoding Structure-Transport Relationships in Li7La3M2O13 (M = Nb, Ta) Garnets via ML Driven Simulation and Analysis. *E-MRS Fall Meeting 2026 symposium: From Atoms to Applications: Multiscale Modelling and Data-Driven Strategies for Advanced Materials.* Warsaw, Poland. Sep. 16–17, **2026** (**invited**).
+- **Bonilla, M.R.***, Cortés H.A., Akhmatskaya E. Unsupervised framework for automating the analysis of structure and diffusion in solid-state electrolytes from atomistic simulations. *Materials Development for Batteries (MDB): Progresses and Challenges*. Seoul, South Korea. Sep. 29 – Oct. 3, **2025** (**invited**).
+- Akhmatskaya, E.,  Cortés, H.A., **Bonilla, M.R.***, Teruel, A., Melnik, R. Screening Energetically Stable Structures of LLZO garnets for Lithium-Ion Battery Applications. *XI International Conference on Coupled Problems in Science and Engineering COUPLED PROBLEMS 2025*. Villasimius, Italy, May 25-28 **2025** (**invited**).
+- **Bonilla, M.R.***, Cortés H.A., Akhmatskaya E. Uunsupervised learning framework for unraveling the structure-conductivity link in solid-state electrolytes. *247th Electrochemical Society Meeting*. Montréal, Canada, May 18 – 22, **2025**.
+- Kumar B. D., **Bonilla, M.R.***, Chakraborty P., Akhmatskaya E. The role of manganese and aluminium on hydrogen trapping and diffusion in Mn/Al rich steel alloys. *Annual Conference of the German Physics Society (DPG)*. Berlin, Germany, Mar. 17 – 22, **2024** (**speaker**).
+- **Bonilla, M.R.***, Das B.K., Goswami K., Akhmatskaya, E. Modelling and Simulation of hydrogen diffusion and embrittlement in steels. *ECMI 2023 EU-MATHS-IN minisymposium: Success Stories of Mathematical Technologies in Societal Challenges and Industry*. Wrocław, Poland, Jun. 26-30, **2023** (**invited**).
+- **Bonilla, M.R.***, Akhmatskaya E. Interfacial physics of polymer/oxide interfaces in electrolyte materials: an atomistic approach. *Dynamical Systems Applied to Biology and Natural Science - DSABNS 2023*. Bilbao, Spain. Feb. 5-8, **2023** (**invited**). 
+- **Bonilla, M.R.*** Atomistic modelling of embrittlement in complex alloys. *1st Conference on Advance Materials in Spain AMats*. Valencia, Spain. Nov. 7-9, **2022** (**invited**).
+- **Bonilla, M.R.***, García-Daza F., Cortés H.A., Carrasco J., Akhmatskaya E. Towards a molecular understanding of the interfacial Li-ion dynamics in composite solid-state electrolytes: the case of polyethylene oxide: Li7La3Zr2O12 Composites. *Materials Research Society - Fall Meeting*. Boston, USA, Nov. 26 – Dec. 2, **2022**.
+- **Bonilla, M.R.***, García-Daza F., Carrasco J., Akhmatskaya, E. Modelling and simulation of polymer/ceramic composite electrolyte materials using molecular dynamics simulations. *Dynamical Systems Applied to Biology and Natural Science - DSABNS 2022*. Bilbao, Spain. Feb. 8 - 11, **2022** (**invited**). 
+- **Bonilla, M.R.***, García-Daza F., Carrasco J., Akhmatskaya E. Towards a molecular understanding of the interfacial Li-ion dynamics in composite solid-state electrolytes: the case of polyethylene oxide: Li7La3Zr2O12 composites. *Materials Oceania*. Virtual. Oct. 11-14, **2021** (**invited**).
+- **Bonilla, M.R.***, García-Daza F., Carrasco J., Akhmatskaya E. Exploring Interfacial Li-ion exchange in PEO:LLZO composite solid electrolytes for all-solid-state Li-ion batteries. *European Materials Research Society - Fall Meeting*. Virtual. Sep. 20 - 23, **2021**.
+- **Bonilla, M.R.***, García-Daza F., Fernandes-Pendás M., Carrasco J., Akhmatskaya, E. Multiscale modelling of ionic conduction in advanced battery materials. *VIII International Conference on Coupled Problems in Science and Engineering*. Sitges, Spain, Jun. 3 - 5, **2019** (**invited**).
+- **Bonilla, M.R.***, Lozano A., Escribano B., Carrasco J., Akhmatskaya E. Force field development and advanced force-field simulation of diffusion in solid energy materials. *7th EuCheMS Chemistry Congress*. Liverpool, UK. Aug. 26 - 30, **2018**.
+- **Bonilla, M.R.*** Lozano A., Escribano B., Carrasco J., Akhmatskaya E. Transport of Na in NaxFePO4 cathode material: insights from advanced force-field molecular simulations. *European Materials Research Society - Spring Meeting*. Strasbourg, France. Jun. 18 - 22, **2018**.
 
 ---
 
@@ -160,3 +160,95 @@ Dates: July-2012 – Nov-2012 (Predoctoral). \
 Host: Emeritus Prof. Jörg Kärger (kaerger@physik.uni-leipzig.de). 
 
 ---
+
+## Full list of publications (last updated Jun 24, 2026)
+
+*Corresponding author (journal percentiles from Scopus at the year closest to publication)\
+
+-   Yang, M., Chen, Y., **Bonilla, M.R.**, Cortés, H.A., Das, B.K., Akhmatskaya, E. Surface chemistry and electrolyte concentration govern early-stage SEI formation on graphite anodes. *Computational Materials Science* (**2026**), 275, 115056. [https://doi.org/10.1016/j.commatsci.2026.115056](https://doi.org/10.1016/j.commatsci.2026.115056)
+
+-	Cortés, H.A., Das B.K., Früchtl H., van Mourik T., Thangadurai V., Akhmatskaya, E., **Bonilla, M.R.*** Garnets Li7La3M2O13 (M= Ta, Nb): Stable phases and superior ionic conductors? *Journal of Power Sources* (**2026**), 677, 240034 (D1). [https://doi.org/10.1016/j.jpowsour.2026.240034](https://doi.org/10.1016/j.jpowsour.2026.240034)
+
+-	Gong Y., Fan Y., Chen Y., **Bonilla, M.R.**, Cortés H.A., Gao C., Huang Y., Yang M. Interfacial Atomistic Evolution in Sodium‐Ion Battery using a Graph‐Theoretic Approach. *Small* (**2026**), 22, e11841 (D1). [https://doi.org/10.1002/smll.202511841](https://doi.org/10.1002/smll.202511841)
+
+-	Cortés, H.A., **Bonilla, M.R.**, Akhmatskaya, E. Unsupervised density-based method for analyzing ion mobility in crystalline solid-state electrolytes. *npj Computational Materials* (**2025**), 11, 368 (D1). [https://doi.org/10.1038/s41524-025-01861-6](https://doi.org/10.1038/s41524-025-01861-6)
+
+-	Agudelo H.D., Vasquez F.A., Calderón J.A., Torresi R.M., Carmine E., Das B.K., Cortés H.A., **Bonilla M.R.**, Akhmatskaya E. Enhanced Stability of Spinel LiMn1.5Ni0.5O4 with V Doping for High-Voltage Li-Ion Batteries in Organic and Ionic Liquid Electrolytes. *Journal of Alloys and Compounds* (**2025**), 1039, 183060 (Q1). [https://doi.org/10.1016/j.jallcom.2025.183060](https://doi.org/10.1016/j.jallcom.2025.183060)
+
+-	Das B.K., Cortés H.A., **Bonilla M.R.**, Yang M., Carrasco J., Akhmatskaya E. DMC matters: the role of dimethyl carbonate in SEI formation on oxygen functionalized anodes. *Journal of Materials Chemistry A* (**2025**), 13, 27557-27576 (D1). [https://doi.org/10.1039/D5TA02003D](https://doi.org/10.1039/D5TA02003D)
+
+-	Vallinayagam R.M.T., Quintana I., Akhmatskaya E., **Bonilla M.R.*** Strengths and Pitfalls of classical interatomic potentials for the modelling of hydrogen embrittlement in BCC-Fe: A benchmarking analysis. *Computational Materials Science* (**2025**), 258, 114042 (Q1). [https://doi.org/10.1016/j.commatsci.2025.114042](https://doi.org/10.1016/j.commatsci.2025.114042)
+
+-	**Bonilla M.R.**, Kannam S.K., Downton M.T., Doblin M.S., Bacic A., Gidley M.J., Stokes J.R. Micromechanical modelling of cellulose hydrogel composites based on coarse-grained molecular dynamics. *Soft Matter* (**2025**), 21, 5480-5493 (Q1). [https://doi.org/10.1039/D4SM01488J](https://doi.org/10.1039/D4SM01488J)
+
+-	Cortés H.A., **Bonilla M.R.**, Früchtl H.A., van Mourik T., Carrasco J., Akhmatskaya, E.A. Data-mining approach to understanding the impact of multi-doping on the ionic transport mechanism of solid electrolytes materials: the case of dual-doped Ga0.15/Sc-Li7La3Zr2O12. *Journal of Materials Chemistry A* (**2024**), 12, 5181-5193 (D1). [https://doi.org/10.1039/D3TA07036K](https://doi.org/10.1039/D3TA07036K)
+
+-	Das B.K., Chakraborty P., Lu M., **Bonilla M.R.**, Akhmatskaya E. The impact of Mn and Al on the trapping and diffusion of hydrogen in γ-Fe: An atomistic insight. *International Journal of Hydrogen Energy* (**2024**), 83, 731-744 (D1). [https://doi.org/10.1016/j.ijmecsci.2024.109689](https://doi.org/10.1016/j.ijmecsci.2024.109689)
+
+-	Li X., **Bonilla M.R.**, Lu M.,  Huang H. (**2024**) Atomistic understanding of ductile-to-brittle transition in single crystal Si and GaAs under Nanoscratch. *International Journal of Mechanical Sciences* (**2024**), 282, 109689 (D1). [https://doi.org/10.1016/j.ijmecsci.2024.109689](https://doi.org/10.1016/j.ijmecsci.2024.109689)
+
+-	López L., Jaramillo F., Calderón J.A., Tirado J.L., Akhmatskaya E., **Bonilla M.R.***. The crystal chemistry and reactivity of ternary Na2Fe3Cl8 from the NaCl-FeCl2 system and its potential application as coating layer for cathode in sodium ion batteries. *Journal of Alloys and Compounds* (**2023**), 968, 172123 (D1). [https://doi.org/10.1016/j.jallcom.2023.172123](https://doi.org/10.1016/j.jallcom.2023.172123)
+
+-	Cortés H.A., **Bonilla M.R.**, Marinero E., Carrasco J., Akhmatskaya E. Anion trapping and ionic conductivity enhancement in PEO-based composite polymer-Li7La3Zr2O12 electrolytes: the role of the garnet Li molar content. *Macromolecules* (**2023**), 56, 4256-4266 (D1). [https://doi.org/10.1021/acs.macromol.3c00568](https://doi.org/10.1021/acs.macromol.3c00568)
+
+-	**Bonilla M.R.***, García-Daza F., Cortés H.A., Carrasco J., Akhmatskaya, E. On the interfacial lithium dynamics in Li7La3Zr2O12:poly(ethylene oxide) (LiTFSI) composite polymer-ceramic solid electrolytes under strong polymer phase confinement. *Journal of Colloid and Interface Science* (**2022**), 623, 870-882 (D1). [https://doi.org/10.1016/j.jcis.2022.05.069](https://doi.org/10.1016/j.jcis.2022.05.069)
+
+-	Lopez-Sanchez P., Assifaoui A., Cousin F., Moser J., **Bonilla M.R.**, Ström A. Impact of glucose on the nanostructure and mechanical properties of calcium-alginate hydrogels. *Gels* (**2022**), 8, 71 (Q3). [https://doi.org/10.3390/gels8020071](https://doi.org/10.3390/gels8020071)
+
+-	**Bonilla M.R.***, García-Daza F., Aguesse F., Ranque P., Carrasco J., Akhmatskaya E. Unveiling interfacial Li-ion dynamics in Li7La3Zr2O12/PEO(LiTFSI) composite polymer-ceramic solid electrolytes for all-solid-state lithium batteries. *ACS Applied Materials & Interfaces* (**2021**), 13, 30653–30667 (D1). [https://doi.org/10.1021/acsami.1c07029](https://doi.org/10.1021/acsami.1c07029)
+
+-	Shewan H. M., Yakubov G.E., **Bonilla M.R.**, Stokes J.R. Viscoelasticity of non-colloidal hydrogel particle suspensions at the liquid–solid transition. *Soft Matter* (**2021**), 17, 5073-508 (Q1). [https://doi.org/10.1039/D0SM01624A](https://doi.org/10.1039/D0SM01624A)
+
+-	Lopez-Sanchez P., Martinez-Sanz M., **Bonilla M.R.**, Sonni F., Gilbert E.P., Gidley M.J. Nanostructure and poroviscoelasticity in cell wall materials from onion, carrot, and apple: roles of pectin. *Food Hydrocolloids* (**2020**), 98, 105253 (D1). [https://doi.org/10.1016/j.foodhyd.2019.105253](https://doi.org/10.1016/j.foodhyd.2019.105253)
+
+-	**Bonilla M.R.***, García-Daza F., Carrasco J., Akhmatskaya E. Exploring Li-ion conductivity in cubic, tetragonal, and mixed-phase Al-substituted Li7La3Zr2O12 using atomistic simulations and effective medium theory. *Acta Materialia* (**2019**), 175, 426-435 (D1). [https://doi.org/10.1016/j.actamat.2019.06.033](https://doi.org/10.1016/j.actamat.2019.06.033)
+
+-	García-Daza F., **Bonilla M.R.**, Llordés A., Carrasco J., Akhmatskaya E. Atomistic insight into ion transport and conductivity in Ga/Al-substituted Li7La3Zr2O12 solid electrolytes. *ACS Applied Materials & Interfaces* (**2019**), 11, 753–765 (D1). [https://doi.org/10.1021/acsami.8b17217](https://doi.org/10.1021/acsami.8b17217)
+
+-	Dolan G.K., Cartwright B., **Bonilla M.R.**, Gidley M.J., Stokes J.R., Yakubov G.E. Probing adhesion between nanoscale cellulose fibres using AFM lateral force spectroscopy: the effect of hemicelluloses on hydrogen bonding. *Carbohydrate Polymers* (**2019**), 208, 97-107 (D1). [https://doi.org/10.1016/j.carbpol.2018.12.052](https://doi.org/10.1016/j.carbpol.2018.12.052)
+
+-	Yu L., Witt T., **Bonilla M.R.**, Turner M.S., Fitzgerald M., Stokes J.R. New insights into cooked rice quality by measuring modulus, adhesion, and cohesion. *Journal of Food Engineering* (**2019**), 240, 21-28 (D1). [https://doi.org/10.1016/j.jfoodeng.2018.07.010](https://doi.org/10.1016/j.jfoodeng.2018.07.010)
+
+-	**Bonilla M.R.***, Lozano A., Escribano B., Carrasco J., Akhmatskaya E. Revealing the mechanism of sodium diffusion in NaxFePO4 using an improved force field. *Journal of Physical Chemistry C* (**2018**), 122, 8065–8075 (Q1). [https://doi.org/10.1021/acs.jpcc.8b00230](https://doi.org/10.1021/acs.jpcc.8b00230)
+
+-	Meldrum O.W., Yakubov G.E., **Bonilla M.R.**, Deshmukh O., McGuckin M.A., Gidley M.J. Mucin gel assembly is controlled by a collective action of non-mucin proteins, disulfide bridges, Ca2+-mediated links, and hydrogen bonding. *Scientific Reports* (**2018**), 8, 5802 (D1). [https://doi.org/10.1038/s41598-018-24223-3](https://doi.org/10.1038/s41598-018-24223-3)
+
+-	Ai J., Witt T., Gidley M.J., Turner M.S., Stokes J.R.; **Bonilla  M.R.*** Modelling of thermal sterilisation of high-moisture snack foods: feasibility analysis and optimization. *Food and Bioprocess Technology* (**2018**), 11, 979–990 (D1). [https://doi.org/10.1007/s11947-018-2075-8](https://doi.org/10.1007/s11947-018-2075-8)
+
+-	Lopez-Sanchez P., Martinez-Sanz M., **Bonilla M.R.**, Wang D., Gilbert E.P., Stokes J.R., Gidley M.J. Cellulose-pectin composite hydrogels: Intermolecular interactions and material properties depend on order of assembly. *Carbohydrate Polymers* (**2017**), 162, 71-81 (D1). [https://doi.org/10.1016/j.carbpol.2017.01.049](https://doi.org/10.1016/j.carbpol.2017.01.049)
+
+-	Dolan G. K., Yakubov G.E., **Bonilla M.R.** Lopez-Sanchez P. Stokes J.R. Friction, lubrication, and in situ mechanics of poroelastic cellulose hydrogels. *Soft Matter* (**2017**), 13, 3592-3601 (D1). [https://doi.org/10.1039/C6SM02709A](https://doi.org/10.1039/C6SM02709A)
+
+-	Yakubov G.E., **Bonilla M.R.**, Chen H., Doblin M.S., Bacic A., Gidley M.J. Mapping nano-scale mechanical heterogeneity of primary plant cell walls. *Journal of Experimental Botany (**2016**), 67, 2799-2816 (D1). [https://doi.org/10.1093/jxb/erw117](https://doi.org/10.1093/jxb/erw117)
+
+-	Lopez-Sanchez P., Martinez-Sanz M., **Bonilla M.R.**, Wang D., Walsh C.T. Pectin impacts cellulose fibre architecture and hydrogel mechanics in the absence of calcium. *Carbohydrate Polymers* (**2016**), 153, 236-245 (D1). [https://doi.org/10.1016/j.carbpol.2016.07.113](https://doi.org/10.1016/j.carbpol.2016.07.113)
+
+-	**Bonilla M.R.**, Lopez-Sanchez P., Gidley M.J., Stokes, J.R. Micromechanical model of biphasic biomaterials with internal adhesion: application to nanocellulose hydrogel composites. *Acta Biomaterialia* (**2016**), 29, 149-160 (D1). [https://doi.org/10.1016/j.actbio.2015.10.032](https://doi.org/10.1016/j.actbio.2015.10.032)
+
+-	**Bonilla M.R.**, Stokes J.R., Gidley M.J., Yakubov G.E. Interpreting atomic force microscopy nanoindentation of hierarchical biological materials using multi-regime analysis. *Soft Matter* (**2015**), 11, 1281-1292 (D1). [https://doi.org/10.1039/C4SM02440K](https://doi.org/10.1039/C4SM02440K)
+
+-	Lopez-Sanchez P., **Bonilla M.R.**, Wang D., Brulhart S., Stokes J.R., Gidley M.J. Micromechanics and Poroelasticity of Hydrated Cellulose Networks. *Biomacromolecules* (**2014**), 15, 2274-2284 (D1). [https://doi.org/10.1021/bm500405h](https://doi.org/10.1021/bm500405h)
+
+-	**Bonilla M.R.**, Valiullin R., Kärger J., Bhatia S.K. Understanding adsorption and transport of light gases in hierarchical materials using molecular simulation and effective medium theory. *The Journal of Physical Chemistry C* (**2014**), 118, 14355-14370 (D1). [https://doi.org/10.1021/jp5028228](https://doi.org/10.1021/jp5028228)
+
+-	**Bonilla M.R.**, Titze T., Schmidt F. et al. Diffusion study by IR micro-imaging of molecular uptake and release on mesoporous zeolites of structure type CHA and LTA. *Materials* (**2013**), 6, 2662-2688 (Q2). [https://doi.org/10.3390/ma6072662](https://doi.org/10.3390/ma6072662)
+
+-	**Bonilla M.R.**, Bhatia S.K. Diffusion in pore networks: effective self-diffusivity and the concept of tortuosity. *The Journal of Physical Chemistry C* (**2013**), 117, 3343-3357 (D1). [https://doi.org/10.1021/jp3070954](https://doi.org/10.1021/jp3070954)
+
+-	Gao X., **Bonilla M.R.**, Diniz da Costa, J.C., Bhatia S.K. The transport of gases in a mesoporous gamma-alumina supported membrane. *Journal of Membrane Science* (**2013**), 428, 357–370 (D1). [https://doi.org/10.1016/j.memsci.2012.10.015](https://doi.org/10.1016/j.memsci.2012.10.015)
+
+-	Gao X., **Bonilla M.R.**, Diniz da Costa J.C., Bhatia S.K. The transport of gases in macroporous alpha-alumina supports. *Journal of Membrane Science* (**2012**), 409, 24–33 (D1). [https://doi.org/10.1016/j.memsci.2012.03.003](https://doi.org/10.1016/j.memsci.2012.03.003)
+
+-	**Bonilla M.R.**, Bhatia S.K. Multicomponent effective medium-correlated random walk theory for the diffusion of fluid mixtures through porous media. *Langmuir* (**2012**), 28, 517-533 (D1). [https://doi.org/10.1021/la2040888](https://doi.org/10.1021/la2040888)
+
+-	**Bonilla M.R.**, Bhatia S.K. The low-density diffusion coefficient of soft-sphere fluids in nanopores: Accurate correlations from exact theory and criteria for applicability of the Knudsen model. *Journal of Membrane Science* (**2011**), 382, 339-349 (D1). [https://doi.org/10.1016/j.memsci.2011.08.033](https://doi.org/10.1016/j.memsci.2011.08.033)
+
+-	Bhatia S.K., **Bonilla M.R.**, Nicholson D. Molecular transport in nanopores: a theoretical perspective. *Physical Chemistry Chemical Physics* (**2011**), 13, 15350-15383 (Q1). [https://doi.org/10.1039/C1CP21166H](https://doi.org/10.1039/C1CP21166H)
+
+-	**Bonilla, M.R.**, Bae J.S., Nguyen T. X., Bhatia S.K. Heat treatment-induced structural changes in SiC-derived carbons and their impact on gas storage potential. *The Journal of Physical Chemistry C* (**2010**), 114, 16562-16575 (D1). [https://doi.org/10.1021/jp105473x](https://doi.org/10.1021/jp105473x)
+
+---
+
+# Book Chapters
+
+- **Bonilla, M.R.**, García-Daza F., Fernández-Pendás M., Carrasco, J., Akhmatskaya E. (**2021**) Multiscale Modelling and Simulation of Advanced Battery Materials. In: Cruz, M., Parés C., Quintela P. Progress in Industrial Mathematics: Success Stories. SEMA SIMAI Springer Series, 5. Springer, Cham. ISBN: 3030618439. [https://doi.org/10.1007/978-3-030-61844-5_6](https://doi.org/10.1007/978-3-030-61844-5_6)

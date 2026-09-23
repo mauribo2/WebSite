@@ -6,8 +6,17 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Yongqing Gong">
+<meta name="author" content="Yuxin Fan">
+<meta name="author" content="Yilin Chen">
+<meta name="author" content="Mauricio R. Bonilla">
+<meta name="author" content="Henry Andres Cortes">
+<meta name="author" content="Chenlong Gao">
+<meta name="author" content="Yunhui Huang">
+<meta name="author" content="Menghao Yang">
+<meta name="dcterms.date" content="2025-01-01">
 
-<title>Li-ion and Na-ion Batteries – Mauricio Rincón Bonilla</title>
+<title>Interfacial Atomistic Evolution in Sodium-Ion Battery using a Graph-Theoretic Approach – Mauricio Rincón Bonilla</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -34,8 +43,6 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
 <link href="../../webpage_logo.png" rel="icon" type="image/png">
-<script src="../../site_libs/quarto-listing/list.min.js"></script>
-<script src="../../site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
@@ -78,79 +85,19 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-pubs .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
 
-    const options = {
-      valueNames: ['listing-publication','listing-title','listing-categories','listing-image','listing-date','listing-author',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-date-modified-sort'] },{ data: ['listing-file-modified-sort'] },{ data: ['listing-reading-time-sort'] },{ data: ['listing-word-count-sort'] }],
-      
-      searchColumns: ["listing-project","listing-website","listing-format","listing-editor","listing-engines","listing-language","listing-title","listing-author","listing-date","listing-publication","listing-categories","listing-url_source","listing-url_preprint","listing-journ","listing-issue","listing-page","listing-year","listing-image","listing-pub_number","listing-path","listing-outputHref","listing-date-modified","listing-description","listing-filename","listing-file-modified","listing-reading-time","listing-word-count"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-pubs'] = new List('listing-pubs', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
-
-<meta property="og:title" content="Li-ion and Na-ion Batteries – Mauricio Rincón Bonilla">
-<meta property="og:description" content="">
-<meta property="og:image" content="https://mauribo2.github.io/WebSite/research/Li-ionBatteries/featured.png">
+<meta property="og:title" content="Interfacial Atomistic Evolution in Sodium-Ion Battery using a Graph-Theoretic Approach – Mauricio Rincón Bonilla">
+<meta property="og:image" content="https://mauribo2.github.io/WebSite/publications/2025_016_InterfacialAtomistic_Evolution-Small/featured.png">
 <meta property="og:site_name" content="Mauricio Rincón Bonilla">
-<meta property="og:image:height" content="2241">
-<meta property="og:image:width" content="4106">
-<meta name="twitter:title" content="Li-ion and Na-ion Batteries – Mauricio Rincón Bonilla">
-<meta name="twitter:description" content="">
-<meta name="twitter:image" content="https://mauribo2.github.io/WebSite/research/Li-ionBatteries/featured.png">
+<meta property="og:image:height" content="486">
+<meta property="og:image:width" content="1286">
+<meta name="twitter:title" content="Interfacial Atomistic Evolution in Sodium-Ion Battery using a Graph-Theoretic Approach – Mauricio Rincón Bonilla">
+<meta name="twitter:image" content="https://mauribo2.github.io/WebSite/publications/2025_016_InterfacialAtomistic_Evolution-Small/featured.png">
 <meta name="twitter:creator" content="Mauricio Rincón Bonilla">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image-height" content="2241">
-<meta name="twitter:image-width" content="4106">
+<meta name="twitter:image-height" content="486">
+<meta name="twitter:image-width" content="1286">
 </head>
 
 <body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
@@ -399,14 +346,8 @@ window.Quarto = {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#related-publications" id="toc-related-publications" class="nav-link active" data-scroll-target="#related-publications">Related Publications</a></li>
-  </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/mauribo2/WebSite/edit/main/research/Li-ionBatteries/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/mauribo2/WebSite/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -414,14 +355,36 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Li-ion and Na-ion Batteries</h1>
-</div>
+<h1 class="title">Interfacial Atomistic Evolution in Sodium-Ion Battery using a Graph-Theoretic Approach</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">Li-ion</div>
+  </div>
+  </div>
 
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Authors</div>
+    <div class="quarto-title-meta-contents">
+             <p>Yongqing Gong </p>
+             <p>Yuxin Fan </p>
+             <p>Yilin Chen </p>
+             <p>Mauricio R. Bonilla </p>
+             <p>Henry Andres Cortes </p>
+             <p>Chenlong Gao </p>
+             <p>Yunhui Huang </p>
+             <p>Menghao Yang </p>
+          </div>
+  </div>
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">2025</p>
+    </div>
+  </div>
   
     
   </div>
@@ -431,415 +394,8 @@ window.Quarto = {
 </header>
 
 
-<p>Atomistic simulations accelerate the development and optimization of intercalation batteries by providing molecular-level insights to predict the performance and stability of new materials, optimize ion transport, and mitigate degradation mechanisms before ever stepping foot in a lab.</p>
-<p>My research centers on three key areas:</p>
-<ul>
-<li>Characterization and performance prediction of novel cathode materials;<br>
-</li>
-<li>optimization of ionic conduction in electrolyte mixtures; and<br>
-</li>
-<li>understanding the molecular processes behind solid electrolyte interphase (SEI) initiation and evolution.</li>
-</ul>
-<figure style="text-align: center;" class="figure">
-<img src="featured.png" alt="Featured Image" style="display: block; margin-left: auto; margin-right: auto; width: 800px; height: auto;" class="figure-img">
-</figure>
-<section id="related-publications" class="level2">
-<h2 class="anchored" data-anchor-id="related-publications">Related Publications</h2>
-<div id="listing-pubs" class="quarto-listing quarto-listing-container-custom">
-<div class="listing-actions-group">
-    <div class="input-group input-group-sm quarto-listing-filter">
-      <span class="input-group-text"><i class="bi bi-search"></i></span>
-      <input type="text" class="search form-control" placeholder="Filter">
-    </div>
-</div>
-<div class="list quarto-listing-default">
-    
-    
-    <div class="quarto-post image-right" data-index="0" data-categories="TGktaW9u" data-listing-date-sort="1792879200000" data-listing-file-modified-sort="1790167876735" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="1">
-        <div class="thumbnail">
-            <!-- <a href="/publications/2026_019_SEI-Commat/index.qmd"> -->
-
-                <p>
-                    
-                    <img alt="Surface chemistry and electrolyte concentration govern early-stage SEI formation on graphite anodes" src="../../publications/2026_019_SEI-Commat/featured.png" class="thumbnail-image">
-                    
-
-                </p>
-      
-
-            <!-- </a> -->
-        </div>
-        <div class="body">
-            <!-- <a href="/publications/2026_019_SEI-Commat/index.qmd"> -->
-            <div class="no-anchor listing-pub-title listing-title">Surface chemistry and electrolyte concentration govern early-stage SEI formation on graphite anodes</div>
-            <!-- </a> -->
-            <!-- <a href="/publications/2026_019_SEI-Commat/index.qmd"> -->
-                
-                <div class="listing-pub-author listing-author">
-                    Menghao Yang, Yilin Chen, Mauricio R. Bonilla M.R., Henry A. Cortes, Bikram K Das, Elena Akhmatskaya<br> 
-                </div>
-                
-                <div class="metadata-value listing-pub-journal listing-publication">
-                    
-                        <i>Computational Materials Science</i>, <b>275</b>, 115056 (2026)<br>
-                        
-                        
-                        
-                        
-                        
-                        
-                </div>
-                    
-                    
-                    
-            <!-- </a> -->
- <!--               <div class="listing-categories">
-                
-                <div class="listing-category" onclick="window.quartoListingCategory('Li-ion'); return false;">Li-ion</div>
-                
-                </div>
-                -->
-        </div>
-        <div class="metadata">
-
-            
-            <div class="listing-pub-url">
-
-                    <a href="https://doi.org/10.1016/j.commatsci.2026.115056">
-                    <p style="color:#8250E6;">journal URL <i class="bi bi-box-arrow-up-right"></i></p>
-                    </a>
-                </div>
-                    
-  
-              
-
-        </div>
-    </div>
-    
-    
-    
-    <div class="quarto-post image-right" data-index="1" data-categories="TGktaW9u" data-listing-date-sort="1766703600000" data-listing-file-modified-sort="1782206449096" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="1">
-        <div class="thumbnail">
-            <!-- <a href="/publications/2025_016_InterfacialAtomistic_Evolution-Small/index.qmd"> -->
-
-                <p>
-                    
-                    <img alt="Interfacial Atomistic Evolution in Sodium-Ion Battery using a Graph-Theoretic Approach" src="../../publications/2025_016_InterfacialAtomistic_Evolution-Small/featured.png" class="thumbnail-image">
-                    
-
-                </p>
-      
-
-            <!-- </a> -->
-        </div>
-        <div class="body">
-            <!-- <a href="/publications/2025_016_InterfacialAtomistic_Evolution-Small/index.qmd"> -->
-            <div class="no-anchor listing-pub-title listing-title">Interfacial Atomistic Evolution in Sodium-Ion Battery using a Graph-Theoretic Approach</div>
-            <!-- </a> -->
-            <!-- <a href="/publications/2025_016_InterfacialAtomistic_Evolution-Small/index.qmd"> -->
-                
-                <div class="listing-pub-author listing-author">
-                    Yongqing Gong, Yuxin Fan, Yilin Chen, Mauricio R. Bonilla, Henry Andres Cortes, Chenlong Gao, Yunhui Huang, Menghao Yang<br> 
-                </div>
-                
-                <div class="metadata-value listing-pub-journal listing-publication">
-                    
-                        <i>Small</i>, <b>22</b>, e11841 (2026)<br>
-                        
-                        
-                        
-                        
-                        
-                        
-                </div>
-                    
-                    
-                    
-            <!-- </a> -->
- <!--               <div class="listing-categories">
-                
-                <div class="listing-category" onclick="window.quartoListingCategory('Li-ion'); return false;">Li-ion</div>
-                
-                </div>
-                -->
-        </div>
-        <div class="metadata">
-
-            
-            <div class="listing-pub-url">
-
-                    <a href="https://doi.org/10.1002/smll.202511841">
-                    <p style="color:#8250E6;">journal URL <i class="bi bi-box-arrow-up-right"></i></p>
-                    </a>
-                </div>
-                    
-  
-              
-
-        </div>
-    </div>
-    
-    
-    
-    <div class="quarto-post image-right" data-index="2" data-categories="TGktaW9u" data-listing-date-sort="1755122400000" data-listing-file-modified-sort="1782213666381" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="1">
-        <div class="thumbnail">
-            <!-- <a href="/publications/2025_014_Enhanced-Stability-Spinel-JAC/index.qmd"> -->
-
-                <p>
-                    
-                    <img alt="Enhanced stability of spinel LiMn1.5Ni0.5O4 with V doping for high-voltage Li-ion batteries in organic and ionic liquid electrolytes" src="../../publications/2025_014_Enhanced-Stability-Spinel-JAC/featured.png" class="thumbnail-image">
-                    
-
-                </p>
-      
-
-            <!-- </a> -->
-        </div>
-        <div class="body">
-            <!-- <a href="/publications/2025_014_Enhanced-Stability-Spinel-JAC/index.qmd"> -->
-            <div class="no-anchor listing-pub-title listing-title">Enhanced stability of spinel LiMn1.5Ni0.5O4 with V doping for high-voltage Li-ion batteries in organic and ionic liquid electrolytes</div>
-            <!-- </a> -->
-            <!-- <a href="/publications/2025_014_Enhanced-Stability-Spinel-JAC/index.qmd"> -->
-                
-                <div class="listing-pub-author listing-author">
-                    Héctor D. Agudelo, Ferley A. Vasquez, Jorge A. Calderón, Roberto M. Torresi, Eduardo Carmine, Bikram Kumar Das, Henry A. Cortés, Mauricio Rincón Bonilla, Elena Akhmatskaya<br> 
-                </div>
-                
-                <div class="metadata-value listing-pub-journal listing-publication">
-                    
-                        <i>Journal of Alloys and Compounds</i>, <b>1039</b>, 183060 (2025)<br>
-                        
-                        
-                        
-                        
-                        
-                        
-                </div>
-                    
-                    
-                    
-            <!-- </a> -->
- <!--               <div class="listing-categories">
-                
-                <div class="listing-category" onclick="window.quartoListingCategory('Li-ion'); return false;">Li-ion</div>
-                
-                </div>
-                -->
-        </div>
-        <div class="metadata">
-
-            
-            <div class="listing-pub-url">
-
-                    <a href="https://doi.org/10.1016/j.jallcom.2025.183060">
-                    <p style="color:#8250E6;">journal URL <i class="bi bi-box-arrow-up-right"></i></p>
-                    </a>
-                </div>
-                    
-  
-              
-
-        </div>
-    </div>
-    
-    
-    
-    <div class="quarto-post image-right" data-index="3" data-categories="TGktaW9u" data-listing-date-sort="1752616800000" data-listing-file-modified-sort="1782206128946" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="1">
-        <div class="thumbnail">
-            <!-- <a href="/publications/2025_013_DMC-matters-JMCA/index.qmd"> -->
-
-                <p>
-                    
-                    <img alt="DMC matters: the role of dimethyl carbonate in SEI formation on oxygen functionalized anodes" src="../../publications/2025_013_DMC-matters-JMCA/featured.png" class="thumbnail-image">
-                    
-
-                </p>
-      
-
-            <!-- </a> -->
-        </div>
-        <div class="body">
-            <!-- <a href="/publications/2025_013_DMC-matters-JMCA/index.qmd"> -->
-            <div class="no-anchor listing-pub-title listing-title">DMC matters: the role of dimethyl carbonate in SEI formation on oxygen functionalized anodes</div>
-            <!-- </a> -->
-            <!-- <a href="/publications/2025_013_DMC-matters-JMCA/index.qmd"> -->
-                
-                <div class="listing-pub-author listing-author">
-                    Bikram Kumar Das, Henry A. Cortés, Mauricio Rincón Bonilla, Menghao Yang, Javier Carrasco, Elena Akhmatskaya<br> 
-                </div>
-                
-                <div class="metadata-value listing-pub-journal listing-publication">
-                    
-                        <i>Journal of Materials Chemistry A</i>, <b>33</b>, 27557-27576 (2025)<br>
-                        
-                        
-                        
-                        
-                        
-                        
-                </div>
-                    
-                    
-                    
-            <!-- </a> -->
- <!--               <div class="listing-categories">
-                
-                <div class="listing-category" onclick="window.quartoListingCategory('Li-ion'); return false;">Li-ion</div>
-                
-                </div>
-                -->
-        </div>
-        <div class="metadata">
-
-            
-            <div class="listing-pub-url">
-
-                    <a href="https://doi.org/10.1039/d5ta02003d">
-                    <p style="color:#8250E6;">journal URL <i class="bi bi-box-arrow-up-right"></i></p>
-                    </a>
-                </div>
-                    
-  
-              
-
-        </div>
-    </div>
-    
-    
-    
-    <div class="quarto-post image-right" data-index="4" data-categories="TGktaW9u" data-listing-date-sort="1702594800000" data-listing-file-modified-sort="1782205538287" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="1">
-        <div class="thumbnail">
-            <!-- <a href="/publications/2023_009_Na2Fe3Cl8_cathodes-JALC/index.qmd"> -->
-
-                <p>
-                    
-                    <img alt="The crystal chemistry and reactivity of ternary Na2Fe3Cl8 from the NaCl-FeCl2 system and its potential application as coating layer for cathode in sodium ion batteries" src="../../publications/2023_009_Na2Fe3Cl8_cathodes-JALC/featured.png" class="thumbnail-image">
-                    
-
-                </p>
-      
-
-            <!-- </a> -->
-        </div>
-        <div class="body">
-            <!-- <a href="/publications/2023_009_Na2Fe3Cl8_cathodes-JALC/index.qmd"> -->
-            <div class="no-anchor listing-pub-title listing-title">The crystal chemistry and reactivity of ternary Na2Fe3Cl8 from the NaCl-FeCl2 system and its potential application as coating layer for cathode in sodium ion batteries</div>
-            <!-- </a> -->
-            <!-- <a href="/publications/2023_009_Na2Fe3Cl8_cathodes-JALC/index.qmd"> -->
-                
-                <div class="listing-pub-author listing-author">
-                    Liliana T. López Ch., Franklin Jaramillo, Jorge A. Calderón, José L. Tirado, Elena Akhmatskaya, Mauricio R. Bonilla<br> 
-                </div>
-                
-                <div class="metadata-value listing-pub-journal listing-publication">
-                    
-                        <i>The Journal of Physical Chemistry C</i>, <b>968</b>, 172123 (2023)<br>
-                        
-                        
-                        
-                        
-                        
-                        
-                </div>
-                    
-                    
-                    
-            <!-- </a> -->
- <!--               <div class="listing-categories">
-                
-                <div class="listing-category" onclick="window.quartoListingCategory('Li-ion'); return false;">Li-ion</div>
-                
-                </div>
-                -->
-        </div>
-        <div class="metadata">
-
-            
-            <div class="listing-pub-url">
-
-                    <a href="https://doi.org/10.1016/j.jallcom.2023.172123">
-                    <p style="color:#8250E6;">journal URL <i class="bi bi-box-arrow-up-right"></i></p>
-                    </a>
-                </div>
-                    
-  
-              
-
-        </div>
-    </div>
-    
-    
-    
-    <div class="quarto-post image-right" data-index="5" data-categories="TGktaW9u" data-listing-date-sort="1522620000000" data-listing-file-modified-sort="1782463018737" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="1">
-        <div class="thumbnail">
-            <!-- <a href="/publications/2018_001_NaFePO4_cathodes-JPCC/index.qmd"> -->
-
-                <p>
-                    
-                    <img alt="Revealing the Mechanism of Sodium Diffusion in NaxFePO4 Using an Improved Force Field" src="../../publications/2018_001_NaFePO4_cathodes-JPCC/featured.png" class="thumbnail-image">
-                    
-
-                </p>
-      
-
-            <!-- </a> -->
-        </div>
-        <div class="body">
-            <!-- <a href="/publications/2018_001_NaFePO4_cathodes-JPCC/index.qmd"> -->
-            <div class="no-anchor listing-pub-title listing-title">Revealing the Mechanism of Sodium Diffusion in NaxFePO4 Using an Improved Force Field</div>
-            <!-- </a> -->
-            <!-- <a href="/publications/2018_001_NaFePO4_cathodes-JPCC/index.qmd"> -->
-                
-                <div class="listing-pub-author listing-author">
-                    Mauricio R. Bonilla, Ariel Lozano, Bruno Escribano, Javier Carrasco, Elena Akhmatskaya<br> 
-                </div>
-                
-                <div class="metadata-value listing-pub-journal listing-publication">
-                    
-                        <i>The Journal of Physical Chemistry C</i>, <b>122</b>, 8065–8075 (2018)<br>
-                        
-                        
-                        
-                        
-                        
-                        
-                </div>
-                    
-                    
-                    
-            <!-- </a> -->
- <!--               <div class="listing-categories">
-                
-                <div class="listing-category" onclick="window.quartoListingCategory('Li-ion'); return false;">Li-ion</div>
-                
-                </div>
-                -->
-        </div>
-        <div class="metadata">
-
-            
-            <div class="listing-pub-url">
-
-                    <a href="https://doi.org/10.1021/acs.jpcc.8b00230">
-                    <p style="color:#8250E6;">journal URL <i class="bi bi-box-arrow-up-right"></i></p>
-                    </a>
-                </div>
-                    
-  
-              
-
-        </div>
-    </div>
-    
-    
-    </div>
-
-<div class="listing-no-matching d-none">No matching items</div>
-</div>
 
 
-
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -1260,4 +816,4 @@ window.Quarto = {
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/mauribo2/WebSite/edit/main/research/Li-ionBatteries/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/mauribo2/WebSite/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><ul><li><a href="https://github.com/mauribo2/WebSite/edit/main/publications/2025_016_InterfacialAtomistic_Evolution-Small/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/mauribo2/WebSite/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>

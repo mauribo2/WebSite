@@ -19,12 +19,6 @@ website:
     location: navbar
     type: overlay
     copy-button: true
-    
-  comments:
-    utterances:
-      repo: mauribo2/WebSite
-      label: "Comment"
-      theme: github-dark
 
   #page-footer:
     # using footer in _metadata
@@ -45,7 +39,6 @@ website:
             href: research/Hydrogen/index.html
           - text: "Soft Matter systems"
             href: research/SoftMatter/index.html
-      - href: publications/index.qmd
       - href: research-projects/index.qmd
         text: Research Projects
       - href: codes/index.qmd

@@ -1,0 +1,16 @@
+---
+title: "Surface chemistry and electrolyte concentration govern early-stage SEI formation on graphite anodes"
+author: ["Menghao Yang", "Yilin Chen", "Mauricio R. Bonilla M.R.", "Henry A. Cortes", "Bikram K Das", "Elena Akhmatskaya"]
+date: 2026-10-25
+publication: "Computational Materials Science, **275**, 115056 (2026)."
+categories: ["Li-ion"]
+url_source: https://doi.org/10.1016/j.commatsci.2026.115056
+url_preprint:
+journ: "Computational Materials Science"
+issue: 275
+page: 115056
+year: 2026
+image: featured.png
+pub_number: 19
+
+---
