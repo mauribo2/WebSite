@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss  xmlns:atom="http://www.w3.org/2005/Atom" 
+      xmlns:media="http://search.yahoo.com/mrss/" 
+      xmlns:content="http://purl.org/rss/1.0/modules/content/" 
+      xmlns:dc="http://purl.org/dc/elements/1.1/" 
+      version="2.0">
+<channel>
+<title>Mauricio Rincón Bonilla</title>
+<link>https://mauribo2.github.io/WebSite/posts/</link>
+<atom:link href="https://mauribo2.github.io/WebSite/posts/index.xml" rel="self" type="application/rss+xml"/>
+<description></description>
+<generator>quarto-1.9.38</generator>
+<lastBuildDate>Thu, 11 Jan 2024 23:00:00 GMT</lastBuildDate>
+<item>
+  <title>{B4F502887207:/posts/2024-01-12-recoding-america/index.html}</title>
+  <dc:creator>Matias Andina</dc:creator>
+  <link>https://mauribo2.github.io/WebSite/posts/2024-01-12-recoding-america/</link>
+  <description>{B4F502887207:/posts/2024-01-12-recoding-america/index.html}</description>
+  <category>learning</category>
+  <category>policy</category>
+  <category>books</category>
+  <guid>https://mauribo2.github.io/WebSite/posts/2024-01-12-recoding-america/</guid>
+  <pubDate>Thu, 11 Jan 2024 23:00:00 GMT</pubDate>
+  <media:content url="https://mauribo2.github.io/WebSite/posts/2024-01-12-recoding-america/justice_scales.png" medium="image" type="image/png"/>
+</item>
+<item>
+  <title>{B4F502887207:/posts/2023-11-07-original-text/index.html}</title>
+  <dc:creator>Matias Andina</dc:creator>
+  <link>https://mauribo2.github.io/WebSite/posts/2023-11-07-original-text/</link>
+  <description>{B4F502887207:/posts/2023-11-07-original-text/index.html}</description>
+  <category>R</category>
+  <guid>https://mauribo2.github.io/WebSite/posts/2023-11-07-original-text/</guid>
+  <pubDate>Mon, 06 Nov 2023 23:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>{B4F502887207:/posts/2023-08-19-the-power-to-normalize/index.html}</title>
+  <dc:creator>Matias Andina</dc:creator>
+  <link>https://mauribo2.github.io/WebSite/posts/2023-08-19-the-power-to-normalize/</link>
+  <description>{B4F502887207:/posts/2023-08-19-the-power-to-normalize/index.html}</description>
+  <category>R</category>
+  <category>dataviz</category>
+  <guid>https://mauribo2.github.io/WebSite/posts/2023-08-19-the-power-to-normalize/</guid>
+  <pubDate>Fri, 18 Aug 2023 22:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>{B4F502887207:/posts/2023-06-10-goodreads/index.html}</title>
+  <dc:creator>Matias Andina</dc:creator>
+  <link>https://mauribo2.github.io/WebSite/posts/2023-06-10-goodreads/</link>
+  <description>{B4F502887207:/posts/2023-06-10-goodreads/index.html}</description>
+  <category>R</category>
+  <category>books</category>
+  <guid>https://mauribo2.github.io/WebSite/posts/2023-06-10-goodreads/</guid>
+  <pubDate>Sat, 05 Aug 2023 22:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>{B4F502887207:/posts/2022-10-10-Inequality/index.html}</title>
+  <dc:creator>Matias Andina</dc:creator>
+  <link>https://mauribo2.github.io/WebSite/posts/2022-10-10-Inequality/</link>
+  <description>{B4F502887207:/posts/2022-10-10-Inequality/index.html}</description>
+  <guid>https://mauribo2.github.io/WebSite/posts/2022-10-10-Inequality/</guid>
+  <pubDate>Sun, 09 Oct 2022 22:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>{B4F502887207:/posts/2021-04-25-Icebreaker/index.html}</title>
+  <dc:creator>Matias Andina</dc:creator>
+  <link>https://mauribo2.github.io/WebSite/posts/2021-04-25-Icebreaker/</link>
+  <description>{B4F502887207:/posts/2021-04-25-Icebreaker/index.html}</description>
+  <guid>https://mauribo2.github.io/WebSite/posts/2021-04-25-Icebreaker/</guid>
+  <pubDate>Sat, 24 Apr 2021 22:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>{B4F502887207:/posts/2021-02-07-queens-gambit/index.html}</title>
+  <dc:creator>Matias Andina</dc:creator>
+  <link>https://mauribo2.github.io/WebSite/posts/2021-02-07-queens-gambit/</link>
+  <description>{B4F502887207:/posts/2021-02-07-queens-gambit/index.html}</description>
+  <category>chess</category>
+  <category>fun</category>
+  <category>design</category>
+  <guid>https://mauribo2.github.io/WebSite/posts/2021-02-07-queens-gambit/</guid>
+  <pubDate>Sat, 06 Feb 2021 23:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>{B4F502887207:/posts/2021-01-16-lifeviz/index.html}</title>
+  <dc:creator>Matias Andina</dc:creator>
+  <link>https://mauribo2.github.io/WebSite/posts/2021-01-16-lifeviz/</link>
+  <description>{B4F502887207:/posts/2021-01-16-lifeviz/index.html}</description>
+  <category>art</category>
+  <category>R</category>
+  <guid>https://mauribo2.github.io/WebSite/posts/2021-01-16-lifeviz/</guid>
+  <pubDate>Fri, 15 Jan 2021 23:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>{B4F502887207:/posts/2021-01-03-rotating-perspectives/index.html}</title>
+  <dc:creator>Matias Andina</dc:creator>
+  <link>https://mauribo2.github.io/WebSite/posts/2021-01-03-rotating-perspectives/</link>
+  <description>{B4F502887207:/posts/2021-01-03-rotating-perspectives/index.html}</description>
+  <category>generative-art</category>
+  <category>R</category>
+  <guid>https://mauribo2.github.io/WebSite/posts/2021-01-03-rotating-perspectives/</guid>
+  <pubDate>Sat, 02 Jan 2021 23:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>{B4F502887207:/posts/2021-01-02-art-in-a-new-year/index.html}</title>
+  <dc:creator>Matias Andina</dc:creator>
+  <link>https://mauribo2.github.io/WebSite/posts/2021-01-02-art-in-a-new-year/</link>
+  <description>{B4F502887207:/posts/2021-01-02-art-in-a-new-year/index.html}</description>
+  <category>generative-art</category>
+  <category>R</category>
+  <guid>https://mauribo2.github.io/WebSite/posts/2021-01-02-art-in-a-new-year/</guid>
+  <pubDate>Fri, 01 Jan 2021 23:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>{B4F502887207:/posts/2020-11-02-Russian-roulette/index.html}</title>
+  <dc:creator>Matias Andina</dc:creator>
+  <link>https://mauribo2.github.io/WebSite/posts/2020-11-02-Russian-roulette/</link>
+  <description>{B4F502887207:/posts/2020-11-02-Russian-roulette/index.html}</description>
+  <category>random</category>
+  <category>investing</category>
+  <guid>https://mauribo2.github.io/WebSite/posts/2020-11-02-Russian-roulette/</guid>
+  <pubDate>Sun, 01 Nov 2020 23:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>{B4F502887207:/posts/2020-09-06-calories/index.html}</title>
+  <dc:creator>Matias Andina</dc:creator>
+  <link>https://mauribo2.github.io/WebSite/posts/2020-09-06-calories/</link>
+  <description>{B4F502887207:/posts/2020-09-06-calories/index.html}</description>
+  <category>dataviz</category>
+  <guid>https://mauribo2.github.io/WebSite/posts/2020-09-06-calories/</guid>
+  <pubDate>Sat, 05 Sep 2020 22:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>{B4F502887207:/posts/2020-07-05-Unique/index.html}</title>
+  <dc:creator>Matias Andina</dc:creator>
+  <link>https://mauribo2.github.io/WebSite/posts/2020-07-05-Unique/</link>
+  <description>{B4F502887207:/posts/2020-07-05-Unique/index.html}</description>
+  <category>fun</category>
+  <category>python</category>
+  <category>R</category>
+  <guid>https://mauribo2.github.io/WebSite/posts/2020-07-05-Unique/</guid>
+  <pubDate>Sat, 04 Jul 2020 22:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>{B4F502887207:/posts/2020-06-13-birthday-problem/index.html}</title>
+  <dc:creator>Matias Andina</dc:creator>
+  <link>https://mauribo2.github.io/WebSite/posts/2020-06-13-birthday-problem/</link>
+  <description>{B4F502887207:/posts/2020-06-13-birthday-problem/index.html}</description>
+  <category>fun</category>
+  <category>python</category>
+  <category>R</category>
+  <guid>https://mauribo2.github.io/WebSite/posts/2020-06-13-birthday-problem/</guid>
+  <pubDate>Fri, 12 Jun 2020 22:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>{B4F502887207:/posts/2020-06-13-python-keylogger/index.html}</title>
+  <dc:creator>Matias Andina</dc:creator>
+  <link>https://mauribo2.github.io/WebSite/posts/2020-06-13-python-keylogger/</link>
+  <description>{B4F502887207:/posts/2020-06-13-python-keylogger/index.html}</description>
+  <category>fun</category>
+  <category>python</category>
+  <guid>https://mauribo2.github.io/WebSite/posts/2020-06-13-python-keylogger/</guid>
+  <pubDate>Fri, 12 Jun 2020 22:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>{B4F502887207:/posts/2020-04-30-complex-fun/index.html}</title>
+  <dc:creator>Matias Andina</dc:creator>
+  <link>https://mauribo2.github.io/WebSite/posts/2020-04-30-complex-fun/</link>
+  <description>{B4F502887207:/posts/2020-04-30-complex-fun/index.html}</description>
+  <category>art</category>
+  <category>fun</category>
+  <category>R</category>
+  <guid>https://mauribo2.github.io/WebSite/posts/2020-04-30-complex-fun/</guid>
+  <pubDate>Wed, 29 Apr 2020 22:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>{B4F502887207:/posts/2020-01-20-The-power-of-compounding/index.html}</title>
+  <dc:creator>Matias Andina</dc:creator>
+  <link>https://mauribo2.github.io/WebSite/posts/2020-01-20-The-power-of-compounding/</link>
+  <description>{B4F502887207:/posts/2020-01-20-The-power-of-compounding/index.html}</description>
+  <guid>https://mauribo2.github.io/WebSite/posts/2020-01-20-The-power-of-compounding/</guid>
+  <pubDate>Sun, 19 Jan 2020 23:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>{B4F502887207:/posts/2020-01-02-escribiendo-en-pocas-palabras/index.html}</title>
+  <dc:creator>Matias Andina</dc:creator>
+  <link>https://mauribo2.github.io/WebSite/posts/2020-01-02-escribiendo-en-pocas-palabras/</link>
+  <description>{B4F502887207:/posts/2020-01-02-escribiendo-en-pocas-palabras/index.html}</description>
+  <guid>https://mauribo2.github.io/WebSite/posts/2020-01-02-escribiendo-en-pocas-palabras/</guid>
+  <pubDate>Wed, 01 Jan 2020 23:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>{B4F502887207:/posts/2020-01-02-writing-checklist/index.html}</title>
+  <dc:creator>Matias Andina</dc:creator>
+  <link>https://mauribo2.github.io/WebSite/posts/2020-01-02-writing-checklist/</link>
+  <description>{B4F502887207:/posts/2020-01-02-writing-checklist/index.html}</description>
+  <category>writing</category>
+  <category>learning</category>
+  <category>DocumentingLearning</category>
+  <category>R</category>
+  <guid>https://mauribo2.github.io/WebSite/posts/2020-01-02-writing-checklist/</guid>
+  <pubDate>Wed, 01 Jan 2020 23:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>{B4F502887207:/posts/2019-11-22-fitbit-analysis/index.html}</title>
+  <dc:creator>Matias Andina</dc:creator>
+  <link>https://mauribo2.github.io/WebSite/posts/2019-11-22-fitbit-analysis/</link>
+  <description>{B4F502887207:/posts/2019-11-22-fitbit-analysis/index.html}</description>
+  <category>tracking</category>
+  <category>learning</category>
+  <category>R</category>
+  <guid>https://mauribo2.github.io/WebSite/posts/2019-11-22-fitbit-analysis/</guid>
+  <pubDate>Thu, 21 Nov 2019 23:00:00 GMT</pubDate>
+</item>
+</channel>
+</rss>
