@@ -161,11 +161,11 @@ Host: Emeritus Prof. Jörg Kärger (kaerger@physik.uni-leipzig.de).
 
 ---
 
-## Full list of publications (last updated Jun 24, 2026)
+## Full list of publications (last updated Sep 23, 2026)
 
 *Corresponding author (journal percentiles from Scopus at the year closest to publication)\
 
--   Yang, M., Chen, Y., **Bonilla, M.R.**, Cortés, H.A., Das, B.K., Akhmatskaya, E. Surface chemistry and electrolyte concentration govern early-stage SEI formation on graphite anodes. *Computational Materials Science* (**2026**), 275, 115056. [https://doi.org/10.1016/j.commatsci.2026.115056](https://doi.org/10.1016/j.commatsci.2026.115056)
+-   Yang, M., Chen, Y., **Bonilla, M.R.**, Cortés, H.A., Das, B.K., Akhmatskaya, E. Surface chemistry and electrolyte concentration govern early-stage SEI formation on graphite anodes. *Computational Materials Science* (**2026**), 275, 115056 (Q1). [https://doi.org/10.1016/j.commatsci.2026.115056](https://doi.org/10.1016/j.commatsci.2026.115056)
 
 -	Cortés, H.A., Das B.K., Früchtl H., van Mourik T., Thangadurai V., Akhmatskaya, E., **Bonilla, M.R.*** Garnets Li7La3M2O13 (M= Ta, Nb): Stable phases and superior ionic conductors? *Journal of Power Sources* (**2026**), 677, 240034 (D1). [https://doi.org/10.1016/j.jpowsour.2026.240034](https://doi.org/10.1016/j.jpowsour.2026.240034)
 
